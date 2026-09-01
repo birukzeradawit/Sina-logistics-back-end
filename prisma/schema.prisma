@@ -1,0 +1,122 @@
+// SINA Supplies and Logistics — database schema
+// Model: lead capture (public contact form → Inquiry) + staff CMS
+// (manage inquiries, edit site content). No client-facing login —
+// the business is high-touch B2B, not self-service tracking.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ---------- STAFF (internal only) ----------
+
+enum StaffRole {
+  ADMIN   // manages staff accounts, all content, all inquiries
+  EDITOR  // manages inquiries and content, cannot manage staff accounts
+}
+
+model StaffUser {
+  id           String    @id @default(cuid())
+  email        String    @unique
+  passwordHash String
+  role         StaffRole @default(EDITOR)
+  mfaSecret    String?   // TOTP secret — enforce before granting ADMIN in production
+  isActive     Boolean   @default(true)
+  lastLoginAt  DateTime?
+  createdAt    DateTime  @default(now())
+
+  auditLogs      AuditLog[]
+  contentEdits   ContentBlock[]
+  inquiryUpdates InquiryStatusChange[]
+
+  @@index([email])
+}
+
+// ---------- LEADS ----------
+
+enum InquiryStatus {
+  NEW
+  CONTACTED
+  QUOTED
+  WON
+  LOST
+}
+
+model Inquiry {
+  id          String        @id @default(cuid())
+  firstName   String
+  lastName    String
+  email       String
+  phone       String?
+  sector      String?       // which of the 9 sectors they selected, if any
+  message     String
+  status      InquiryStatus @default(NEW)
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+
+  statusHistory InquiryStatusChange[]
+
+  @@index([status])
+  @@index([createdAt])
+}
+
+// Append-only history of status changes, so staff can see who moved a lead
+// from NEW to CONTACTED and when — not just the current status.
+model InquiryStatusChange {
+  id          String        @id @default(cuid())
+  inquiry     Inquiry       @relation(fields: [inquiryId], references: [id])
+  inquiryId   String
+  fromStatus  InquiryStatus?
+  toStatus    InquiryStatus
+  changedBy   StaffUser     @relation(fields: [changedById], references: [id])
+  changedById String
+  createdAt   DateTime      @default(now())
+
+  @@index([inquiryId])
+}
+
+// ---------- EDITABLE CONTENT ----------
+// A generic key-value content model. Each editable piece of text or image
+// on the public site (hero heading, a paragraph, an image path) is one row,
+// identified by a stable key like "home.hero.heading". Pages read from this
+// table instead of having content hardcoded — that's what makes it editable
+// from the Staff CMS without a code deploy.
+
+enum ContentType {
+  TEXT
+  RICH_TEXT
+  IMAGE_URL
+}
+
+model ContentBlock {
+  id          String      @id @default(cuid())
+  key         String      @unique // e.g. "home.hero.heading", "about.intro.body"
+  page        String      // "home" | "about" | "sectors" | "contact" — for filtering in the CMS UI
+  label       String      // human-readable label shown in the CMS, e.g. "Hero Heading"
+  type        ContentType @default(TEXT)
+  value       String      @db.Text
+  updatedAt   DateTime    @updatedAt
+  updatedBy   StaffUser?  @relation(fields: [updatedById], references: [id])
+  updatedById String?
+
+  @@index([page])
+}
+
+// ---------- AUDIT LOG (append-only) ----------
+
+model AuditLog {
+  id           String     @id @default(cuid())
+  staffActor   StaffUser? @relation(fields: [staffActorId], references: [id])
+  staffActorId String?
+  action       String     // "LOGIN", "LOGIN_FAILED", "CONTENT_UPDATED", "INQUIRY_STATUS_CHANGED"
+  target       String?
+  ipAddress    String?
+  createdAt    DateTime   @default(now())
+
+  @@index([staffActorId])
+  @@index([createdAt])
+}

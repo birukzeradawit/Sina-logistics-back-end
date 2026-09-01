@@ -1,0 +1,52 @@
+/* ===== STATS SECTION ===== */
+.stats{
+  padding:0;
+  border-bottom:1px solid var(--line);
+}
+.stats-grid{
+  display:grid;
+  grid-template-columns:repeat(4, 1fr);
+  border-top:1px solid var(--line);
+  border-left:1px solid var(--line);
+}
+.stat-cell{
+  border-right:1px solid var(--line);
+  padding:56px 34px;
+  position:relative;
+  transition:background .25s ease;
+}
+.stat-cell:hover{ background:var(--paper-dim); }
+.stat-number{
+  font-family:var(--display);
+  font-weight:900;
+  font-size:clamp(48px, 5.4vw, 76px);
+  line-height:0.9;
+  color:var(--ink);
+  margin-bottom:6px;
+}
+.stat-number .accent{ color:var(--amber); }
+.stat-rule{
+  width:36px; height:2px;
+  background:var(--amber);
+  margin:14px 0 18px;
+}
+.stat-label{
+  font-family:var(--body);
+  font-weight:700;
+  font-size:15px;
+  margin-bottom:8px;
+  text-transform:uppercase;
+  letter-spacing:0.02em;
+}
+.stat-desc{
+  font-size:13px;
+  color:var(--slate);
+  line-height:1.55;
+}
+
+@media(max-width:900px){
+  .stats-grid{ grid-template-columns:1fr 1fr; }
+}
+@media(max-width:560px){
+  .stats-grid{ grid-template-columns:1fr; }
+}
