@@ -19,7 +19,6 @@ const updateStaffSchema = z.object({
   resetMfa: z.boolean().optional(),
 });
 
-// GET /api/staff/users — ADMIN only. Returns staff members and recent audit trail.
 export async function GET() {
   const session = await getServerSession(staffAuthOptions);
   if (!session?.user || (session.user as any).role !== "ADMIN") {
@@ -63,7 +62,6 @@ export async function GET() {
   return NextResponse.json({ users, auditLogs });
 }
 
-// POST /api/staff/users — ADMIN only. Creates a new staff member.
 export async function POST(req: NextRequest) {
   const session = await getServerSession(staffAuthOptions);
   if (!session?.user || (session.user as any).role !== "ADMIN") {
@@ -115,7 +113,6 @@ export async function POST(req: NextRequest) {
   return NextResponse.json({ ...newUser, hasMfa: false }, { status: 201 });
 }
 
-// PATCH /api/staff/users — ADMIN only. Updates a staff member's status, role, password, or resets MFA.
 export async function PATCH(req: NextRequest) {
   const session = await getServerSession(staffAuthOptions);
   if (!session?.user || (session.user as any).role !== "ADMIN") {
@@ -138,7 +135,6 @@ export async function PATCH(req: NextRequest) {
     return NextResponse.json({ error: "User not found." }, { status: 404 });
   }
 
-  // Prevent self-deactivation by admin
   if (id === currentAdminId && isActive === false) {
     return NextResponse.json(
       { error: "You cannot deactivate your own admin account." },

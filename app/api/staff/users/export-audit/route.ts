@@ -9,7 +9,6 @@ function escapeCsv(val: any): string {
   return `"${str}"`;
 }
 
-// GET /api/staff/users/export-audit — Admin only. Exports security audit log trail.
 export async function GET() {
   const session = await getServerSession(staffAuthOptions);
   if (!session?.user || (session.user as any).role !== "ADMIN") {

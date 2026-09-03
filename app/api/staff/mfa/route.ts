@@ -6,10 +6,8 @@ import { generateMfaSecret, generateMfaQrCode, verifyMfaToken } from "@/lib/mfa"
 import { verifyPassword } from "@/lib/password";
 import { z } from "zod";
 
-// In-memory cache for pending enrollment secrets (keyed by staff userId)
 const pendingSecrets = new Map<string, { secret: string; otpauthUrl: string; qrCodeDataUrl: string; createdAt: number }>();
 
-// GET /api/staff/mfa — Returns current MFA status and a stable setup payload (QR code + secret) if not active
 export async function GET(req: NextRequest) {
   const session = await getServerSession(staffAuthOptions);
   if (!session?.user) {
@@ -34,7 +32,6 @@ export async function GET(req: NextRequest) {
   const forceNew = req.nextUrl.searchParams.get("new") === "true";
   let pending = pendingSecrets.get(userId);
 
-  // Expire after 1 hour or if forceNew requested
   const isExpired = pending && Date.now() - pending.createdAt > 3600 * 1000;
 
   if (!pending || forceNew || isExpired) {
@@ -57,7 +54,6 @@ const enableSchema = z.object({
   secret: z.string().optional(),
 });
 
-// POST /api/staff/mfa — Verifies the code and enables MFA
 export async function POST(req: NextRequest) {
   const session = await getServerSession(staffAuthOptions);
   if (!session?.user) {
@@ -72,7 +68,6 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Invalid verification code." }, { status: 400 });
   }
 
-  // Use pending secret or fallback to secret in body
   const pending = pendingSecrets.get(userId);
   const secretToVerify = parsed.data.secret || pending?.secret;
 
@@ -83,9 +78,7 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  console.log(`[MFA Verify] Verifying token "${parsed.data.token}" against secret "${secretToVerify}"`);
   const isValid = verifyMfaToken(parsed.data.token, secretToVerify);
-  console.log(`[MFA Verify] Is valid: ${isValid}`);
 
   if (!isValid) {
     return NextResponse.json(
@@ -117,7 +110,6 @@ const disableSchema = z.object({
   password: z.string().min(1),
 });
 
-// DELETE /api/staff/mfa — Disables MFA after verifying password
 export async function DELETE(req: NextRequest) {
   const session = await getServerSession(staffAuthOptions);
   if (!session?.user) {

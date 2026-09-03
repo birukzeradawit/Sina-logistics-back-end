@@ -13,18 +13,28 @@ export type ServiceSectorDTO = {
   isActive: boolean;
 };
 
-/**
- * Fetches service sectors from the database, ordered by sortOrder.
- */
+let sectorsCache: { data: ServiceSectorDTO[]; timestamp: number } | null = null;
+const CACHE_TTL_MS = 60 * 1000; // 60 seconds
+
 export async function getSectors(onlyActive = true): Promise<ServiceSectorDTO[]> {
+  const now = Date.now();
+  if (sectorsCache && now - sectorsCache.timestamp < CACHE_TTL_MS) {
+    return onlyActive ? sectorsCache.data.filter((s) => s.isActive) : sectorsCache.data;
+  }
+
   try {
     const sectors = await prisma.serviceSector.findMany({
-      where: onlyActive ? { isActive: true } : undefined,
       orderBy: { sortOrder: "asc" },
     });
-    return sectors;
+    sectorsCache = { data: sectors, timestamp: now };
+    return onlyActive ? sectors.filter((s) => s.isActive) : sectors;
   } catch (err) {
     console.error("[lib/sectors] Failed to fetch service sectors from DB:", err);
-    return [];
+    return sectorsCache ? (onlyActive ? sectorsCache.data.filter((s) => s.isActive) : sectorsCache.data) : [];
   }
 }
+
+export function invalidateSectorsCache() {
+  sectorsCache = null;
+}
+

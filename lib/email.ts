@@ -1,6 +1,5 @@
 import nodemailer from "nodemailer";
 
-// Create SMTP transporter if configured, or use fallback logger
 const hasSmtpConfig = !!(process.env.SMTP_HOST && process.env.SMTP_USER && process.env.SMTP_PASSWORD);
 
 const transporter = hasSmtpConfig
@@ -28,9 +27,6 @@ export type InquiryEmailPayload = {
   createdAt?: Date | string;
 };
 
-/**
- * Sends an email notification to internal SINA staff when a new customer inquiry is submitted.
- */
 export async function sendStaffInquiryAlert(inquiry: InquiryEmailPayload) {
   const staffRecipient = process.env.STAFF_NOTIFICATION_EMAIL || "info@sinatrading.et";
   const fullName = `${inquiry.firstName} ${inquiry.lastName}`;
@@ -120,9 +116,6 @@ http://localhost:3000/staff
   }
 }
 
-/**
- * Sends a confirmation receipt email to the prospective customer who submitted the inquiry.
- */
 export async function sendCustomerInquiryConfirmation(inquiry: InquiryEmailPayload) {
   const fullName = `${inquiry.firstName} ${inquiry.lastName}`;
 

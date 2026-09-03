@@ -37,14 +37,12 @@ export default function StaffAdminPage() {
   const [error, setError] = useState("");
   const [successMsg, setSuccessMsg] = useState("");
 
-  // Create user form state
   const [newEmail, setNewEmail] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [newRole, setNewRole] = useState<"ADMIN" | "EDITOR">("EDITOR");
   const [creating, setCreating] = useState(false);
   const [showAddModal, setShowAddModal] = useState(false);
 
-  // Password reset modal state
   const [resetTargetUser, setResetTargetUser] = useState<StaffUser | null>(null);
   const [resetPasswordVal, setResetPasswordVal] = useState("");
   const [resetting, setResetting] = useState(false);
@@ -234,7 +232,6 @@ export default function StaffAdminPage() {
       {successMsg && <div style={s.successBanner}>{successMsg}</div>}
       {error && <div style={s.errorBanner}>{error}</div>}
 
-      {/* Staff User Section */}
       <section style={s.section}>
         <div style={s.sectionHead}>
           <div>
@@ -358,7 +355,6 @@ export default function StaffAdminPage() {
         </div>
       </section>
 
-      {/* Audit Logs Section */}
       <section style={s.section}>
         <div style={s.sectionHead}>
           <div>
@@ -394,7 +390,6 @@ export default function StaffAdminPage() {
         </div>
       </section>
 
-      {/* Modal: Add New Staff Member */}
       {showAddModal && (
         <div style={s.modalOverlay}>
           <div style={s.modalContent}>
@@ -451,7 +446,6 @@ export default function StaffAdminPage() {
         </div>
       )}
 
-      {/* Modal: Reset Password */}
       {resetTargetUser && (
         <div style={s.modalOverlay}>
           <div style={s.modalContent}>

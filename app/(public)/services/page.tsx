@@ -1,6 +1,29 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { getContentMap, splitHeading, cms } from "@/lib/content";
 import { getSectors } from "@/lib/sectors";
+import SectorNavBar from "@/components/sector-nav-bar";
+
+export const metadata: Metadata = {
+  title: "9 Corporate Sectors & Services | SINA Supplies & Logistics PLC",
+  description:
+    "Explore SINA's 9 corporate operational sectors: Procurement & Supply, Logistics Coordination, Event Management, Property Oversight, Staffing Outsourcing, General Trading, Construction, and Agribusiness in Ethiopia.",
+  keywords: [
+    "SINA Services Ethiopia",
+    "Procurement Services Addis Ababa",
+    "Logistics Delivery Ethiopia",
+    "Event Organizing Ethiopia",
+    "Property Management Addis Ababa",
+    "Staff Outsourcing Ethiopia",
+    "General Trading Commodities Ethiopia",
+  ],
+  openGraph: {
+    title: "9 Corporate Operational Sectors | SINA Supplies & Logistics",
+    description:
+      "Single-source partner for institutional procurement, logistics, corporate events, property, staffing, and commercial trade in Ethiopia.",
+    url: "/services",
+  },
+};
 
 export default async function ServicesPage() {
   const [content, sectors] = await Promise.all([
@@ -34,20 +57,12 @@ export default async function ServicesPage() {
         </div>
       </section>
 
-      {/* Dynamic Nav Anchor Bar */}
       <section className="sectors-nav">
         <div className="wrap">
-          <div className="nav-grid reveal">
-            {sectors.map((s) => (
-              <a href={`#${s.slug}`} className="nav-item" key={s.id}>
-                {s.name.split("&")[0].trim()}
-              </a>
-            ))}
-          </div>
+          <SectorNavBar sectors={sectors} />
         </div>
       </section>
 
-      {/* Dynamic Detailed Sectors */}
       <section className="sectors-detail">
         <div className="wrap">
           {sectors.map((s) => (
@@ -82,7 +97,6 @@ export default async function ServicesPage() {
         </div>
       </section>
 
-      {/* Working Methodology */}
       <section className="method-section">
         <div className="wrap">
           <div className="section-head reveal">
@@ -119,7 +133,6 @@ export default async function ServicesPage() {
         </div>
       </section>
 
-      {/* FAQ Accordion */}
       <section className="faq-section">
         <div className="wrap">
           <div className="section-head reveal">

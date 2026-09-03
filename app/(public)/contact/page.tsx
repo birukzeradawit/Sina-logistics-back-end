@@ -1,7 +1,27 @@
+import type { Metadata } from "next";
 import { getContentMap } from "@/lib/content";
 import { ContactForm } from "./contact-form";
 
 export const dynamic = "force-dynamic";
+
+export const metadata: Metadata = {
+  title: "Contact & Request a Quote | SINA Supplies & Logistics PLC",
+  description:
+    "Request a corporate quotation, procurement plan, or RFP proposal from SINA Supplies and Logistics PLC in Addis Ababa, Ethiopia.",
+  keywords: [
+    "Contact SINA Trading",
+    "Request a Quote SINA PLC",
+    "Procurement RFP Ethiopia",
+    "SINA Phone Number Addis Ababa",
+    "SINA Supplies Office Address",
+  ],
+  openGraph: {
+    title: "Contact SINA Supplies & Logistics PLC | Request a Quote",
+    description:
+      "Tell us what your organization needs across procurement, logistics, events, property, staffing, or trade in Ethiopia.",
+    url: "/contact",
+  },
+};
 
 const MAPS_DIRECTIONS_URL = "https://www.google.com/maps/dir/?api=1&destination=9.010820,38.876480";
 
@@ -31,7 +51,6 @@ export default async function ContactPage() {
         <div className="wrap">
           <div className="contact-grid reveal">
             <div className="contact-info">
-              {/* Email Card */}
               <div className="info-card">
                 <a href={`mailto:${email}`} className="info-icon" title="Email Us">
                   <svg viewBox="0 0 24 24"><path d="M3 6h18v12H3z" /><path d="m3 7 9 6 9-6" /></svg>
@@ -42,10 +61,9 @@ export default async function ContactPage() {
                 </div>
               </div>
 
-              {/* Phone Card */}
               <div className="info-card">
                 <a href={`tel:${phone1.replace(/\s+/g, "")}`} className="info-icon" title="Call Us">
-                  <svg viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.5 2.1L8 9.7a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.7 2Z" /></svg>
+                  <svg viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.5 2.1L8 9.7a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.7 2Z" /></svg>
                 </a>
                 <div>
                   <div className="info-label">Call Us</div>
@@ -56,7 +74,6 @@ export default async function ContactPage() {
                 </div>
               </div>
 
-              {/* Office Location & Get Directions Card */}
               <div className="info-card">
                 <a
                   href={MAPS_DIRECTIONS_URL}
@@ -106,7 +123,6 @@ export default async function ContactPage() {
                 </div>
               </div>
 
-              {/* Website Card */}
               <div className="info-card">
                 <a href="https://www.sinatrading.et" target="_blank" rel="noopener noreferrer" className="info-icon" title="Visit Website">
                   <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" /><path d="M8 12h8M12 8v8" /></svg>

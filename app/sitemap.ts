@@ -1,10 +1,11 @@
 import { MetadataRoute } from "next";
+import { getSectors } from "@/lib/sectors";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = process.env.NEXTAUTH_URL || "https://www.sinatrading.et";
   const lastModified = new Date();
 
-  return [
+  const baseRoutes: MetadataRoute.Sitemap = [
     {
       url: `${baseUrl}/`,
       lastModified,
@@ -30,4 +31,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
   ];
+
+  try {
+    const sectors = await getSectors();
+    const sectorRoutes: MetadataRoute.Sitemap = sectors.map((s) => ({
+      url: `${baseUrl}/services#${s.slug}`,
+      lastModified,
+      changeFrequency: "weekly",
+      priority: 0.85,
+    }));
+    return [...baseRoutes, ...sectorRoutes];
+  } catch {
+    return baseRoutes;
+  }
 }
+

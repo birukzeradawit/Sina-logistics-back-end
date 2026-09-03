@@ -1,8 +1,3 @@
-// SINA Supplies and Logistics — database schema
-// Model: lead capture (public contact form → Inquiry) + staff CMS
-// (manage inquiries, edit site content). No client-facing login —
-// the business is high-touch B2B, not self-service tracking.
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -12,11 +7,9 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// ---------- STAFF (internal only) ----------
-
 enum StaffRole {
-  ADMIN   // manages staff accounts, all content, all inquiries
-  EDITOR  // manages inquiries and content, cannot manage staff accounts
+  ADMIN
+  EDITOR
 }
 
 model StaffUser {
@@ -24,7 +17,7 @@ model StaffUser {
   email        String    @unique
   passwordHash String
   role         StaffRole @default(EDITOR)
-  mfaSecret    String?   // TOTP secret — enforce before granting ADMIN in production
+  mfaSecret    String?
   isActive     Boolean   @default(true)
   lastLoginAt  DateTime?
   createdAt    DateTime  @default(now())
@@ -35,8 +28,6 @@ model StaffUser {
 
   @@index([email])
 }
-
-// ---------- LEADS ----------
 
 enum InquiryStatus {
   NEW
@@ -52,7 +43,7 @@ model Inquiry {
   lastName    String
   email       String
   phone       String?
-  sector      String?       // which of the 9 sectors they selected, if any
+  sector      String?
   message     String
   status      InquiryStatus @default(NEW)
   createdAt   DateTime      @default(now())
@@ -64,8 +55,6 @@ model Inquiry {
   @@index([createdAt])
 }
 
-// Append-only history of status changes, so staff can see who moved a lead
-// from NEW to CONTACTED and when — not just the current status.
 model InquiryStatusChange {
   id          String        @id @default(cuid())
   inquiry     Inquiry       @relation(fields: [inquiryId], references: [id])
@@ -79,8 +68,6 @@ model InquiryStatusChange {
   @@index([inquiryId])
 }
 
-// ---------- EDITABLE CONTENT ----------
-
 enum ContentType {
   TEXT
   RICH_TEXT
@@ -89,9 +76,9 @@ enum ContentType {
 
 model ContentBlock {
   id          String      @id @default(cuid())
-  key         String      @unique // e.g. "home.hero.heading", "about.intro.body"
-  page        String      // "home" | "about" | "sectors" | "contact" — for filtering in the CMS UI
-  label       String      // human-readable label shown in the CMS, e.g. "Hero Heading"
+  key         String      @unique
+  page        String
+  label       String
   type        ContentType @default(TEXT)
   value       String      @db.Text
   updatedAt   DateTime    @updatedAt
@@ -101,16 +88,14 @@ model ContentBlock {
   @@index([page])
 }
 
-// ---------- DYNAMIC SERVICE SECTORS ----------
-
 model ServiceSector {
   id          String   @id @default(cuid())
-  code        String   @unique // e.g. "SV-01"
-  slug        String   @unique // e.g. "procurement"
-  name        String   // e.g. "Procurement & Supply"
+  code        String   @unique
+  slug        String   @unique
+  name        String
   shortDesc   String   @db.Text
   fullDesc    String?  @db.Text
-  features    String[] // e.g. ["Office consumables", "Hospitality supplies", ...]
+  features    String[]
   iconSvg     String?  @db.Text
   sortOrder   Int      @default(0)
   isActive    Boolean  @default(true)
@@ -121,13 +106,11 @@ model ServiceSector {
   @@index([isActive])
 }
 
-// ---------- AUDIT LOG (append-only) ----------
-
 model AuditLog {
   id           String     @id @default(cuid())
   staffActor   StaffUser? @relation(fields: [staffActorId], references: [id])
   staffActorId String?
-  action       String     // "LOGIN", "LOGIN_FAILED", "CONTENT_UPDATED", "INQUIRY_STATUS_CHANGED"
+  action       String
   target       String?
   ipAddress    String?
   createdAt    DateTime   @default(now())

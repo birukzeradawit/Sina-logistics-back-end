@@ -100,18 +100,231 @@ export default async function HomePage() {
           </div>
 
           <div className="route-panel reveal">
-            <svg viewBox="0 0 400 400" role="img" aria-label="Animated logistics route diagram">
-              <path className="route-line" d="M60 320 C120 280, 140 200, 200 200 C260 200, 280 120, 340 80" />
-              <path className="route-line hot" d="M60 320 C120 280, 140 200, 200 200 C260 200, 280 120, 340 80" />
-              <circle className="node origin" cx="60" cy="320" r="5" />
-              <text className="node-label" x="72" y="324">ADDIS ABABA</text>
-              <circle className="node" cx="200" cy="200" r="4" />
-              <text className="node-label" x="210" y="196">HUB</text>
-              <circle className="node" cx="340" cy="80" r="4" />
-              <text className="node-label" x="300" y="66">DELIVERY</text>
-              <path className="route-line" d="M60 320 C40 250, 90 180, 60 110" opacity="0.25" />
-              <circle className="node" cx="60" cy="110" r="3.5" opacity="0.55" />
-              <text className="node-label" x="72" y="114" opacity="0.55">SOURCING</text>
+            <svg viewBox="0 0 600 600" role="img" aria-label="Animated multi-sector radial logistics network with glowing orbs">
+              <defs>
+                <filter id="gold-glow" x="-60%" y="-60%" width="220%" height="220%">
+                  <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="blur1" />
+                  <feGaussianBlur in="SourceGraphic" stdDeviation="2" result="blur2" />
+                  <feMerge>
+                    <feMergeNode in="blur1" />
+                    <feMergeNode in="blur2" />
+                    <feMergeNode in="SourceGraphic" />
+                  </feMerge>
+                </filter>
+                <filter id="soft-glow" x="-30%" y="-30%" width="160%" height="160%">
+                  <feGaussianBlur stdDeviation="3" result="blur" />
+                  <feMerge>
+                    <feMergeNode in="blur" />
+                    <feMergeNode in="SourceGraphic" />
+                  </feMerge>
+                </filter>
+              </defs>
+
+              {/* 9 Subtle, Faint Background Dotted Paths */}
+              <path id="pAgri" className="route-line" d="M300 300 L300 90" />
+              <path id="pTrade" className="route-line" d="M300 300 L150 150" />
+              <path id="pProcure" className="route-line" d="M300 300 L95 255" />
+              <path id="pSupport" className="route-line" d="M300 300 L105 375" />
+              <path id="pStaffing" className="route-line" d="M300 300 L165 470" />
+              <path id="pProperty" className="route-line" d="M300 300 L300 515" />
+              <path id="pEvents" className="route-line" d="M300 300 L445 465" />
+              <path id="pConstruct" className="route-line" d="M300 300 L500 340" />
+              <path id="pLogistics" className="route-line" d="M300 300 L505 115" />
+
+              {/* Addis Ababa Center Radar Ripples */}
+              <circle cx="300" cy="300" r="12" className="radar-ring r1" />
+              <circle cx="300" cy="300" r="28" className="radar-ring r2" />
+              <circle cx="300" cy="300" r="44" className="radar-ring r3" />
+
+              {/* 9 Glowing Golden Orbs Gliding Outward from Center to Each Sector */}
+              <g className="beacon-group" filter="url(#gold-glow)">
+                <circle r="7" fill="rgba(255,203,71,0.25)" stroke="#FFCB47" strokeWidth="1">
+                  <animateMotion dur="4.0s" repeatCount="indefinite" begin="0s">
+                    <mpath href="#pAgri" />
+                  </animateMotion>
+                </circle>
+                <circle r="3.5" fill="#FFE066">
+                  <animateMotion dur="4.0s" repeatCount="indefinite" begin="0s">
+                    <mpath href="#pAgri" />
+                  </animateMotion>
+                </circle>
+              </g>
+
+              <g className="beacon-group" filter="url(#gold-glow)">
+                <circle r="7" fill="rgba(255,203,71,0.25)" stroke="#FFCB47" strokeWidth="1">
+                  <animateMotion dur="3.8s" repeatCount="indefinite" begin="0.8s">
+                    <mpath href="#pTrade" />
+                  </animateMotion>
+                </circle>
+                <circle r="3.5" fill="#FFE066">
+                  <animateMotion dur="3.8s" repeatCount="indefinite" begin="0.8s">
+                    <mpath href="#pTrade" />
+                  </animateMotion>
+                </circle>
+              </g>
+
+              <g className="beacon-group" filter="url(#gold-glow)">
+                <circle r="7" fill="rgba(255,203,71,0.25)" stroke="#FFCB47" strokeWidth="1">
+                  <animateMotion dur="4.2s" repeatCount="indefinite" begin="1.6s">
+                    <mpath href="#pProcure" />
+                  </animateMotion>
+                </circle>
+                <circle r="3.5" fill="#FFE066">
+                  <animateMotion dur="4.2s" repeatCount="indefinite" begin="1.6s">
+                    <mpath href="#pProcure" />
+                  </animateMotion>
+                </circle>
+              </g>
+
+              <g className="beacon-group" filter="url(#gold-glow)">
+                <circle r="7" fill="rgba(255,203,71,0.25)" stroke="#FFCB47" strokeWidth="1">
+                  <animateMotion dur="3.9s" repeatCount="indefinite" begin="2.4s">
+                    <mpath href="#pSupport" />
+                  </animateMotion>
+                </circle>
+                <circle r="3.5" fill="#FFE066">
+                  <animateMotion dur="3.9s" repeatCount="indefinite" begin="2.4s">
+                    <mpath href="#pSupport" />
+                  </animateMotion>
+                </circle>
+              </g>
+
+              <g className="beacon-group" filter="url(#gold-glow)">
+                <circle r="7" fill="rgba(255,203,71,0.25)" stroke="#FFCB47" strokeWidth="1">
+                  <animateMotion dur="4.1s" repeatCount="indefinite" begin="0.4s">
+                    <mpath href="#pStaffing" />
+                  </animateMotion>
+                </circle>
+                <circle r="3.5" fill="#FFE066">
+                  <animateMotion dur="4.1s" repeatCount="indefinite" begin="0.4s">
+                    <mpath href="#pStaffing" />
+                  </animateMotion>
+                </circle>
+              </g>
+
+              <g className="beacon-group" filter="url(#gold-glow)">
+                <circle r="7" fill="rgba(255,203,71,0.25)" stroke="#FFCB47" strokeWidth="1">
+                  <animateMotion dur="3.7s" repeatCount="indefinite" begin="1.2s">
+                    <mpath href="#pProperty" />
+                  </animateMotion>
+                </circle>
+                <circle r="3.5" fill="#FFE066">
+                  <animateMotion dur="3.7s" repeatCount="indefinite" begin="1.2s">
+                    <mpath href="#pProperty" />
+                  </animateMotion>
+                </circle>
+              </g>
+
+              <g className="beacon-group" filter="url(#gold-glow)">
+                <circle r="7" fill="rgba(255,203,71,0.25)" stroke="#FFCB47" strokeWidth="1">
+                  <animateMotion dur="4.3s" repeatCount="indefinite" begin="2.0s">
+                    <mpath href="#pEvents" />
+                  </animateMotion>
+                </circle>
+                <circle r="3.5" fill="#FFE066">
+                  <animateMotion dur="4.3s" repeatCount="indefinite" begin="2.0s">
+                    <mpath href="#pEvents" />
+                  </animateMotion>
+                </circle>
+              </g>
+
+              <g className="beacon-group" filter="url(#gold-glow)">
+                <circle r="7" fill="rgba(255,203,71,0.25)" stroke="#FFCB47" strokeWidth="1">
+                  <animateMotion dur="3.9s" repeatCount="indefinite" begin="2.8s">
+                    <mpath href="#pConstruct" />
+                  </animateMotion>
+                </circle>
+                <circle r="3.5" fill="#FFE066">
+                  <animateMotion dur="3.9s" repeatCount="indefinite" begin="2.8s">
+                    <mpath href="#pConstruct" />
+                  </animateMotion>
+                </circle>
+              </g>
+
+              <g className="beacon-group" filter="url(#gold-glow)">
+                <circle r="7" fill="rgba(255,203,71,0.25)" stroke="#FFCB47" strokeWidth="1">
+                  <animateMotion dur="3.6s" repeatCount="indefinite" begin="0.2s">
+                    <mpath href="#pLogistics" />
+                  </animateMotion>
+                </circle>
+                <circle r="3.5" fill="#FFE066">
+                  <animateMotion dur="3.6s" repeatCount="indefinite" begin="0.2s">
+                    <mpath href="#pLogistics" />
+                  </animateMotion>
+                </circle>
+              </g>
+
+              {/* ---------------- 9 SEPARATED SECTOR DESTINATIONS & LABELS ---------------- */}
+
+              {/* Central Hub: SINA */}
+              <circle className="node origin" cx="300" cy="300" r="6.5" filter="url(#soft-glow)" />
+              <text className="node-label origin-label" x="300" y="325" textAnchor="middle">SINA</text>
+
+              {/* SV-09: Energy, Mining & Agriculture */}
+              <circle className="node" cx="300" cy="90" r="5" />
+              <text className="node-label" x="300" y="68" textAnchor="middle">
+                <tspan fill="#FFCB47" fontWeight="700">SV-09 </tspan>
+                <tspan fill="#F7F5F1">AGRI &amp; ENERGY</tspan>
+              </text>
+
+              {/* SV-07: Trade Scope */}
+              <circle className="node" cx="150" cy="150" r="5" />
+              <text className="node-label" x="136" y="138" textAnchor="end">
+                <tspan fill="#FFCB47" fontWeight="700">SV-07 </tspan>
+                <tspan fill="#F7F5F1">TRADE</tspan>
+              </text>
+
+              {/* SV-01: Procurement */}
+              <circle className="node" cx="95" cy="255" r="5" />
+              <text className="node-label" x="80" y="259" textAnchor="end">
+                <tspan fill="#FFCB47" fontWeight="700">SV-01 </tspan>
+                <tspan fill="#F7F5F1">PROCUREMENT</tspan>
+              </text>
+
+              {/* SV-06: Additional Support */}
+              <circle className="node" cx="105" cy="375" r="5" />
+              <text className="node-label" x="90" y="379" textAnchor="end">
+                <tspan fill="#FFCB47" fontWeight="700">SV-06 </tspan>
+                <tspan fill="#F7F5F1">SUPPORT</tspan>
+              </text>
+
+              {/* SV-05: Staff Recruitment */}
+              <circle className="node" cx="165" cy="470" r="5" />
+              <text className="node-label" x="150" y="488" textAnchor="end">
+                <tspan fill="#FFCB47" fontWeight="700">SV-05 </tspan>
+                <tspan fill="#F7F5F1">STAFFING</tspan>
+              </text>
+
+              {/* SV-04: Property Management */}
+              <circle className="node" cx="300" cy="515" r="5" />
+              <text className="node-label" x="300" y="542" textAnchor="middle">
+                <tspan fill="#FFCB47" fontWeight="700">SV-04 </tspan>
+                <tspan fill="#F7F5F1">PROPERTY</tspan>
+              </text>
+
+              {/* SV-03: Event Organizing */}
+              <circle className="node" cx="445" cy="465" r="5" />
+              <text className="node-label" x="460" y="469" textAnchor="start">
+                <tspan fill="#FFCB47" fontWeight="700">SV-03 </tspan>
+                <tspan fill="#F7F5F1">EVENTS</tspan>
+              </text>
+
+              {/* SV-08: Construction */}
+              <circle className="node" cx="500" cy="340" r="5" />
+              <text className="node-label" x="515" y="344" textAnchor="start">
+                <tspan fill="#FFCB47" fontWeight="700">SV-08 </tspan>
+                <tspan fill="#F7F5F1">CONSTRUCTION</tspan>
+              </text>
+
+              {/* SV-02: Logistics Hub & Delivery */}
+              <circle className="node hub-node" cx="410" cy="195" r="4.5" />
+              <text className="node-label" x="424" y="190">HUB</text>
+
+              <circle className="node delivery-node" cx="505" cy="115" r="6" filter="url(#soft-glow)" />
+              <text className="node-label origin-label" x="520" y="111" textAnchor="start">
+                <tspan fill="#FFCB47">SV-02 </tspan>
+                <tspan fill="#FFCB47">DELIVERY</tspan>
+              </text>
             </svg>
           </div>
         </div>

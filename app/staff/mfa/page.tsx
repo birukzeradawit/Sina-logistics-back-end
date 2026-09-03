@@ -18,7 +18,6 @@ export default function StaffMfaPage() {
   const [errorMsg, setErrorMsg] = useState("");
   const [successMsg, setSuccessMsg] = useState("");
 
-  // Disable modal state
   const [showDisableModal, setShowDisableModal] = useState(false);
   const [disablePassword, setDisablePassword] = useState("");
   const [disabling, setDisabling] = useState(false);
@@ -183,7 +182,6 @@ export default function StaffMfaPage() {
             </div>
 
             <div style={s.stepsGrid}>
-              {/* Step 1: Scan QR Code */}
               <div style={s.stepCard}>
                 <div style={s.stepNum}>Step 1</div>
                 <h3 style={s.stepTitle}>Scan the QR Code</h3>
@@ -208,7 +206,6 @@ export default function StaffMfaPage() {
                 </div>
               </div>
 
-              {/* Step 2: Confirm & Activate */}
               <div style={s.stepCard}>
                 <div style={s.stepNum}>Step 2</div>
                 <h3 style={s.stepTitle}>Verify &amp; Activate</h3>
@@ -246,7 +243,6 @@ export default function StaffMfaPage() {
         )}
       </div>
 
-      {/* Modal: Disable 2FA */}
       {showDisableModal && (
         <div style={s.modalOverlay}>
           <div style={s.modalContent}>
@@ -307,7 +303,6 @@ const s: Record<string, React.CSSProperties> = {
 
   card: { background: "#FFFFFF", border: "1px solid rgba(17,17,18,0.08)", borderRadius: "8px", padding: "32px", boxShadow: "0 1px 4px rgba(0,0,0,0.02)" },
   
-  // Enabled State
   enabledWrap: { textAlign: "center", padding: "20px 0" },
   shieldIcon: { fontSize: "48px", marginBottom: "12px" },
   statusTitle: { fontSize: "22px", color: "#111112", margin: "0 0 10px 0" },
@@ -315,43 +310,42 @@ const s: Record<string, React.CSSProperties> = {
   enabledActions: { display: "flex", justifyContent: "center", gap: "12px" },
   disableBtn: { background: "none", border: "1px solid rgba(201,59,43,0.3)", color: "#C93B2B", padding: "10px 18px", borderRadius: "4px", fontSize: "13px", cursor: "pointer", fontWeight: 500 },
 
-  // Setup State
   setupWrap: {},
   setupHeader: { marginBottom: "28px" },
   setupTitle: { fontSize: "20px", color: "#111112", margin: "0 0 6px 0" },
-  setupDesc: { color: "#7B7B78", fontSize: "14px", lineHeight: 1.5, margin: 0 },
-  refreshBtn: { background: "#FAF9F6", border: "1px solid rgba(17,17,18,0.15)", padding: "6px 12px", borderRadius: "4px", fontSize: "12px", cursor: "pointer", color: "#5B5B58" },
+  setupDesc: { color: "#5B5B58", fontSize: "13px", lineHeight: 1.5, margin: 0, maxWidth: "600px" },
+  refreshBtn: { background: "#FAF9F6", border: "1px solid rgba(17,17,18,0.15)", padding: "7px 12px", borderRadius: "4px", fontSize: "12px", cursor: "pointer", color: "#5B5B58", fontWeight: 500 },
 
-  stepsGrid: { display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: "24px" },
-  stepCard: { background: "#FAF9F6", border: "1px solid rgba(17,17,18,0.06)", borderRadius: "8px", padding: "24px" },
-  stepNum: { display: "inline-block", background: "#111112", color: "#FFCB47", fontSize: "10px", fontWeight: 700, padding: "2px 8px", borderRadius: "999px", textTransform: "uppercase", marginBottom: "10px" },
+  stepsGrid: { display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "24px" },
+  stepCard: { background: "#FAF9F6", border: "1px solid rgba(17,17,18,0.06)", borderRadius: "6px", padding: "20px", display: "flex", flexDirection: "column" },
+  stepNum: { color: "#E8940C", fontSize: "11px", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "4px" },
   stepTitle: { fontSize: "16px", color: "#111112", margin: "0 0 8px 0" },
-  stepText: { fontSize: "13px", color: "#5B5B58", lineHeight: 1.5, marginBottom: "16px" },
+  stepText: { fontSize: "13px", color: "#5B5B58", lineHeight: 1.5, margin: "0 0 16px 0" },
 
-  qrBox: { display: "flex", justifyContent: "center", alignItems: "center", background: "#FFFFFF", border: "1px solid rgba(17,17,18,0.1)", borderRadius: "6px", padding: "12px", width: "fit-content", margin: "0 auto 16px auto" },
+  qrBox: { background: "#FFFFFF", padding: "16px", borderRadius: "6px", border: "1px solid rgba(17,17,18,0.1)", display: "flex", justifyContent: "center", alignItems: "center", minHeight: "180px", marginBottom: "16px" },
   qrImg: { width: "180px", height: "180px", display: "block" },
 
-  manualBox: { marginTop: "14px" },
-  manualLabel: { display: "block", fontSize: "11px", color: "#7B7B78", marginBottom: "6px" },
-  keyRow: { display: "flex", alignItems: "center", gap: "6px" },
-  secretCode: { background: "#FFFFFF", border: "1px solid rgba(17,17,18,0.1)", padding: "6px 10px", borderRadius: "4px", fontSize: "12px", letterSpacing: "0.06em", color: "#111112", flex: 1, overflowX: "auto" },
-  copyBtn: { background: "#111112", color: "#F7F5F1", border: "none", padding: "6px 12px", borderRadius: "4px", fontSize: "11px", cursor: "pointer", fontWeight: 500 },
+  manualBox: { borderTop: "1px solid rgba(17,17,18,0.08)", paddingTop: "14px", marginTop: "auto" },
+  manualLabel: { fontSize: "11px", color: "#7B7B78", display: "block", marginBottom: "6px" },
+  keyRow: { display: "flex", gap: "6px", alignItems: "center" },
+  secretCode: { background: "#FFFFFF", border: "1px solid rgba(17,17,18,0.12)", padding: "6px 8px", borderRadius: "4px", fontSize: "12px", color: "#111112", fontFamily: "monospace", letterSpacing: "0.08em", flex: 1, overflowX: "auto" },
+  copyBtn: { background: "#111112", color: "#F7F5F1", border: "none", padding: "6px 12px", borderRadius: "4px", fontSize: "11px", cursor: "pointer", fontWeight: 600 },
 
-  form: { display: "flex", flexDirection: "column", gap: "14px" },
-  tokenInput: { width: "100%", padding: "12px", fontSize: "22px", textAlign: "center", letterSpacing: "0.3em", fontWeight: 700, borderRadius: "6px", border: "1px solid rgba(17,17,18,0.2)", boxSizing: "border-box", background: "#FFFFFF" },
-  verifyBtn: { background: "#E8940C", color: "#111112", border: "none", padding: "12px 16px", borderRadius: "6px", fontSize: "14px", fontWeight: 700, cursor: "pointer" },
-  infoTip: { marginTop: "16px", fontSize: "12px", color: "#7B7B78", lineHeight: 1.5 },
+  form: { display: "flex", flexDirection: "column", gap: "12px" },
+  tokenInput: { width: "100%", padding: "14px", borderRadius: "4px", border: "2px solid #E8940C", fontSize: "26px", textAlign: "center", letterSpacing: "0.25em", fontWeight: 700, boxSizing: "border-box", background: "#FFFFFF" },
+  verifyBtn: { background: "#111112", color: "#FFCB47", border: "none", padding: "12px", borderRadius: "4px", fontSize: "13px", fontWeight: 700, cursor: "pointer" },
+  infoTip: { background: "rgba(232,148,12,0.08)", border: "1px solid rgba(232,148,12,0.2)", borderRadius: "4px", padding: "10px 12px", fontSize: "12px", color: "#8F5B08", marginTop: "16px", lineHeight: 1.4 },
 
   modalOverlay: { position: "fixed", top: 0, left: 0, right: 0, bottom: 0, background: "rgba(0,0,0,0.5)", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 1000 },
-  modalContent: { background: "#FFFFFF", borderRadius: "8px", padding: "24px", width: "420px", maxWidth: "90%", boxShadow: "0 10px 25px rgba(0,0,0,0.2)" },
+  modalContent: { background: "#FFFFFF", borderRadius: "8px", padding: "24px", width: "400px", maxWidth: "90%", boxShadow: "0 10px 25px rgba(0,0,0,0.2)" },
   modalHead: { display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "14px" },
   modalTitle: { margin: 0, fontSize: "18px", color: "#111112" },
   closeBtn: { background: "none", border: "none", fontSize: "16px", cursor: "pointer", color: "#7B7B78" },
-  modalWarning: { fontSize: "13px", color: "#5B5B58", lineHeight: 1.5, marginBottom: "14px" },
+  modalWarning: { color: "#9B1C1C", fontSize: "13px", lineHeight: 1.5, margin: "0 0 16px 0" },
   modalForm: { display: "flex", flexDirection: "column", gap: "12px" },
-  modalLabel: { fontSize: "11px", fontWeight: 600, color: "#5B5B58", textTransform: "uppercase" },
+  modalLabel: { fontSize: "11px", fontWeight: 600, color: "#5B5B58", textTransform: "uppercase", letterSpacing: "0.04em" },
   modalInput: { padding: "10px 12px", borderRadius: "4px", border: "1px solid rgba(17,17,18,0.15)", fontSize: "14px" },
-  modalActions: { display: "flex", justifyContent: "flex-end", gap: "10px", marginTop: "12px" },
+  modalActions: { display: "flex", justifyContent: "flex-end", gap: "10px", marginTop: "8px" },
   cancelBtn: { background: "transparent", color: "#5B5B58", border: "1px solid rgba(17,17,18,0.2)", padding: "8px 16px", borderRadius: "4px", cursor: "pointer", fontSize: "13px" },
   dangerBtn: { background: "#C93B2B", color: "#FFFFFF", border: "none", padding: "8px 16px", borderRadius: "4px", cursor: "pointer", fontSize: "13px", fontWeight: 600 },
 };

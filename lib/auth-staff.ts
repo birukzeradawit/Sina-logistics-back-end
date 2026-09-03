@@ -9,7 +9,7 @@ export const staffAuthOptions: NextAuthOptions = {
   secret: process.env.STAFF_AUTH_SECRET,
   session: {
     strategy: "jwt",
-    maxAge: 8 * 60 * 60, // 8 hours — staff sessions expire same working day
+    maxAge: 8 * 60 * 60,
   },
   cookies: {
     sessionToken: {
@@ -53,11 +53,9 @@ export const staffAuthOptions: NextAuthOptions = {
           return null;
         }
 
-        // Two-Factor Authentication Check
         if (user.mfaSecret) {
           const rawToken = credentials.mfaToken ? String(credentials.mfaToken).trim() : "";
           if (!rawToken || rawToken === "undefined" || rawToken === "null" || rawToken.length < 6) {
-            // Signal frontend to display the 6-digit MFA input
             throw new Error("MFA_REQUIRED");
           }
 

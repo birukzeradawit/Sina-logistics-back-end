@@ -169,7 +169,6 @@ export default function StaffDashboard() {
         </nav>
       </header>
 
-      {/* Stats row */}
       <div style={s.statsRow}>
         <div style={s.statBox}>
           <span style={s.statVal}>{counts.ALL}</span>
@@ -197,7 +196,6 @@ export default function StaffDashboard() {
         </div>
       </div>
 
-      {/* Control bar: search + filters + export */}
       <div style={s.controlBar}>
         <div style={s.filters}>
           {["ALL", "NEW", "CONTACTED", "QUOTED", "WON", "LOST"].map((f) => (
@@ -234,7 +232,6 @@ export default function StaffDashboard() {
         </div>
       </div>
 
-      {/* Inquiry list */}
       <div style={s.list}>
         {visible.length === 0 && (
           <div style={s.empty}>
@@ -268,7 +265,6 @@ export default function StaffDashboard() {
                 <p style={s.message}>{inq.message}</p>
               </div>
 
-              {/* Status transition timeline */}
               {history.length > 0 && (
                 <div style={s.timelineSection}>
                   <button
@@ -318,7 +314,10 @@ export default function StaffDashboard() {
                   onClick={() => deleteInquiry(inq.id, `${inq.firstName} ${inq.lastName}`)}
                   title="Delete inquiry"
                 >
-                  🗑️ Delete
+                  <span style={{ display: "inline-flex", alignItems: "center", gap: "4px" }}>
+                    <svg width={12} height={12} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round"><polyline points="3 6 5 6 21 6" /><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" /></svg>
+                    <span>Delete</span>
+                  </span>
                 </button>
               </div>
             </div>

@@ -26,7 +26,6 @@ export default function StaffSectorsPage() {
   const [successMsg, setSuccessMsg] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
 
-  // Edit / Create modal state
   const [showModal, setShowModal] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [currentId, setCurrentId] = useState("");
@@ -260,7 +259,6 @@ export default function StaffSectorsPage() {
         ))}
       </div>
 
-      {/* Modal: Create or Edit Sector */}
       {showModal && (
         <div style={s.modalOverlay}>
           <div style={s.modalContent}>

@@ -26,7 +26,6 @@ export default async function Image() {
           position: "relative",
         }}
       >
-        {/* Top Header */}
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
           <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
             <div
@@ -72,7 +71,6 @@ export default async function Image() {
           </div>
         </div>
 
-        {/* Main Content */}
         <div style={{ display: "flex", flexDirection: "column", gap: "16px", maxWidth: "950px" }}>
           <div
             style={{
@@ -107,7 +105,6 @@ export default async function Image() {
           </div>
         </div>
 
-        {/* Bottom Bar */}
         <div
           style={{
             display: "flex",

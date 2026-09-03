@@ -9,7 +9,6 @@ function escapeCsv(val: any): string {
   return `"${str}"`;
 }
 
-// GET /api/inquiries/export — Staff only. Streams formatted CSV of customer leads.
 export async function GET(req: NextRequest) {
   const session = await getServerSession(staffAuthOptions);
   if (!session?.user) {

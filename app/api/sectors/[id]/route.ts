@@ -15,7 +15,6 @@ const updateSectorSchema = z.object({
   isActive: z.boolean().optional(),
 });
 
-// PATCH /api/sectors/[id] — Authenticated staff. Update sector details or toggle active status
 export async function PATCH(req: NextRequest, { params }: { params: { id: string } }) {
   const session = await getServerSession(staffAuthOptions);
   if (!session?.user) {
@@ -51,7 +50,6 @@ export async function PATCH(req: NextRequest, { params }: { params: { id: string
   return NextResponse.json(updated);
 }
 
-// DELETE /api/sectors/[id] — Authenticated staff. Delete a sector
 export async function DELETE(req: NextRequest, { params }: { params: { id: string } }) {
   const session = await getServerSession(staffAuthOptions);
   if (!session?.user) {

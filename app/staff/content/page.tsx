@@ -24,7 +24,6 @@ export default function ContentEditor() {
   const [savedKey, setSavedKey] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
 
-  // New Block Form
   const [showAddModal, setShowAddModal] = useState(false);
   const [newKey, setNewKey] = useState("");
   const [newPage, setNewPage] = useState("home");
@@ -138,7 +137,7 @@ export default function ContentEditor() {
           <Link href="/staff" style={s.navLink}>← Back to Inquiries</Link>
           <Link href="/staff/sectors" style={s.navLink}>
             <span style={{ display: "inline-flex", alignItems: "center", gap: "6px" }}>
-              <svg width={14} height={14} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2" /><polyline points="2 17 12 22 22 17" /><polyline points="2 12 12 17 22 12" /></svg>
+              <svg width={14} height={14} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2" /><polyline points="2 17 12 22 22 17" /><polyline points="2 12 17 22 12" /></svg>
               <span>Service Sectors</span>
             </span>
           </Link>
@@ -159,7 +158,6 @@ export default function ContentEditor() {
         </nav>
       </header>
 
-      {/* Control bar */}
       <div style={s.controlBar}>
         <div style={s.tabs}>
           {["home", "about", "services", "contact", "all"].map((p) => (
@@ -276,7 +274,6 @@ export default function ContentEditor() {
         </div>
       )}
 
-      {/* Modal: Add Content Block */}
       {showAddModal && (
         <div style={s.modalOverlay}>
           <div style={s.modalContent}>

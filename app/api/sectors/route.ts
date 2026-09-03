@@ -15,7 +15,6 @@ const sectorSchema = z.object({
   isActive: z.boolean().default(true),
 });
 
-// GET /api/sectors — Public / Staff query for active service sectors
 export async function GET(req: NextRequest) {
   const session = await getServerSession(staffAuthOptions);
   const includeInactive = session?.user && req.nextUrl.searchParams.get("all") === "true";
@@ -28,7 +27,6 @@ export async function GET(req: NextRequest) {
   return NextResponse.json(sectors);
 }
 
-// POST /api/sectors — Authenticated staff. Create a new service sector
 export async function POST(req: NextRequest) {
   const session = await getServerSession(staffAuthOptions);
   if (!session?.user) {

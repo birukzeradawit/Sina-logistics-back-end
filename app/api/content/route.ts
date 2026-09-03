@@ -5,8 +5,6 @@ import { staffAuthOptions } from "@/lib/auth-staff";
 import { prisma } from "@/lib/db";
 import { z } from "zod";
 
-// GET /api/content?page=home — public, used by the actual site pages to
-// render their editable text/images. No auth needed to READ content.
 export async function GET(req: NextRequest) {
   const page = req.nextUrl.searchParams.get("page");
   const blocks = await prisma.contentBlock.findMany({
@@ -29,7 +27,6 @@ const updateSchema = z.object({
   value: z.string().max(10000),
 });
 
-// POST /api/content — staff only. Creates a new content block.
 export async function POST(req: NextRequest) {
   const session = await getServerSession(staffAuthOptions);
   if (!session?.user) {
@@ -80,7 +77,6 @@ export async function POST(req: NextRequest) {
   return NextResponse.json(created, { status: 201 });
 }
 
-// PATCH /api/content — staff only. Updates one content block by key.
 export async function PATCH(req: NextRequest) {
   const session = await getServerSession(staffAuthOptions);
   if (!session?.user) {
@@ -113,7 +109,6 @@ export async function PATCH(req: NextRequest) {
   return NextResponse.json(updated);
 }
 
-// DELETE /api/content?key=... — staff only. Deletes a content block.
 export async function DELETE(req: NextRequest) {
   const session = await getServerSession(staffAuthOptions);
   if (!session?.user) {

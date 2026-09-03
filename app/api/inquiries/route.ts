@@ -21,7 +21,6 @@ export async function OPTIONS() {
   return new NextResponse(null, { status: 204, headers: corsHeaders() });
 }
 
-// GET /api/inquiries — staff only, powers the CRM dashboard list.
 export async function GET() {
   const session = await getServerSession(staffAuthOptions);
   if (!session?.user) {
@@ -43,7 +42,6 @@ export async function GET() {
   return NextResponse.json(inquiries);
 }
 
-// Rate limiting — fallback to memory limiter if Redis envs not supplied
 let inquiryLimiter: Ratelimit | null = null;
 try {
   if (process.env.UPSTASH_REDIS_REST_URL && process.env.UPSTASH_REDIS_REST_TOKEN) {
@@ -89,7 +87,6 @@ export async function POST(req: NextRequest) {
 
   const inquiry = await prisma.inquiry.create({ data: parsed.data });
 
-  // Dispatch dual notifications (Staff alert + Customer confirmation receipt) asynchronously
   Promise.allSettled([
     sendStaffInquiryAlert({ ...parsed.data, id: inquiry.id, createdAt: inquiry.createdAt }),
     sendCustomerInquiryConfirmation({ ...parsed.data, id: inquiry.id, createdAt: inquiry.createdAt }),

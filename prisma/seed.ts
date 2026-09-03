@@ -19,14 +19,12 @@ for (const file of [".env.local", ".env"]) {
       if (!process.env[key]) process.env[key] = val;
     }
   } catch {
-    // File may not exist.
   }
 }
 
 const prisma = new PrismaClient();
 
 async function main() {
-  // --- First admin account ---
   const passwordHash = await bcrypt.hash("ChangeMe123!", 12);
   const admin = await prisma.staffUser.upsert({
     where: { email: "admin@sinatrading.et" },
@@ -39,9 +37,7 @@ async function main() {
   });
   console.log("Seeded admin account:", admin.email);
 
-  // --- Starter content blocks ---
   const blocks = [
-    // Home Page
     { key: "home.hero.eyebrow", page: "home", label: "Hero Eyebrow", value: "INTERNATIONAL TRADING  &  COMMERCIAL SUPPLIES" },
     { key: "home.hero.heading", page: "home", label: "Hero Heading", value: "Your goods, our priority." },
     { key: "home.hero.lead", page: "home", label: "Hero Lead Paragraph", value: "SINA Supplies and Logistics PLC is a single-source partner for corporate organizations — procurement, logistics, event management, property management, and staffing, delivered as one coordinated service.", type: "RICH_TEXT" as const },
@@ -51,7 +47,6 @@ async function main() {
     { key: "home.sectors.heading", page: "home", label: "Sectors Section Heading", value: "Nine sectors, one provider." },
     { key: "home.sectors.lead", page: "home", label: "Sectors Section Lead", value: "A single-source partner across nine sectors — so clients coordinate one relationship instead of a dozen vendors.", type: "RICH_TEXT" as const },
     
-    // About Page
     { key: "about.hero.heading", page: "about", label: "About Hero Heading", value: "Integrated support for Ethiopia." },
     { key: "about.hero.lead", page: "about", label: "About Hero Lead", value: "SINA Supplies and Logistics PLC delivers reliable, efficient, and cost-effective operational support to corporate organizations, institutions, and private clients.", type: "RICH_TEXT" as const },
     { key: "about.hero.image", page: "about", label: "About Banner Image", value: "https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=1200&q=80", type: "IMAGE_URL" as const },
@@ -65,12 +60,10 @@ async function main() {
     { key: "about.csr.heading", page: "about", label: "Strategic Focus Heading", value: "Built to serve local and international organizations" },
     { key: "about.csr.body", page: "about", label: "Strategic Focus Body", value: "SINA Supplies and Logistics PLC is committed to expanding its integrated business support solutions across Ethiopia by investing in technology, strengthening supplier partnerships, enhancing service quality, and developing a highly skilled operational team.\n\nThe same network that supports day-to-day corporate operations also underpins a wider licensed supply scope — from cargo and commodities to equipment and materials. See the full list on our services page.", type: "RICH_TEXT" as const },
 
-    // Services Page
     { key: "services.hero.heading", page: "services", label: "Services Hero Heading", value: "Nine sectors, one accountable partner." },
     { key: "services.hero.lead", page: "services", label: "Services Hero Lead", value: "Premium operational support for corporate organizations — plus a licensed trade and supply scope across logistics, commodities, equipment, and materials.", type: "RICH_TEXT" as const },
     { key: "services.hero.image", page: "services", label: "Services Banner Image", value: "https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=1200&q=80", type: "IMAGE_URL" as const },
 
-    // Contact Page
     { key: "contact.hero.lead", page: "contact", label: "Contact Hero Lead", value: "Procurement, logistics, events, property, staffing, or a trade enquiry — the team will respond with a tailored plan.", type: "RICH_TEXT" as const },
     { key: "contact.address", page: "contact", label: "Visit Us Address", value: "Lemi Kura Sub-city, W 03, House no. New, Addis Ababa, Ethiopia" },
     { key: "contact.email", page: "contact", label: "Contact Email", value: "sinasupplies@outlook.com" },
@@ -87,7 +80,6 @@ async function main() {
   }
   console.log(`Seeded ${blocks.length} content blocks.`);
 
-  // --- Dynamic Service Sectors ---
   const sectors = [
     {
       code: "SV-01",

@@ -1,5 +1,25 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { getContentMap, splitHeading, cms } from "@/lib/content";
+
+export const metadata: Metadata = {
+  title: "About SINA | Corporate Partner in Ethiopia",
+  description:
+    "Learn about SINA Supplies and Logistics PLC — an established partner in Addis Ababa, Ethiopia providing procurement, logistics, event management, property management, staffing, and commercial trade.",
+  keywords: [
+    "About SINA Trading",
+    "SINA Supplies and Logistics Ethiopia",
+    "Company Profile SINA PLC",
+    "Corporate Partner Addis Ababa",
+    "Ethiopian Logistics and Procurement",
+  ],
+  openGraph: {
+    title: "About SINA Supplies & Logistics PLC",
+    description:
+      "Reliable, efficient, and cost-effective operational support for corporate organizations and international institutions in Ethiopia.",
+    url: "/about",
+  },
+};
 
 export default async function AboutPage() {
   const content = await getContentMap("about");
