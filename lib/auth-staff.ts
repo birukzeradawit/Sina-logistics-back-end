@@ -3,10 +3,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import { prisma } from "./db";
 import { verifyPassword } from "./password";
 import { staffLoginLimiter } from "./rate-limit";
-
-// This is a SEPARATE NextAuth config from the client portal (see auth-client.ts),
-// with its own secret and its own cookie name, so a session token issued for
-// one can never be replayed against the other.
+import { verifyMfaToken } from "./mfa";
 
 export const staffAuthOptions: NextAuthOptions = {
   secret: process.env.STAFF_AUTH_SECRET,
@@ -26,22 +23,21 @@ export const staffAuthOptions: NextAuthOptions = {
       credentials: {
         email: { label: "Email", type: "email" },
         password: { label: "Password", type: "password" },
-        // In production, add a `token` field here for the TOTP/MFA code
-        // and verify it against StaffUser.mfaSecret before returning a user.
+        mfaToken: { label: "MFA Code", type: "text" },
       },
       async authorize(credentials, req) {
         if (!credentials?.email || !credentials?.password) return null;
 
         const ip = req?.headers?.["x-forwarded-for"] ?? "unknown";
         const { success } = await staffLoginLimiter.limit(
-          `${ip}:${credentials.email}`
+          `${ip}:${credentials.email.toLowerCase()}`
         );
         if (!success) {
           throw new Error("Too many attempts. Try again in a few minutes.");
         }
 
         const user = await prisma.staffUser.findUnique({
-          where: { email: credentials.email },
+          where: { email: credentials.email.toLowerCase() },
         });
         if (!user || !user.isActive) return null;
 
@@ -55,6 +51,27 @@ export const staffAuthOptions: NextAuthOptions = {
             },
           });
           return null;
+        }
+
+        // Two-Factor Authentication Check
+        if (user.mfaSecret) {
+          const rawToken = credentials.mfaToken ? String(credentials.mfaToken).trim() : "";
+          if (!rawToken || rawToken === "undefined" || rawToken === "null" || rawToken.length < 6) {
+            // Signal frontend to display the 6-digit MFA input
+            throw new Error("MFA_REQUIRED");
+          }
+
+          const mfaValid = verifyMfaToken(rawToken, user.mfaSecret);
+          if (!mfaValid) {
+            await prisma.auditLog.create({
+              data: {
+                staffActorId: user.id,
+                action: "LOGIN_MFA_FAILED",
+                ipAddress: String(ip),
+              },
+            });
+            throw new Error("INVALID_MFA_CODE");
+          }
         }
 
         await prisma.$transaction([

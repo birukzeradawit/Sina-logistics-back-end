@@ -3,15 +3,10 @@ import { getServerSession } from "next-auth";
 import { staffAuthOptions } from "@/lib/auth-staff";
 import { z } from "zod";
 import { prisma } from "@/lib/db";
-import { sendNewInquiryEmail } from "@/lib/email";
+import { sendStaffInquiryAlert, sendCustomerInquiryConfirmation } from "@/lib/email";
 import { Ratelimit } from "@upstash/ratelimit";
 import { Redis } from "@upstash/redis";
 
-// The public site (static HTML) and this backend can live on different
-// domains/ports, so the browser's CORS check needs an explicit allow-list.
-// Set PUBLIC_SITE_ORIGIN in .env to the real domain once deployed —
-// defaults to allowing any origin so local development (opening the static
-// files directly, or from a different port) isn't blocked while testing.
 const ALLOWED_ORIGIN = process.env.PUBLIC_SITE_ORIGIN || "*";
 
 function corsHeaders() {
@@ -22,13 +17,11 @@ function corsHeaders() {
   };
 }
 
-// Browsers send an OPTIONS preflight request before the real POST when
-// calling across origins — this just needs to answer with the CORS headers.
 export async function OPTIONS() {
   return new NextResponse(null, { status: 204, headers: corsHeaders() });
 }
 
-// GET /api/inquiries — staff only, powers the dashboard list.
+// GET /api/inquiries — staff only, powers the CRM dashboard list.
 export async function GET() {
   const session = await getServerSession(staffAuthOptions);
   if (!session?.user) {
@@ -36,18 +29,33 @@ export async function GET() {
   }
   const inquiries = await prisma.inquiry.findMany({
     orderBy: { createdAt: "desc" },
+    include: {
+      statusHistory: {
+        include: {
+          changedBy: {
+            select: { id: true, email: true, role: true },
+          },
+        },
+        orderBy: { createdAt: "desc" },
+      },
+    },
   });
   return NextResponse.json(inquiries);
 }
 
-
-// Generous but real limit — a genuine visitor submits once; this stops a
-// script from flooding the inquiries table or spamming the notification inbox.
-const inquiryLimiter = new Ratelimit({
-  redis: Redis.fromEnv(),
-  limiter: Ratelimit.slidingWindow(3, "10 m"),
-  prefix: "ratelimit:inquiry-submit",
-});
+// Rate limiting — fallback to memory limiter if Redis envs not supplied
+let inquiryLimiter: Ratelimit | null = null;
+try {
+  if (process.env.UPSTASH_REDIS_REST_URL && process.env.UPSTASH_REDIS_REST_TOKEN) {
+    inquiryLimiter = new Ratelimit({
+      redis: Redis.fromEnv(),
+      limiter: Ratelimit.slidingWindow(5, "10 m"),
+      prefix: "ratelimit:inquiry-submit",
+    });
+  }
+} catch {
+  inquiryLimiter = null;
+}
 
 const inquirySchema = z.object({
   firstName: z.string().min(1).max(100),
@@ -59,13 +67,15 @@ const inquirySchema = z.object({
 });
 
 export async function POST(req: NextRequest) {
-  const ip = req.headers.get("x-forwarded-for") ?? "unknown";
-  const { success } = await inquiryLimiter.limit(ip);
-  if (!success) {
-    return NextResponse.json(
-      { error: "Too many submissions. Please try again later." },
-      { status: 429, headers: corsHeaders() }
-    );
+  if (inquiryLimiter) {
+    const ip = req.headers.get("x-forwarded-for") ?? "unknown";
+    const { success } = await inquiryLimiter.limit(ip);
+    if (!success) {
+      return NextResponse.json(
+        { error: "Too many submissions. Please try again later." },
+        { status: 429, headers: corsHeaders() }
+      );
+    }
   }
 
   const body = await req.json().catch(() => null);
@@ -79,9 +89,11 @@ export async function POST(req: NextRequest) {
 
   const inquiry = await prisma.inquiry.create({ data: parsed.data });
 
-  // Don't let a slow/failed email delay the response to the visitor —
-  // the inquiry is already saved regardless of whether the email succeeds.
-  sendNewInquiryEmail(parsed.data).catch(() => {});
+  // Dispatch dual notifications (Staff alert + Customer confirmation receipt) asynchronously
+  Promise.allSettled([
+    sendStaffInquiryAlert({ ...parsed.data, id: inquiry.id, createdAt: inquiry.createdAt }),
+    sendCustomerInquiryConfirmation({ ...parsed.data, id: inquiry.id, createdAt: inquiry.createdAt }),
+  ]).catch(() => {});
 
   return NextResponse.json(
     { success: true, id: inquiry.id },

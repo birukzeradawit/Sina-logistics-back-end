@@ -3,18 +3,40 @@ import { getContentMap, splitHeading, cms } from "@/lib/content";
 
 export default async function AboutPage() {
   const content = await getContentMap("about");
-  const introHeading = cms(content, "about.intro.heading", "Who We Are");
-  const introBody = cms(
-    content,
-    "about.intro.body",
-    "SINA Supplies and Logistics PLC is a dynamic Ethiopian company specializing in procurement, logistics coordination, event management, property management, staffing solutions, and integrated business support services."
-  );
   const heroHeading = cms(content, "about.hero.heading", "Integrated support for Ethiopia.");
   const heroLead = cms(
     content,
     "about.hero.lead",
     "SINA Supplies and Logistics PLC delivers reliable, efficient, and cost-effective operational support to corporate organizations, institutions, and private clients."
   );
+  const introHeading = cms(content, "about.intro.heading", "Who We Are");
+  const introBody = cms(
+    content,
+    "about.intro.body",
+    "SINA Supplies and Logistics PLC is a dynamic Ethiopian company specializing in procurement, logistics coordination, event management, property management, staffing solutions, and integrated business support services."
+  );
+  const visionHeading = cms(content, "about.vision.heading", "Vision & Mission");
+  const visionText = cms(
+    content,
+    "about.vision.text",
+    "To become one of Ethiopia’s leading integrated procurement, logistics, and business support service providers, recognized for reliability, professionalism, and customer satisfaction."
+  );
+  const whyHeading = cms(content, "about.why.heading", "Why Clients Choose SINA");
+  const methodHeading = cms(content, "about.method.heading", "Working Methodology");
+  const benefitsHeading = cms(content, "about.benefits.heading", "Expected Benefits");
+  const csrHeading = cms(content, "about.csr.heading", "Built to serve local and international organizations");
+  const csrBody = cms(
+    content,
+    "about.csr.body",
+    "SINA Supplies and Logistics PLC is committed to expanding its integrated business support solutions across Ethiopia by investing in technology, strengthening supplier partnerships, enhancing service quality, and developing a highly skilled operational team.\n\nThe same network that supports day-to-day corporate operations also underpins a wider licensed supply scope — from cargo and commodities to equipment and materials. See the full list on our services page."
+  );
+
+  const aboutImage = cms(
+    content,
+    "about.hero.image",
+    "https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=1200&q=80"
+  );
+
   const hero = splitHeading(heroHeading);
 
   return (
@@ -45,7 +67,7 @@ export default async function AboutPage() {
               ))}
             </div>
             <div className="intro-image reveal">
-              <img src="/assets/port-sunset.png" alt="SINA operations" />
+              <img src={aboutImage} alt="SINA operations" />
             </div>
           </div>
         </div>
@@ -54,12 +76,12 @@ export default async function AboutPage() {
       <section className="mission-values" id="vision">
         <div className="wrap">
           <div className="section-head reveal">
-            <h2>Vision &amp; Mission</h2>
+            <h2>{visionHeading}</h2>
             <p>The direction we are building toward, and how we serve clients every day.</p>
           </div>
           <div className="vision-block reveal">
             <div className="eyebrow">Vision</div>
-            <p>To become one of Ethiopia’s leading integrated procurement, logistics, and business support service providers, recognized for reliability, professionalism, and customer satisfaction.</p>
+            <p>{visionText}</p>
           </div>
           <div className="values-grid">
             <div className="value-card reveal">
@@ -85,7 +107,7 @@ export default async function AboutPage() {
       <section className="why-sina" id="why">
         <div className="wrap">
           <div className="section-head reveal">
-            <h2>Why Clients Choose SINA</h2>
+            <h2>{whyHeading}</h2>
             <p>Why organizations work with SINA Supplies and Logistics PLC.</p>
           </div>
           <div className="why-grid">
@@ -126,7 +148,7 @@ export default async function AboutPage() {
       <section className="method" id="method">
         <div className="wrap">
           <div className="section-head reveal">
-            <h2>Working Methodology</h2>
+            <h2>{methodHeading}</h2>
             <p>Five phases we use on every engagement — from first brief to ongoing reports.</p>
           </div>
           <div className="method-grid">
@@ -142,7 +164,7 @@ export default async function AboutPage() {
       <section className="benefits" id="benefits">
         <div className="wrap">
           <div className="section-head reveal">
-            <h2>Expected Benefits</h2>
+            <h2>{benefitsHeading}</h2>
             <p>What clients typically gain when operations sit with one accountable partner.</p>
           </div>
           <ul className="benefits-list">
@@ -163,9 +185,10 @@ export default async function AboutPage() {
           <div className="csr-grid">
             <div className="csr-content reveal">
               <div className="eyebrow">Strategic Focus</div>
-              <h2>Built to serve local and international organizations</h2>
-              <p>SINA Supplies and Logistics PLC is committed to expanding its integrated business support solutions across Ethiopia by investing in technology, strengthening supplier partnerships, enhancing service quality, and developing a highly skilled operational team.</p>
-              <p>The same network that supports day-to-day corporate operations also underpins a wider licensed supply scope — from cargo and commodities to equipment and materials. See the full list on our services page.</p>
+              <h2>{csrHeading}</h2>
+              {csrBody.split(/\n\n+/).map((p, i) => (
+                <p key={i}>{p}</p>
+              ))}
               <Link className="btn btn-ghost" href="/services#trade">View Supply Scope →</Link>
             </div>
             <div className="csr-image reveal">

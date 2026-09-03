@@ -54,3 +54,35 @@ export async function PATCH(
 
   return NextResponse.json({ success: true });
 }
+
+export async function DELETE(
+  req: NextRequest,
+  { params }: { params: { id: string } }
+) {
+  const session = await getServerSession(staffAuthOptions);
+  if (!session?.user) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  const staffId = (session.user as any).id as string;
+
+  const inquiry = await prisma.inquiry.findUnique({ where: { id: params.id } });
+  if (!inquiry) {
+    return NextResponse.json({ error: "Not found." }, { status: 404 });
+  }
+
+  await prisma.$transaction([
+    prisma.inquiryStatusChange.deleteMany({ where: { inquiryId: params.id } }),
+    prisma.inquiry.delete({ where: { id: params.id } }),
+    prisma.auditLog.create({
+      data: {
+        staffActorId: staffId,
+        action: "INQUIRY_DELETED",
+        target: `${inquiry.firstName} ${inquiry.lastName} (${inquiry.email})`,
+      },
+    }),
+  ]);
+
+  return NextResponse.json({ success: true });
+}
+

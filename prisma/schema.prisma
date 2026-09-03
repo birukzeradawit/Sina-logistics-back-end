@@ -80,11 +80,6 @@ model InquiryStatusChange {
 }
 
 // ---------- EDITABLE CONTENT ----------
-// A generic key-value content model. Each editable piece of text or image
-// on the public site (hero heading, a paragraph, an image path) is one row,
-// identified by a stable key like "home.hero.heading". Pages read from this
-// table instead of having content hardcoded — that's what makes it editable
-// from the Staff CMS without a code deploy.
 
 enum ContentType {
   TEXT
@@ -104,6 +99,26 @@ model ContentBlock {
   updatedById String?
 
   @@index([page])
+}
+
+// ---------- DYNAMIC SERVICE SECTORS ----------
+
+model ServiceSector {
+  id          String   @id @default(cuid())
+  code        String   @unique // e.g. "SV-01"
+  slug        String   @unique // e.g. "procurement"
+  name        String   // e.g. "Procurement & Supply"
+  shortDesc   String   @db.Text
+  fullDesc    String?  @db.Text
+  features    String[] // e.g. ["Office consumables", "Hospitality supplies", ...]
+  iconSvg     String?  @db.Text
+  sortOrder   Int      @default(0)
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([sortOrder])
+  @@index([isActive])
 }
 
 // ---------- AUDIT LOG (append-only) ----------

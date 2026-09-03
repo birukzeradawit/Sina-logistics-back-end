@@ -1,119 +1,45 @@
 import Link from "next/link";
 import { getContentMap, splitHeading, cms } from "@/lib/content";
+import { getSectors } from "@/lib/sectors";
 
-const BOARD = [
-  { code: "SV-01", name: "PROCUREMENT & SUPPLY", status: "ACTIVE" },
-  { code: "SV-02", name: "LOGISTICS & DELIVERY", status: "ACTIVE" },
-  { code: "SV-03", name: "EVENT ORGANIZING", status: "ACTIVE" },
-  { code: "SV-04", name: "PROPERTY MANAGEMENT", status: "ACTIVE" },
-  { code: "SV-05", name: "STAFF OUTSOURCING", status: "ACTIVE" },
-  { code: "SV-06", name: "ADDITIONAL SUPPORT", status: "ACTIVE" },
-  { code: "SV-07", name: "TRADE & SUPPLY", status: "ACTIVE" },
-  { code: "SV-08", name: "CONSTRUCTION & REAL ESTATE", status: "ACTIVE" },
-  { code: "SV-09", name: "ENERGY, MINING & AGRICULTURE", status: "ACTIVE" },
-];
+const SECTOR_ICONS: Record<string, JSX.Element> = {
+  procurement: (
+    <svg viewBox="0 0 24 24"><path d="M12 3 3 7.5 12 12l9-4.5L12 3Z" /><path d="M3 7.5V16l9 4.5V12" /><path d="M21 7.5V16l-9 4.5" /></svg>
+  ),
+  logistics: (
+    <svg viewBox="0 0 24 24"><path d="M2 17h11V7H2v10Z" /><path d="M13 10h4l4 4v3h-8v-7Z" /><circle cx="6" cy="19" r="1.6" /><circle cx="17.5" cy="19" r="1.6" /></svg>
+  ),
+  events: (
+    <svg viewBox="0 0 24 24"><path d="M4 5h16v16H4z" /><path d="M4 9h16" /><path d="M8 3v4M16 3v4" /></svg>
+  ),
+  property: (
+    <svg viewBox="0 0 24 24"><path d="M4 21V9l8-5 8 5v12" /><path d="M4 21h16" /><path d="M9 21v-6h6v6" /></svg>
+  ),
+  staffing: (
+    <svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3" /><path d="M4 20c0-3 2-5 5-5s5 2 5 5" /><circle cx="17" cy="9" r="2.4" /><path d="M15 20c0-2.5 1-4 3.5-4" /></svg>
+  ),
+  support: (
+    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" /><path d="M8 12h8M12 8v8" /></svg>
+  ),
+  trade: (
+    <svg viewBox="0 0 24 24"><path d="M3 7h18v10H3z" /><path d="M3 11h18" /><path d="M7 7V5h10v2" /></svg>
+  ),
+  construction: (
+    <svg viewBox="0 0 24 24"><path d="M3 21h18" /><path d="M5 21V10l7-5 7 5v11" /><path d="M10 21v-5h4v5" /></svg>
+  ),
+  agriculture: (
+    <svg viewBox="0 0 24 24"><path d="M12 3 4 14h6l-1 7 9-12h-6l1-6Z" /></svg>
+  ),
+};
 
-const PREVIEW_SECTORS = [
-  {
-    num: "01",
-    code: "SV-01 / PROCUREMENT",
-    title: "Procurement & Supply",
-    href: "/services#procurement",
-    desc: "Office, hospitality, and event supplies, supplier sourcing, and inventory replenishment.",
-    icon: (
-      <svg viewBox="0 0 24 24"><path d="M12 3 3 7.5 12 12l9-4.5L12 3Z" /><path d="M3 7.5V16l9 4.5V12" /><path d="M21 7.5V16l-9 4.5" /></svg>
-    ),
-  },
-  {
-    num: "02",
-    code: "SV-02 / LOGISTICS",
-    title: "Logistics & Delivery",
-    href: "/services#logistics",
-    desc: "Transportation coordination, delivery facilitation, distribution, and scheduled delivery.",
-    icon: (
-      <svg viewBox="0 0 24 24"><path d="M2 17h11V7H2v10Z" /><path d="M13 10h4l4 4v3h-8v-7Z" /><circle cx="6" cy="19" r="1.6" /><circle cx="17.5" cy="19" r="1.6" /></svg>
-    ),
-  },
-  {
-    num: "03",
-    code: "SV-03 / EVENTS",
-    title: "Event Organizing",
-    href: "/services#events",
-    desc: "Corporate events, conferences, product launches, venue coordination, and full event logistics.",
-    icon: (
-      <svg viewBox="0 0 24 24"><path d="M4 5h16v16H4z" /><path d="M4 9h16" /><path d="M8 3v4M16 3v4" /></svg>
-    ),
-  },
-  {
-    num: "04",
-    code: "SV-04 / PROPERTY",
-    title: "Property Management",
-    href: "/services#property",
-    desc: "Commercial and residential leasing, facility maintenance, cleaning, and security coordination.",
-    icon: (
-      <svg viewBox="0 0 24 24"><path d="M4 21V9l8-5 8 5v12" /><path d="M4 21h16" /><path d="M9 21v-6h6v6" /></svg>
-    ),
-  },
-  {
-    num: "05",
-    code: "SV-05 / STAFFING",
-    title: "Staff Recruitment & Outsourcing",
-    href: "/services#staffing",
-    desc: "Administrative, hospitality, event, and technical staff recruitment and management.",
-    icon: (
-      <svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3" /><path d="M4 20c0-3 2-5 5-5s5 2 5 5" /><circle cx="17" cy="9" r="2.4" /><path d="M15 20c0-2.5 1-4 3.5-4" /></svg>
-    ),
-  },
-  {
-    num: "06",
-    code: "SV-06 / SUPPORT",
-    title: "Additional Support",
-    href: "/services#support",
-    desc: "Hospitality, vendor negotiation, utility payments, and monthly operational reporting.",
-    icon: (
-      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" /><path d="M8 12h8M12 8v8" /></svg>
-    ),
-  },
-  {
-    num: "07",
-    code: "SV-07 / TRADE",
-    title: "Trade & Supply",
-    href: "/services#trade",
-    desc: "Licensed cargo, commodities, equipment, and materials supply across Ethiopia and beyond.",
-    icon: (
-      <svg viewBox="0 0 24 24"><path d="M3 7h18v10H3z" /><path d="M3 11h18" /><path d="M7 7V5h10v2" /></svg>
-    ),
-  },
-  {
-    num: "08",
-    code: "SV-08 / BUILD",
-    title: "Construction & Real Estate",
-    href: "/services#trade",
-    desc: "Contracting, materials, machinery, and commercial or residential property development.",
-    icon: (
-      <svg viewBox="0 0 24 24"><path d="M3 21h18" /><path d="M5 21V10l7-5 7 5v11" /><path d="M10 21v-5h4v5" /></svg>
-    ),
-  },
-  {
-    num: "09",
-    code: "SV-09 / RESOURCES",
-    title: "Energy, Mining & Agriculture",
-    href: "/services#trade",
-    desc: "Energy and utilities, mining and quarrying, agri-commodities, and related supply.",
-    icon: (
-      <svg viewBox="0 0 24 24"><path d="M12 3 4 14h6l-1 7 9-12h-6l1-6Z" /></svg>
-    ),
-  },
-];
-
-function BoardItems({ suffix }: { suffix: string }) {
+function BoardItems({ sectors, suffix }: { sectors: any[]; suffix: string }) {
   return (
     <>
-      {BOARD.map((s) => (
+      {sectors.map((s) => (
         <div className="board-item" key={`${s.code}-${suffix}`}>
           <span className="code">{s.code}</span>
-          <span>{s.name}</span>
-          <span className="status">{s.status}</span>
+          <span>{s.name.toUpperCase()}</span>
+          <span className="status">ACTIVE</span>
         </div>
       ))}
     </>
@@ -121,7 +47,11 @@ function BoardItems({ suffix }: { suffix: string }) {
 }
 
 export default async function HomePage() {
-  const content = await getContentMap("home");
+  const [content, dbSectors] = await Promise.all([
+    getContentMap("home"),
+    getSectors(),
+  ]);
+
   const heading = cms(content, "home.hero.heading", "Your goods, our priority.");
   const lead = cms(
     content,
@@ -138,6 +68,11 @@ export default async function HomePage() {
   const sectorsLead =
     content["home.sectors.lead"] ??
     "A single-source partner across nine sectors — so clients coordinate one relationship instead of a dozen vendors.";
+  const heroImage = cms(
+    content,
+    "home.hero.image",
+    "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=80"
+  );
 
   const { start: headingStart, accent: headingAccent } = splitHeading(heading);
   const sectorsSplit = splitHeading(sectorsHeading);
@@ -185,8 +120,8 @@ export default async function HomePage() {
           <div className="board-inner">
             <div className="board-label">Manifest&nbsp;/&nbsp;Active</div>
             <div className="board-track" id="board-track">
-              <BoardItems suffix="a" />
-              <BoardItems suffix="b" />
+              <BoardItems sectors={dbSectors} suffix="a" />
+              <BoardItems sectors={dbSectors} suffix="b" />
             </div>
           </div>
         </div>
@@ -203,7 +138,7 @@ export default async function HomePage() {
             <Link className="btn btn-ghost-dark" href="/about">Read Full Profile →</Link>
           </div>
           <div className="diamond-frame reveal">
-            <img src="/assets/port-sunset.png" alt="Logistics operations" />
+            <img src={heroImage} alt="Logistics operations" />
           </div>
         </div>
       </section>
@@ -212,10 +147,10 @@ export default async function HomePage() {
         <div className="wrap">
           <div className="stats-grid">
             <div className="stat-cell reveal">
-              <div className="stat-number"><span className="accent">9</span></div>
+              <div className="stat-number"><span className="accent">{dbSectors.length || 9}</span></div>
               <div className="stat-rule"></div>
               <div className="stat-label">Core Sectors</div>
-              <div className="stat-desc">Nine lines of work — from procurement and staffing to trade, construction, energy, and agriculture — under one provider.</div>
+              <div className="stat-desc">Lines of work — from procurement and staffing to trade, construction, energy, and agriculture — under one provider.</div>
             </div>
             <div className="stat-cell reveal">
               <div className="stat-number"><span className="accent">5</span></div>
@@ -242,7 +177,7 @@ export default async function HomePage() {
       <section className="sectors-preview" id="sectors">
         <div className="wrap">
           <div className="section-head reveal">
-            <span className="ghost-numeral">09</span>
+            <span className="ghost-numeral">0{dbSectors.length || 9}</span>
             <h2>
               {sectorsSplit.start}
               {sectorsSplit.accent ? (
@@ -256,20 +191,24 @@ export default async function HomePage() {
           </div>
 
           <div className="sp-grid">
-            {PREVIEW_SECTORS.map((s) => (
-              <div className="sp-card reveal" key={s.num}>
-                <span className="sp-num">{s.num}</span>
-                <div className="sp-icon">{s.icon}</div>
-                <span className="sp-code">{s.code}</span>
-                <h3>{s.title}</h3>
-                <p>{s.desc}</p>
-                <Link className="sp-link" href={s.href}>View service →</Link>
-              </div>
-            ))}
-          </div>
-
-          <div className="sp-footer reveal">
-            <Link className="btn btn-primary" href="/services">View All Services →</Link>
+            {dbSectors.map((s, idx) => {
+              const numStr = String(idx + 1).padStart(2, "0");
+              const icon = SECTOR_ICONS[s.slug] || (
+                <svg viewBox="0 0 24 24"><path d="M12 3 3 7.5 12 12l9-4.5L12 3Z" /><path d="M3 7.5V16l9 4.5V12" /><path d="M21 7.5V16l-9 4.5" /></svg>
+              );
+              return (
+                <div className="sp-card reveal" key={s.id}>
+                  <span className="sp-num">{numStr}</span>
+                  <div className="sp-icon">{icon}</div>
+                  <span className="sp-code">{s.code} / {s.slug.toUpperCase()}</span>
+                  <h3>{s.name}</h3>
+                  <p>{s.shortDesc}</p>
+                  <Link className="sp-link" href={`/services#${s.slug}`}>
+                    Details <span aria-hidden="true">→</span>
+                  </Link>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
