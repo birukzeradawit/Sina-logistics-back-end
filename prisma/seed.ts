@@ -49,7 +49,7 @@ async function main() {
     
     { key: "about.hero.heading", page: "about", label: "About Hero Heading", value: "Integrated support for Ethiopia." },
     { key: "about.hero.lead", page: "about", label: "About Hero Lead", value: "SINA Supplies and Logistics PLC delivers reliable, efficient, and cost-effective operational support to corporate organizations, institutions, and private clients.", type: "RICH_TEXT" as const },
-    { key: "about.hero.image", page: "about", label: "About Banner Image", value: "https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=1200&q=80", type: "IMAGE_URL" as const },
+    { key: "about.hero.image", page: "about", label: "About Banner Image", value: "/assets/sina-who-we-are.jpg", type: "IMAGE_URL" as const },
     { key: "about.intro.heading", page: "about", label: "About Intro Heading", value: "Who We Are" },
     { key: "about.intro.body", page: "about", label: "About Intro Body", value: "SINA Supplies and Logistics PLC is a dynamic Ethiopian company specializing in procurement, logistics coordination, event management, property management, staffing solutions, and integrated business support services.", type: "RICH_TEXT" as const },
     { key: "about.vision.heading", page: "about", label: "Vision Section Heading", value: "Vision & Mission" },
@@ -74,7 +74,7 @@ async function main() {
   for (const b of blocks) {
     await prisma.contentBlock.upsert({
       where: { key: b.key },
-      update: {},
+      update: { value: b.value, label: b.label, type: b.type ?? "TEXT" },
       create: { ...b, type: b.type ?? "TEXT" },
     });
   }

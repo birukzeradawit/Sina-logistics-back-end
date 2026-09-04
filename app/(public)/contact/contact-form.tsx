@@ -15,6 +15,7 @@ const SECTORS = [
 ];
 
 export function ContactForm() {
+  const [selectedSector, setSelectedSector] = useState<string>("");
   const [status, setStatus] = useState<"idle" | "sending" | "ok" | "error">("idle");
   const [message, setMessage] = useState("");
 
@@ -29,7 +30,7 @@ export function ContactForm() {
       lastName: (form.elements.namedItem("lastName") as HTMLInputElement).value.trim(),
       email: (form.elements.namedItem("email") as HTMLInputElement).value.trim(),
       phone: (form.elements.namedItem("phone") as HTMLInputElement).value.trim() || undefined,
-      sector: (form.elements.namedItem("sector") as HTMLSelectElement).value || undefined,
+      sector: selectedSector || (form.elements.namedItem("sector") as HTMLSelectElement).value || undefined,
       message: (form.elements.namedItem("message") as HTMLTextAreaElement).value.trim(),
     };
 
@@ -44,8 +45,9 @@ export function ContactForm() {
         throw new Error(body?.error || "Could not send inquiry.");
       }
       setStatus("ok");
-      setMessage("Inquiry sent. The team typically replies within 1–2 business days.");
+      setMessage("Inquiry sent successfully. The SINA team will respond within 1 business day.");
       form.reset();
+      setSelectedSector("");
     } catch {
       setStatus("error");
       setMessage("Could not send right now. Please try again, or email sinasupplies@outlook.com.");
@@ -57,42 +59,51 @@ export function ContactForm() {
       <div className="form-row">
         <div className="field">
           <label htmlFor="firstName">First Name</label>
-          <input type="text" id="firstName" name="firstName" required />
+          <input type="text" id="firstName" name="firstName" required placeholder="John" />
         </div>
         <div className="field">
           <label htmlFor="lastName">Last Name</label>
-          <input type="text" id="lastName" name="lastName" required />
+          <input type="text" id="lastName" name="lastName" required placeholder="Doe" />
         </div>
       </div>
       <div className="form-row">
         <div className="field">
           <label htmlFor="email">Email Address</label>
-          <input type="email" id="email" name="email" required />
+          <input type="email" id="email" name="email" required placeholder="john.doe@company.com" />
         </div>
         <div className="field">
           <label htmlFor="phone">Phone Number</label>
-          <input type="tel" id="phone" name="phone" />
+          <input type="tel" id="phone" name="phone" placeholder="+251 90 000 0000" />
         </div>
       </div>
+      
       <div className="form-row">
         <div className="field full">
-          <label htmlFor="sector">Service of Interest</label>
-          <select id="sector" name="sector" defaultValue="">
-            <option value="">Select a service (optional)</option>
+          <label>Select Sector of Interest</label>
+          <div className="sector-pills-select">
             {SECTORS.map((opt) => (
-              <option key={opt} value={opt}>{opt}</option>
+              <button
+                type="button"
+                key={opt}
+                className={`sector-select-pill${selectedSector === opt ? " active" : ""}`}
+                onClick={() => setSelectedSector((curr) => (curr === opt ? "" : opt))}
+              >
+                {opt}
+              </button>
             ))}
-          </select>
+          </div>
+          <input type="hidden" name="sector" value={selectedSector} />
         </div>
       </div>
+
       <div className="form-row">
         <div className="field full">
-          <label htmlFor="message">Message</label>
-          <textarea id="message" name="message" required placeholder="Tell us what you need..." />
+          <label htmlFor="message">Project Requirements / Message</label>
+          <textarea id="message" name="message" required placeholder="Describe your procurement, logistics, or corporate operational requirements..." />
         </div>
       </div>
-      <button type="submit" className="btn btn-primary" disabled={status === "sending"}>
-        {status === "sending" ? "Sending…" : "Send Inquiry →"}
+      <button type="submit" className="btn btn-gold" disabled={status === "sending"}>
+        {status === "sending" ? "Sending…" : "Send Proposal Request →"}
       </button>
       {message && (
         <div className={`form-status ${status === "ok" ? "success" : "error"}`}>{message}</div>
@@ -100,3 +111,4 @@ export function ContactForm() {
     </form>
   );
 }
+

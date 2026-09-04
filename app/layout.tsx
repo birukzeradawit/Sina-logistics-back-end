@@ -1,6 +1,13 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 
 const siteUrl = process.env.NEXTAUTH_URL || "https://www.sinatrading.et";
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+  themeColor: "#111112",
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

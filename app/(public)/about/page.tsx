@@ -54,7 +54,7 @@ export default async function AboutPage() {
   const aboutImage = cms(
     content,
     "about.hero.image",
-    "https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=1200&q=80"
+    "/assets/sina-who-we-are.jpg"
   );
 
   const hero = splitHeading(heroHeading);

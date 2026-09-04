@@ -1,6 +1,19 @@
 import Link from "next/link";
 import { getContentMap, splitHeading, cms } from "@/lib/content";
 import { getSectors } from "@/lib/sectors";
+import { SectorsInteractiveShowcase } from "@/components/sectors-interactive-showcase";
+
+const SECTOR_COLLAGE_IMAGES = [
+  "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=400&q=80",
+  "https://images.unsplash.com/photo-1519003722824-194d4455a60c?auto=format&fit=crop&w=400&q=80",
+  "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=400&q=80",
+  "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=400&q=80",
+  "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=400&q=80",
+  "https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=400&q=80",
+  "https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=400&q=80",
+  "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=400&q=80",
+  "/assets/energy-mining-agriculture.jpg",
+];
 
 const SECTOR_ICONS: Record<string, JSX.Element> = {
   procurement: (
@@ -82,6 +95,15 @@ export default async function HomePage() {
       <section className="hero">
         <div className="wrap hero-grid">
           <div>
+            <div className="hero-badges reveal">
+              <div className="trust-badge">
+                <span className="trust-badge-dot"></span>
+                <span>Licensed Ethiopian Operator</span>
+              </div>
+              <div className="trust-badge">
+                <span>9 Specialized Sectors</span>
+              </div>
+            </div>
             <div className="eyebrow reveal">{eyebrow}</div>
             <h1 className="reveal">
               {headingStart}
@@ -94,8 +116,8 @@ export default async function HomePage() {
             </h1>
             <p className="lead reveal">{lead}</p>
             <div className="hero-actions reveal">
-              <Link className="btn btn-primary" href="/contact">Request a Proposal</Link>
-              <Link className="btn btn-ghost-dark" href="/services">Explore Our Services →</Link>
+              <Link className="btn btn-gold" href="/contact">Request a Proposal</Link>
+              <Link className="btn btn-ghost-dark" href="/services">Explore 9 Sectors →</Link>
             </div>
           </div>
 
@@ -331,7 +353,10 @@ export default async function HomePage() {
 
         <div className="board">
           <div className="board-inner">
-            <div className="board-label">Manifest&nbsp;/&nbsp;Active</div>
+            <div className="board-label">
+              <span className="board-live-dot"></span>
+              <span>LIVE MANIFEST</span>
+            </div>
             <div className="board-track" id="board-track">
               <BoardItems sectors={dbSectors} suffix="a" />
               <BoardItems sectors={dbSectors} suffix="b" />
@@ -350,8 +375,18 @@ export default async function HomePage() {
             <p>{overviewBody}</p>
             <Link className="btn btn-ghost-dark" href="/about">Read Full Profile →</Link>
           </div>
-          <div className="diamond-frame reveal">
-            <img src={heroImage} alt="Logistics operations" />
+          
+          <div className="overview-visual reveal">
+            <div className="mosaic-frame" title="SINA 9 Integrated Operational Sectors">
+              <div className="mosaic-grid">
+                {SECTOR_COLLAGE_IMAGES.map((imgUrl, i) => (
+                  <div className="mosaic-tile" key={i}>
+                    <img src={imgUrl} alt={`SINA Sector ${i + 1}`} loading="lazy" />
+                  </div>
+                ))}
+              </div>
+              <div className="mosaic-blend-overlay" />
+            </div>
           </div>
         </div>
       </section>
@@ -403,25 +438,8 @@ export default async function HomePage() {
             <p>{sectorsLead}</p>
           </div>
 
-          <div className="sp-grid">
-            {dbSectors.map((s, idx) => {
-              const numStr = String(idx + 1).padStart(2, "0");
-              const icon = SECTOR_ICONS[s.slug] || (
-                <svg viewBox="0 0 24 24"><path d="M12 3 3 7.5 12 12l9-4.5L12 3Z" /><path d="M3 7.5V16l9 4.5V12" /><path d="M21 7.5V16l-9 4.5" /></svg>
-              );
-              return (
-                <div className="sp-card reveal" key={s.id}>
-                  <span className="sp-num">{numStr}</span>
-                  <div className="sp-icon">{icon}</div>
-                  <span className="sp-code">{s.code} / {s.slug.toUpperCase()}</span>
-                  <h3>{s.name}</h3>
-                  <p>{s.shortDesc}</p>
-                  <Link className="sp-link" href={`/services#${s.slug}`}>
-                    Details <span aria-hidden="true">→</span>
-                  </Link>
-                </div>
-              );
-            })}
+          <div className="reveal">
+            <SectorsInteractiveShowcase sectors={dbSectors} />
           </div>
         </div>
       </section>
