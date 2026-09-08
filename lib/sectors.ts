@@ -125,6 +125,18 @@ const FALLBACK_SECTORS: ServiceSectorDTO[] = [
     sortOrder: 9,
     isActive: true,
   },
+  {
+    id: "sec-10",
+    code: "SV-10",
+    slug: "consulting",
+    name: "Professional Consulting",
+    shortDesc: "Accounting, company formation, business advisory, and operational improvement.",
+    fullDesc: "Professional advisory covering accounting consultancy, financial management, company establishment, business registration, strategic planning, and operational improvement for corporate and institutional clients.",
+    features: ["Accounting consultancy", "Company establishment", "Strategic planning", "Operational improvement"],
+    iconSvg: null,
+    sortOrder: 10,
+    isActive: true,
+  },
 ];
 
 export async function getSectors(onlyActive = true): Promise<ServiceSectorDTO[]> {

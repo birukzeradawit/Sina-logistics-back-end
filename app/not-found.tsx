@@ -9,7 +9,7 @@ export default function NotFound() {
         <p style={{ color: "#C7C5BE", fontSize: "16px", lineHeight: 1.6, marginBottom: "32px" }}>The requested page could not be located across our network.</p>
         <div style={{ display: "flex", gap: "12px", justifyContent: "center", flexWrap: "wrap" }}>
           <Link href="/" style={{ background: "#FFCB47", color: "#111112", padding: "12px 24px", borderRadius: "4px", fontWeight: 600, textDecoration: "none", fontSize: "13px", textTransform: "uppercase", fontFamily: "IBM Plex Mono, monospace" }}>Return Home</Link>
-          <Link href="/services" style={{ background: "rgba(255,255,255,0.08)", color: "#F7F5F1", border: "1px solid rgba(255,255,255,0.2)", padding: "12px 24px", borderRadius: "4px", fontWeight: 600, textDecoration: "none", fontSize: "13px", textTransform: "uppercase", fontFamily: "IBM Plex Mono, monospace" }}>Explore 9 Sectors</Link>
+          <Link href="/services" style={{ background: "rgba(255,255,255,0.08)", color: "#F7F5F1", border: "1px solid rgba(255,255,255,0.2)", padding: "12px 24px", borderRadius: "4px", fontWeight: 600, textDecoration: "none", fontSize: "13px", textTransform: "uppercase", fontFamily: "IBM Plex Mono, monospace" }}>Explore Sectors</Link>
         </div>
       </div>
     </div>

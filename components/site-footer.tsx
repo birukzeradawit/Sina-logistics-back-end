@@ -28,6 +28,7 @@ export function SiteFooter() {
               <Link href="/services#trade-scope">General Trading</Link>
               <Link href="/services#construction-real-estate">Construction</Link>
               <Link href="/services#energy-mining-agriculture">Agri &amp; Energy</Link>
+              <Link href="/services#consulting">Professional Consulting</Link>
               <Link href="/services#additional-support">Operations Support</Link>
             </div>
             <div className="foot-col">

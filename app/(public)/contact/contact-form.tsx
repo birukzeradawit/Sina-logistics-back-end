@@ -12,6 +12,7 @@ const SECTORS = [
   "Trade & Supply",
   "Construction & Real Estate",
   "Energy, Mining & Agriculture",
+  "Professional Consulting",
 ];
 
 export function ContactForm() {

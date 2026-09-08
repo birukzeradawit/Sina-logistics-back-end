@@ -33,7 +33,7 @@ html, body {
 }
 
 .sina-site,
-.sina-site *{ box-sizing:border-box; margin:0; padding:0; }
+.sina-site *{ box-sizing:border-box; }
 .sina-site{
   background:var(--paper);
   color:var(--ink);

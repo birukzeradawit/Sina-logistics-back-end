@@ -17,6 +17,7 @@ export async function GET() {
 - Licensed commercial trade across industrial equipment, raw commodities & construction materials
 - Infrastructure & commercial construction execution
 - Energy, mining & agribusiness supply chain integration
+- Professional consulting: accounting, company formation, and business advisory
 
 ## Key Details
 - **Headquarters**: Lemi Kura Sub-city, Woreda 03, House No. New, Addis Ababa, Ethiopia

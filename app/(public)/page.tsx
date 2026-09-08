@@ -13,6 +13,7 @@ const SECTOR_COLLAGE_IMAGES = [
   "https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=400&q=80",
   "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=400&q=80",
   "/assets/energy-mining-agriculture.jpg",
+  "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=400&q=80",
 ];
 
 const SECTOR_ICONS: Record<string, JSX.Element> = {
@@ -43,6 +44,9 @@ const SECTOR_ICONS: Record<string, JSX.Element> = {
   agriculture: (
     <svg viewBox="0 0 24 24"><path d="M12 3 4 14h6l-1 7 9-12h-6l1-6Z" /></svg>
   ),
+  consulting: (
+    <svg viewBox="0 0 24 24"><path d="M8 4h8v4H8z" /><path d="M6 10h12v10H6z" /><path d="M9 14h6" /></svg>
+  ),
 };
 
 function BoardItems({ sectors, suffix }: { sectors: any[]; suffix: string }) {
@@ -69,7 +73,7 @@ export default async function HomePage() {
   const lead = cms(
     content,
     "home.hero.lead",
-    "SINA Supplies and Logistics PLC is a single-source partner for corporate organizations — procurement, logistics, event management, property management, and staffing, delivered as one coordinated service."
+    "SINA TRADING PLC is a single-source partner for corporate organizations — procurement, logistics, event management, property management, and staffing, delivered as one coordinated service."
   );
   const eyebrow = cms(content, "home.hero.eyebrow", "INTERNATIONAL TRADING  &  COMMERCIAL SUPPLIES");
   const overviewHeading =
@@ -77,18 +81,14 @@ export default async function HomePage() {
   const overviewBody =
     content["home.overview.body"] ??
     "Established to deliver reliable, efficient, and cost-effective support to corporate organizations, institutions, and private clients. With a strong network of suppliers, service providers, and logistics partners, SINA ensures timely delivery, quality assurance, and professional execution across every area of operation.";
-  const sectorsHeading = content["home.sectors.heading"] ?? "Nine sectors, one provider.";
+  const sectorsHeading = content["home.sectors.heading"] ?? "Ten sectors, one provider.";
   const sectorsLead =
     content["home.sectors.lead"] ??
-    "A single-source partner across nine sectors — so clients coordinate one relationship instead of a dozen vendors.";
-  const heroImage = cms(
-    content,
-    "home.hero.image",
-    "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=80"
-  );
+    "A single-source partner across ten sectors — so clients coordinate one relationship instead of a dozen vendors.";
 
   const { start: headingStart, accent: headingAccent } = splitHeading(heading);
   const sectorsSplit = splitHeading(sectorsHeading);
+  const sectorCount = dbSectors.length || 10;
 
   return (
     <>
@@ -101,7 +101,7 @@ export default async function HomePage() {
                 <span>Licensed Ethiopian Operator</span>
               </div>
               <div className="trust-badge">
-                <span>9 Specialized Sectors</span>
+                <span>{sectorCount} Specialized Sectors</span>
               </div>
             </div>
             <div className="eyebrow reveal">{eyebrow}</div>
@@ -117,12 +117,12 @@ export default async function HomePage() {
             <p className="lead reveal">{lead}</p>
             <div className="hero-actions reveal">
               <Link className="btn btn-gold" href="/contact">Request a Proposal</Link>
-              <Link className="btn btn-ghost-dark" href="/services">Explore 9 Sectors →</Link>
+              <Link className="btn btn-ghost-dark" href="/services">Explore {sectorCount} Sectors →</Link>
             </div>
           </div>
 
           <div className="route-panel reveal">
-            <svg viewBox="0 0 600 600" role="img" aria-label="Animated multi-sector radial logistics network with glowing orbs">
+            <svg viewBox="0 0 600 600" role="img" aria-label="Animated multi-sector network with glowing orbs">
               <defs>
                 <filter id="gold-glow" x="-60%" y="-60%" width="220%" height="220%">
                   <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="blur1" />
@@ -142,7 +142,6 @@ export default async function HomePage() {
                 </filter>
               </defs>
 
-              {/* 9 Subtle, Faint Background Dotted Paths */}
               <path id="pAgri" className="route-line" d="M300 300 L300 90" />
               <path id="pTrade" className="route-line" d="M300 300 L150 150" />
               <path id="pProcure" className="route-line" d="M300 300 L95 255" />
@@ -151,6 +150,7 @@ export default async function HomePage() {
               <path id="pProperty" className="route-line" d="M300 300 L300 515" />
               <path id="pEvents" className="route-line" d="M300 300 L445 465" />
               <path id="pConstruct" className="route-line" d="M300 300 L500 340" />
+              <path id="pConsult" className="route-line" d="M300 300 L510 230" />
               <path id="pLogistics" className="route-line" d="M300 300 L505 115" />
 
               {/* Addis Ababa Center Radar Ripples */}
@@ -265,6 +265,19 @@ export default async function HomePage() {
 
               <g className="beacon-group" filter="url(#gold-glow)">
                 <circle r="7" fill="rgba(255,203,71,0.25)" stroke="#FFCB47" strokeWidth="1">
+                  <animateMotion dur="4.0s" repeatCount="indefinite" begin="1.0s">
+                    <mpath href="#pConsult" />
+                  </animateMotion>
+                </circle>
+                <circle r="3.5" fill="#FFE066">
+                  <animateMotion dur="4.0s" repeatCount="indefinite" begin="1.0s">
+                    <mpath href="#pConsult" />
+                  </animateMotion>
+                </circle>
+              </g>
+
+              <g className="beacon-group" filter="url(#gold-glow)">
+                <circle r="7" fill="rgba(255,203,71,0.25)" stroke="#FFCB47" strokeWidth="1">
                   <animateMotion dur="3.6s" repeatCount="indefinite" begin="0.2s">
                     <mpath href="#pLogistics" />
                   </animateMotion>
@@ -286,66 +299,70 @@ export default async function HomePage() {
               <circle className="node" cx="300" cy="90" r="5" />
               <text className="node-label" x="300" y="68" textAnchor="middle">
                 <tspan fill="#FFCB47" fontWeight="700">SV-09 </tspan>
-                <tspan fill="#F7F5F1">AGRI &amp; ENERGY</tspan>
+                <tspan fill="#111112">AGRI &amp; ENERGY</tspan>
               </text>
 
               {/* SV-07: Trade Scope */}
               <circle className="node" cx="150" cy="150" r="5" />
               <text className="node-label" x="136" y="138" textAnchor="end">
                 <tspan fill="#FFCB47" fontWeight="700">SV-07 </tspan>
-                <tspan fill="#F7F5F1">TRADE</tspan>
+                <tspan fill="#111112">TRADE</tspan>
               </text>
 
               {/* SV-01: Procurement */}
               <circle className="node" cx="95" cy="255" r="5" />
               <text className="node-label" x="80" y="259" textAnchor="end">
                 <tspan fill="#FFCB47" fontWeight="700">SV-01 </tspan>
-                <tspan fill="#F7F5F1">PROCUREMENT</tspan>
+                <tspan fill="#111112">PROCUREMENT</tspan>
               </text>
 
               {/* SV-06: Additional Support */}
               <circle className="node" cx="105" cy="375" r="5" />
               <text className="node-label" x="90" y="379" textAnchor="end">
                 <tspan fill="#FFCB47" fontWeight="700">SV-06 </tspan>
-                <tspan fill="#F7F5F1">SUPPORT</tspan>
+                <tspan fill="#111112">SUPPORT</tspan>
               </text>
 
               {/* SV-05: Staff Recruitment */}
               <circle className="node" cx="165" cy="470" r="5" />
               <text className="node-label" x="150" y="488" textAnchor="end">
                 <tspan fill="#FFCB47" fontWeight="700">SV-05 </tspan>
-                <tspan fill="#F7F5F1">STAFFING</tspan>
+                <tspan fill="#111112">STAFFING</tspan>
               </text>
 
               {/* SV-04: Property Management */}
               <circle className="node" cx="300" cy="515" r="5" />
               <text className="node-label" x="300" y="542" textAnchor="middle">
                 <tspan fill="#FFCB47" fontWeight="700">SV-04 </tspan>
-                <tspan fill="#F7F5F1">PROPERTY</tspan>
+                <tspan fill="#111112">PROPERTY</tspan>
               </text>
 
               {/* SV-03: Event Organizing */}
               <circle className="node" cx="445" cy="465" r="5" />
               <text className="node-label" x="460" y="469" textAnchor="start">
                 <tspan fill="#FFCB47" fontWeight="700">SV-03 </tspan>
-                <tspan fill="#F7F5F1">EVENTS</tspan>
+                <tspan fill="#111112">EVENTS</tspan>
               </text>
 
               {/* SV-08: Construction */}
               <circle className="node" cx="500" cy="340" r="5" />
               <text className="node-label" x="515" y="344" textAnchor="start">
                 <tspan fill="#FFCB47" fontWeight="700">SV-08 </tspan>
-                <tspan fill="#F7F5F1">CONSTRUCTION</tspan>
+                <tspan fill="#111112">CONSTRUCTION</tspan>
               </text>
 
-              {/* SV-02: Logistics Hub & Delivery */}
-              <circle className="node hub-node" cx="410" cy="195" r="4.5" />
-              <text className="node-label" x="424" y="190">HUB</text>
+              {/* SV-10: Professional Consulting */}
+              <circle className="node" cx="510" cy="230" r="5" />
+              <text className="node-label" x="525" y="226" textAnchor="start">
+                <tspan fill="#FFCB47" fontWeight="700">SV-10 </tspan>
+                <tspan fill="#111112">CONSULTING</tspan>
+              </text>
 
+              {/* SV-02: Logistics & Delivery */}
               <circle className="node delivery-node" cx="505" cy="115" r="6" filter="url(#soft-glow)" />
               <text className="node-label origin-label" x="520" y="111" textAnchor="start">
                 <tspan fill="#FFCB47">SV-02 </tspan>
-                <tspan fill="#FFCB47">DELIVERY</tspan>
+                <tspan fill="#111112">DELIVERY</tspan>
               </text>
             </svg>
           </div>
@@ -377,7 +394,7 @@ export default async function HomePage() {
           </div>
           
           <div className="overview-visual reveal">
-            <div className="mosaic-frame" title="SINA 9 Integrated Operational Sectors">
+            <div className="mosaic-frame" title="SINA integrated operational sectors">
               <div className="mosaic-grid">
                 {SECTOR_COLLAGE_IMAGES.map((imgUrl, i) => (
                   <div className="mosaic-tile" key={i}>
@@ -395,16 +412,16 @@ export default async function HomePage() {
         <div className="wrap">
           <div className="stats-grid">
             <div className="stat-cell reveal">
-              <div className="stat-number"><span className="accent">{dbSectors.length || 9}</span></div>
+              <div className="stat-number"><span className="accent">{sectorCount}</span></div>
               <div className="stat-rule"></div>
               <div className="stat-label">Core Sectors</div>
-              <div className="stat-desc">Lines of work — from procurement and staffing to trade, construction, energy, and agriculture — under one provider.</div>
+              <div className="stat-desc">Lines of work — procurement, logistics, events, property, staffing, support, trade, construction, energy, and consulting — under one provider.</div>
             </div>
             <div className="stat-cell reveal">
-              <div className="stat-number"><span className="accent">5</span></div>
+              <div className="stat-number"><span className="accent">6</span></div>
               <div className="stat-rule"></div>
               <div className="stat-label">Working Phases</div>
-              <div className="stat-desc">Planning, sourcing, execution, delivery &amp; deployment, then monitoring and reporting.</div>
+              <div className="stat-desc">Consultation, planning, mobilization, implementation, delivery and support, then monitoring and after-sales.</div>
             </div>
             <div className="stat-cell reveal">
               <div className="stat-number"><span className="accent">6</span></div>
@@ -425,7 +442,7 @@ export default async function HomePage() {
       <section className="sectors-preview" id="sectors">
         <div className="wrap">
           <div className="section-head reveal">
-            <span className="ghost-numeral">0{dbSectors.length || 9}</span>
+            <span className="ghost-numeral">{String(sectorCount).padStart(2, "0")}</span>
             <h2>
               {sectorsSplit.start}
               {sectorsSplit.accent ? (

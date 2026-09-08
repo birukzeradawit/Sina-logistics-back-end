@@ -13,7 +13,7 @@ export async function getContentMap(page: string): Promise<Record<string, string
 
   try {
     const blocks = await prisma.contentBlock.findMany({ where: { page } });
-    const data = Object.fromEntries(blocks.map((b) => [b.key, b.value]));
+    const data = Object.fromEntries(blocks.map((b: any) => [b.key, b.value]));
     contentCache.set(page, { data, timestamp: now });
     return data;
   } catch (err) {

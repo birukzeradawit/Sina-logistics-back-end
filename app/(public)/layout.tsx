@@ -8,17 +8,21 @@ import "@/styles/site/sectors-preview.css";
 import "@/styles/site/about.css";
 import "@/styles/site/sectors.css";
 import "@/styles/site/contact.css";
+import "@/styles/site/auth.css";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteEffects } from "@/components/site-effects";
+import { ClientAuthProvider } from "@/components/client-auth-provider";
 
 export default function PublicLayout({ children }: { children: ReactNode }) {
   return (
-    <div className="sina-site">
-      <SiteHeader />
-      {children}
-      <SiteFooter />
-      <SiteEffects />
-    </div>
+    <ClientAuthProvider>
+      <div className="sina-site">
+        <SiteHeader />
+        {children}
+        <SiteFooter />
+        <SiteEffects />
+      </div>
+    </ClientAuthProvider>
   );
 }

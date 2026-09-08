@@ -169,14 +169,67 @@ export default async function AboutPage() {
         <div className="wrap">
           <div className="section-head reveal">
             <h2>{methodHeading}</h2>
-            <p>Five phases we use on every engagement — from first brief to ongoing reports.</p>
+            <p>
+              Our working approach from the company profile: consultation through after-sales, applied
+              across procurement, logistics, events, property, staffing, support, trade, construction,
+              energy and agriculture, and consulting.
+            </p>
           </div>
           <div className="method-grid">
-            <div className="method-card reveal"><span className="method-phase">Phase 1</span><h3>Planning</h3><p>Review client requirements and schedules.</p></div>
-            <div className="method-card reveal"><span className="method-phase">Phase 2</span><h3>Sourcing</h3><p>Identify qualified suppliers and service providers.</p></div>
-            <div className="method-card reveal"><span className="method-phase">Phase 3</span><h3>Execution</h3><p>Procure, organize, recruit, and coordinate services.</p></div>
-            <div className="method-card reveal"><span className="method-phase">Phase 4</span><h3>Delivery &amp; Deployment</h3><p>Ensure timely delivery and service implementation.</p></div>
-            <div className="method-card reveal"><span className="method-phase">Phase 5</span><h3>Monitoring &amp; Reporting</h3><p>Provide performance updates and operational reports.</p></div>
+            <div className="method-card reveal">
+              <span className="method-phase">Phase 1</span>
+              <h3>Client Consultation and Needs Assessment</h3>
+              <p>
+                We start with a structured consultation to document operational needs, volumes, sites,
+                timelines, and quality expectations — covering supply, logistics, events, facilities,
+                staffing, trade, construction, energy, and consulting before any work is committed.
+              </p>
+            </div>
+            <div className="method-card reveal">
+              <span className="method-phase">Phase 2</span>
+              <h3>Planning and Technical Evaluation</h3>
+              <p>
+                Scope, schedules, and technical options are evaluated against the brief. We define the
+                right mix of services, supplier routes, and resource plans so delivery, events,
+                facilities, construction, and advisory work sit in one coordinated programme.
+              </p>
+            </div>
+            <div className="method-card reveal">
+              <span className="method-phase">Phase 3</span>
+              <h3>Procurement, Production, or Project Mobilization</h3>
+              <p>
+                Goods are sourced through our supplier and international partner network; teams are
+                recruited; venues and sites are booked; trade channels or construction packages are
+                opened as required, sequenced so each sector is ready before implementation.
+              </p>
+            </div>
+            <div className="method-card reveal">
+              <span className="method-phase">Phase 4</span>
+              <h3>Implementation and Quality Control</h3>
+              <p>
+                Execution is supervised against agreed quality-assurance systems — deliveries, events,
+                property operations, construction works, and consulting outputs — with a single point
+                of contact so quality, compliance, and timelines stay visible.
+              </p>
+            </div>
+            <div className="method-card reveal">
+              <span className="method-phase">Phase 5</span>
+              <h3>Delivery, Commissioning, and Client Support</h3>
+              <p>
+                Goods are handed over, staff are deployed, works are commissioned, and ongoing
+                operational support is stood up at the client site. Handover is checked against the
+                original brief so clients receive a complete, usable outcome.
+              </p>
+            </div>
+            <div className="method-card reveal">
+              <span className="method-phase">Phase 6</span>
+              <h3>Continuous Monitoring and After-Sales Service</h3>
+              <p>
+                Performance is tracked after go-live, with operational reports, replacements, and
+                after-sales support across every line of work. Feedback informs continuous improvement
+                and long-term service reliability.
+              </p>
+            </div>
           </div>
         </div>
       </section>

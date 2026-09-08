@@ -41,11 +41,11 @@ async function main() {
     { key: "home.hero.eyebrow", page: "home", label: "Hero Eyebrow", value: "INTERNATIONAL TRADING  &  COMMERCIAL SUPPLIES" },
     { key: "home.hero.heading", page: "home", label: "Hero Heading", value: "Your goods, our priority." },
     { key: "home.hero.lead", page: "home", label: "Hero Lead Paragraph", value: "SINA Supplies and Logistics PLC is a single-source partner for corporate organizations — procurement, logistics, event management, property management, and staffing, delivered as one coordinated service.", type: "RICH_TEXT" as const },
-    { key: "home.hero.image", page: "home", label: "Hero Banner Image", value: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=80", type: "IMAGE_URL" as const },
+    { key: "home.hero.image", page: "home", label: "Hero Banner Image", value: "/assets/boardroom-bw.png", type: "IMAGE_URL" as const },
     { key: "home.overview.heading", page: "home", label: "Overview Heading", value: "Reliable operational support, under one provider." },
     { key: "home.overview.body", page: "home", label: "Overview Body", value: "Established to deliver reliable, efficient, and cost-effective support to corporate organizations, institutions, and private clients. With a strong network of suppliers, service providers, and logistics partners, SINA ensures timely delivery, quality assurance, and professional execution across every area of operation.", type: "RICH_TEXT" as const },
-    { key: "home.sectors.heading", page: "home", label: "Sectors Section Heading", value: "Nine sectors, one provider." },
-    { key: "home.sectors.lead", page: "home", label: "Sectors Section Lead", value: "A single-source partner across nine sectors — so clients coordinate one relationship instead of a dozen vendors.", type: "RICH_TEXT" as const },
+    { key: "home.sectors.heading", page: "home", label: "Sectors Section Heading", value: "Ten sectors, one provider." },
+    { key: "home.sectors.lead", page: "home", label: "Sectors Section Lead", value: "A single-source partner across ten sectors — so clients coordinate one relationship instead of a dozen vendors.", type: "RICH_TEXT" as const },
     
     { key: "about.hero.heading", page: "about", label: "About Hero Heading", value: "Integrated support for Ethiopia." },
     { key: "about.hero.lead", page: "about", label: "About Hero Lead", value: "SINA Supplies and Logistics PLC delivers reliable, efficient, and cost-effective operational support to corporate organizations, institutions, and private clients.", type: "RICH_TEXT" as const },
@@ -60,7 +60,7 @@ async function main() {
     { key: "about.csr.heading", page: "about", label: "Strategic Focus Heading", value: "Built to serve local and international organizations" },
     { key: "about.csr.body", page: "about", label: "Strategic Focus Body", value: "SINA Supplies and Logistics PLC is committed to expanding its integrated business support solutions across Ethiopia by investing in technology, strengthening supplier partnerships, enhancing service quality, and developing a highly skilled operational team.\n\nThe same network that supports day-to-day corporate operations also underpins a wider licensed supply scope — from cargo and commodities to equipment and materials. See the full list on our services page.", type: "RICH_TEXT" as const },
 
-    { key: "services.hero.heading", page: "services", label: "Services Hero Heading", value: "Nine sectors, one accountable partner." },
+    { key: "services.hero.heading", page: "services", label: "Services Hero Heading", value: "Ten sectors, one accountable partner." },
     { key: "services.hero.lead", page: "services", label: "Services Hero Lead", value: "Premium operational support for corporate organizations — plus a licensed trade and supply scope across logistics, commodities, equipment, and materials.", type: "RICH_TEXT" as const },
     { key: "services.hero.image", page: "services", label: "Services Banner Image", value: "https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=1200&q=80", type: "IMAGE_URL" as const },
 
@@ -220,6 +220,22 @@ async function main() {
         "Storage and warehousing solutions",
       ],
       sortOrder: 9,
+    },
+    {
+      code: "SV-10",
+      slug: "consulting",
+      name: "Professional Consulting",
+      shortDesc: "Accounting, company formation, business advisory, and operational improvement.",
+      fullDesc: "Professional advisory covering accounting consultancy, financial management, company establishment, business registration, strategic planning, and operational improvement for corporate and institutional clients.",
+      features: [
+        "Accounting and financial management consultancy",
+        "Company establishment and registration facilitation",
+        "Business advisory and strategic planning",
+        "Corporate management consultancy",
+        "Operational improvement programmes",
+        "Business development advisory",
+      ],
+      sortOrder: 10,
     },
   ];
 

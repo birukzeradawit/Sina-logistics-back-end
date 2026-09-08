@@ -37,22 +37,43 @@ enum InquiryStatus {
   LOST
 }
 
+model ClientUser {
+  id           String    @id @default(cuid())
+  firstName    String
+  lastName     String
+  email        String    @unique
+  passwordHash String
+  company      String?
+  phone        String?
+  isActive     Boolean   @default(true)
+  lastLoginAt  DateTime?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  inquiries Inquiry[]
+
+  @@index([email])
+}
+
 model Inquiry {
-  id          String        @id @default(cuid())
-  firstName   String
-  lastName    String
-  email       String
-  phone       String?
-  sector      String?
-  message     String
-  status      InquiryStatus @default(NEW)
-  createdAt   DateTime      @default(now())
-  updatedAt   DateTime      @updatedAt
+  id           String        @id @default(cuid())
+  firstName    String
+  lastName     String
+  email        String
+  phone        String?
+  sector       String?
+  message      String
+  status       InquiryStatus @default(NEW)
+  clientUser   ClientUser?   @relation(fields: [clientUserId], references: [id])
+  clientUserId String?
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
 
   statusHistory InquiryStatusChange[]
 
   @@index([status])
   @@index([createdAt])
+  @@index([clientUserId])
 }
 
 model InquiryStatusChange {

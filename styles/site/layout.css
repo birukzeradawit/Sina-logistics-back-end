@@ -36,7 +36,7 @@
 .nav-links a[aria-current="page"]::after{ width:100%; }
 .nav-links a[aria-current="page"]{ color:var(--amber); }
 
-.nav-cta{ display:flex; align-items:center; gap:18px; }
+.nav-cta{ display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
 .nav-cta .btn,
 .nav-cta .btn-primary{
   background:var(--gold) !important;
@@ -87,6 +87,7 @@
   }
   .nav-links a{ padding:18px 0; border-bottom:1px solid var(--line); font-size:18px; }
   .nav-toggle{ display:flex; }
+  .nav-cta{ gap:10px; }
   .nav-cta .btn-primary{ padding:9px 14px; font-size:11px; white-space:nowrap; }
 }
 

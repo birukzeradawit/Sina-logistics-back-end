@@ -5,9 +5,9 @@ import { getSectors } from "@/lib/sectors";
 import SectorNavBar from "@/components/sector-nav-bar";
 
 export const metadata: Metadata = {
-  title: "9 Corporate Sectors & Services | SINA Supplies & Logistics PLC",
+  title: "Corporate Sectors & Services | SINA Supplies & Logistics PLC",
   description:
-    "Explore SINA's 9 corporate operational sectors: Procurement & Supply, Logistics Coordination, Event Management, Property Oversight, Staffing Outsourcing, General Trading, Construction, and Agribusiness in Ethiopia.",
+    "Explore SINA's corporate operational sectors: Procurement & Supply, Logistics Coordination, Event Management, Property Oversight, Staffing Outsourcing, General Trading, Construction, Agribusiness, and Professional Consulting in Ethiopia.",
   keywords: [
     "SINA Services Ethiopia",
     "Procurement Services Addis Ababa",
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     "General Trading Commodities Ethiopia",
   ],
   openGraph: {
-    title: "9 Corporate Operational Sectors | SINA Supplies & Logistics",
+    title: "Corporate Operational Sectors | SINA Supplies & Logistics",
     description:
       "Single-source partner for institutional procurement, logistics, corporate events, property, staffing, and commercial trade in Ethiopia.",
     url: "/services",
@@ -31,7 +31,7 @@ export default async function ServicesPage() {
     getSectors(),
   ]);
 
-  const heading = cms(content, "services.hero.heading", "Nine sectors, one accountable partner.");
+  const heading = cms(content, "services.hero.heading", "Ten sectors, one accountable partner.");
   const lead = cms(
     content,
     "services.hero.lead",
@@ -97,37 +97,63 @@ export default async function ServicesPage() {
         </div>
       </section>
 
-      <section className="method-section">
+      <section className="method" id="method">
         <div className="wrap">
           <div className="section-head reveal">
             <h2>Our Working Methodology</h2>
-            <p>A structured five-phase approach that ensures quality control, visibility, and timely delivery at every step.</p>
+            <p>
+              Six phases from our working approach — client consultation through after-sales — applied
+              across every sector we operate, with quality control and a single point of contact.
+            </p>
           </div>
-          <div className="process-grid">
-            <div className="process-step reveal">
-              <span className="step-num">01</span>
-              <h4>Planning &amp; Needs Assessment</h4>
-              <p>Consult with the client to define requirements, quantities, schedules, and delivery specifications.</p>
+          <div className="method-grid">
+            <div className="method-card reveal">
+              <span className="method-phase">Phase 1</span>
+              <h3>Client Consultation and Needs Assessment</h3>
+              <p>
+                We start with a structured consultation to document operational needs, volumes, sites,
+                timelines, and quality expectations across all ten sectors before any work is committed.
+              </p>
             </div>
-            <div className="process-step reveal">
-              <span className="step-num">02</span>
-              <h4>Sourcing &amp; Procurement</h4>
-              <p>Identify and negotiate with vetted suppliers to secure quality materials and services at competitive rates.</p>
+            <div className="method-card reveal">
+              <span className="method-phase">Phase 2</span>
+              <h3>Planning and Technical Evaluation</h3>
+              <p>
+                Scope, schedules, and technical options are evaluated so procurement, logistics, events,
+                facilities, construction, and advisory work sit in one coordinated programme.
+              </p>
             </div>
-            <div className="process-step reveal">
-              <span className="step-num">03</span>
-              <h4>Execution &amp; Coordination</h4>
-              <p>Deploy specialized operational teams, coordinate logistics, and supervise event or property activities.</p>
+            <div className="method-card reveal">
+              <span className="method-phase">Phase 3</span>
+              <h3>Procurement, Production, or Project Mobilization</h3>
+              <p>
+                Goods are sourced through our partner network; teams are recruited; venues and project
+                sites are booked; trade channels or construction packages are opened as required.
+              </p>
             </div>
-            <div className="process-step reveal">
-              <span className="step-num">04</span>
-              <h4>Delivery &amp; Deployment</h4>
-              <p>Ensure timely distribution, accurate handover, and proper setup across all designated client sites.</p>
+            <div className="method-card reveal">
+              <span className="method-phase">Phase 4</span>
+              <h3>Implementation and Quality Control</h3>
+              <p>
+                Execution is supervised against agreed quality-assurance systems, with a single point of
+                contact so compliance, timelines, and service standards stay visible.
+              </p>
             </div>
-            <div className="process-step reveal">
-              <span className="step-num">05</span>
-              <h4>Monitoring &amp; Reporting</h4>
-              <p>Conduct quality checks, gather client feedback, and provide transparent operational and financial reports.</p>
+            <div className="method-card reveal">
+              <span className="method-phase">Phase 5</span>
+              <h3>Delivery, Commissioning, and Client Support</h3>
+              <p>
+                Goods are handed over, staff deployed, works commissioned, and ongoing operational
+                support stood up at the client site against the original brief.
+              </p>
+            </div>
+            <div className="method-card reveal">
+              <span className="method-phase">Phase 6</span>
+              <h3>Continuous Monitoring and After-Sales Service</h3>
+              <p>
+                Performance is tracked after go-live, with operational reports, replacements, and
+                after-sales support — using feedback for continuous improvement.
+              </p>
             </div>
           </div>
         </div>

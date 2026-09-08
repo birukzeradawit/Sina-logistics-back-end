@@ -38,7 +38,7 @@ export async function GET(req: NextRequest) {
     },
   });
 
-  const inquiries = rawInquiries.filter((inq) => {
+  const inquiries = rawInquiries.filter((inq: any) => {
     if (!searchQuery) return true;
     const fullName = `${inq.firstName} ${inq.lastName}`.toLowerCase();
     return (
@@ -64,7 +64,7 @@ export async function GET(req: NextRequest) {
     "Message / Project Scope",
   ];
 
-  const rows = inquiries.map((inq) => {
+  const rows = inquiries.map((inq: any) => {
     const latestChange = inq.statusHistory[0];
     return [
       escapeCsv(inq.id),

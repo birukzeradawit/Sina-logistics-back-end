@@ -326,10 +326,10 @@
   user-select:none;
 }
 
-/* 3x3 Selector Grid below the showcase */
+/* Selector Grid below the showcase */
 .showcase-sidebar-grid{
   display:grid;
-  grid-template-columns:repeat(3, 1fr);
+  grid-template-columns:repeat(5, 1fr);
   gap:12px;
   width:100%;
 }

@@ -1,12 +1,14 @@
 "use client";
 
 import Link from "next/link";
+import { signOut, useSession } from "next-auth/react";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
+  const { data: session, status } = useSession();
   const current =
     pathname === "/"
       ? "home"
@@ -37,6 +39,25 @@ export function SiteHeader() {
         </div>
 
         <div className="nav-cta">
+          {status === "authenticated" ? (
+            <>
+              <Link className="nav-account-link" href="/portal" prefetch onClick={() => setOpen(false)}>
+                {(session?.user as any)?.firstName || "My Account"}
+              </Link>
+              <button
+                className="nav-account-link nav-account-button"
+                type="button"
+                onClick={() => signOut({ callbackUrl: "/login" })}
+              >
+                Logout
+              </button>
+            </>
+          ) : (
+            <>
+              <Link className="nav-account-link" href="/login" prefetch onClick={() => setOpen(false)}>Login</Link>
+              <Link className="nav-account-link nav-account-link-strong" href="/signup" prefetch onClick={() => setOpen(false)}>Sign Up</Link>
+            </>
+          )}
           <Link className="btn btn-primary" href="/contact" prefetch>Request a Quote</Link>
           <button
             className="nav-toggle"

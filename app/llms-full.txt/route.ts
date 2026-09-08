@@ -34,7 +34,7 @@ ${s.features.map((f) => `  - ${f}`).join("\n")}
 
 ---
 
-## The 9 Specialized Operational Sectors
+## Specialized Operational Sectors
 ${sectorContent}
 
 ---

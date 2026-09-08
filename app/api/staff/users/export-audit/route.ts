@@ -34,7 +34,7 @@ export async function GET() {
     "Timestamp (UTC)",
   ];
 
-  const rows = logs.map((log) => [
+  const rows = logs.map((log: any) => [
     escapeCsv(log.id),
     escapeCsv(log.action),
     escapeCsv(log.staffActor?.email || "System"),

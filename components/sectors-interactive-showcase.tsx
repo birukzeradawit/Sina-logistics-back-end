@@ -138,6 +138,16 @@ const SECTOR_DATA: Record<string, { image: string; tag: string }> = {
     image: "/assets/energy-mining-agriculture.jpg",
     tag: "Agribusiness, Mining & Clean Energy",
   },
+
+  // SV-10 / Consulting
+  "SV-10": {
+    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1600&q=80",
+    tag: "Advisory, Formation & Operational Improvement",
+  },
+  consulting: {
+    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1600&q=80",
+    tag: "Advisory, Formation & Operational Improvement",
+  },
 };
 
 const DEFAULT_META = {

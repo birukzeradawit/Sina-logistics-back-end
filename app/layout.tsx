@@ -95,7 +95,7 @@ const jsonLd = {
       ],
       hasOfferCatalog: {
         "@type": "OfferCatalog",
-        name: "SINA 9 Specialized Operational Sectors",
+        name: "SINA Specialized Operational Sectors",
         itemListElement: [
           {
             "@type": "Offer",
@@ -178,6 +178,15 @@ const jsonLd = {
               url: `${siteUrl}/services#energy-mining-agriculture`,
             },
           },
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: "SV-10: Professional Consulting",
+              description: "Accounting consultancy, company establishment, business advisory, strategic planning, and operational improvement.",
+              url: `${siteUrl}/services#consulting`,
+            },
+          },
         ],
       },
     },
@@ -190,7 +199,7 @@ const jsonLd = {
           name: "What corporate services does SINA Supplies and Logistics PLC provide in Ethiopia?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "SINA Supplies and Logistics PLC operates across 9 specialized sectors in Ethiopia: Procurement & Supply, Logistics & Delivery, Event Organizing, Property Management, Staff Recruitment & Outsourcing, Operational Support, General Trading, Construction & Real Estate, and Energy, Mining & Agriculture.",
+            text: "SINA Supplies and Logistics PLC operates across specialized sectors in Ethiopia: Procurement & Supply, Logistics & Delivery, Event Organizing, Property Management, Staff Recruitment & Outsourcing, Operational Support, General Trading, Construction & Real Estate, Energy, Mining & Agriculture, and Professional Consulting.",
           },
         },
         {

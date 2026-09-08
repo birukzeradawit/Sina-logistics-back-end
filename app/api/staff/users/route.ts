@@ -49,7 +49,7 @@ export async function GET() {
     }),
   ]);
 
-  const users = rawUsers.map((u) => ({
+  const users = rawUsers.map((u: any) => ({
     id: u.id,
     email: u.email,
     role: u.role,
