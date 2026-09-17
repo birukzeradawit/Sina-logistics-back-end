@@ -5,6 +5,9 @@ import { prisma } from "@/lib/db";
 import { hashPassword } from "@/lib/password";
 import { z } from "zod";
 
+export const dynamic = "force-dynamic";
+export const runtime = "nodejs";
+
 const createStaffSchema = z.object({
   email: z.string().email(),
   password: z.string().min(8, "Password must be at least 8 characters"),

@@ -6,6 +6,9 @@ import { generateMfaSecret, generateMfaQrCode, verifyMfaToken } from "@/lib/mfa"
 import { verifyPassword } from "@/lib/password";
 import { z } from "zod";
 
+export const dynamic = "force-dynamic";
+export const runtime = "nodejs";
+
 const pendingSecrets = new Map<string, { secret: string; otpauthUrl: string; qrCodeDataUrl: string; createdAt: number }>();
 
 export async function GET(req: NextRequest) {

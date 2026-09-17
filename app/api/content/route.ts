@@ -5,6 +5,9 @@ import { staffAuthOptions } from "@/lib/auth-staff";
 import { prisma } from "@/lib/db";
 import { z } from "zod";
 
+export const dynamic = "force-dynamic";
+export const runtime = "nodejs";
+
 export async function GET(req: NextRequest) {
   const page = req.nextUrl.searchParams.get("page");
   const blocks = await prisma.contentBlock.findMany({

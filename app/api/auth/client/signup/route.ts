@@ -3,6 +3,9 @@ import { prisma } from "@/lib/db";
 import { hashPassword } from "@/lib/password";
 import { z } from "zod";
 
+export const dynamic = "force-dynamic";
+export const runtime = "nodejs";
+
 const signupSchema = z.object({
   firstName: z.string().min(1).max(100),
   lastName: z.string().min(1).max(100),

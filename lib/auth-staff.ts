@@ -6,7 +6,7 @@ import { staffLoginLimiter } from "./rate-limit";
 import { verifyMfaToken } from "./mfa";
 
 export const staffAuthOptions: NextAuthOptions = {
-  secret: process.env.STAFF_AUTH_SECRET,
+  secret: process.env.STAFF_AUTH_SECRET || process.env.NEXTAUTH_SECRET || "fallback_secret_for_build_environment_only",
   session: {
     strategy: "jwt",
     maxAge: 8 * 60 * 60,

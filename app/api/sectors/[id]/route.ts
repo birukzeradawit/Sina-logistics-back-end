@@ -4,6 +4,9 @@ import { staffAuthOptions } from "@/lib/auth-staff";
 import { prisma } from "@/lib/db";
 import { z } from "zod";
 
+export const dynamic = "force-dynamic";
+export const runtime = "nodejs";
+
 const updateSectorSchema = z.object({
   code: z.string().min(2).max(20).optional(),
   slug: z.string().min(2).max(50).optional(),

@@ -5,6 +5,9 @@ import { prisma } from "@/lib/db";
 import { z } from "zod";
 import { sendCustomerInquiryConfirmation, sendStaffInquiryAlert } from "@/lib/email";
 
+export const dynamic = "force-dynamic";
+export const runtime = "nodejs";
+
 const inquirySchema = z.object({
   sector: z.string().max(100).optional(),
   message: z.string().min(1).max(4000),

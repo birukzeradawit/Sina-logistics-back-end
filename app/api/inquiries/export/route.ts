@@ -3,6 +3,9 @@ import { getServerSession } from "next-auth";
 import { staffAuthOptions } from "@/lib/auth-staff";
 import { prisma } from "@/lib/db";
 
+export const dynamic = "force-dynamic";
+export const runtime = "nodejs";
+
 function escapeCsv(val: any): string {
   if (val === null || val === undefined) return '""';
   const str = String(val).replace(/"/g, '""');

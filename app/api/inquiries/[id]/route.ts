@@ -4,6 +4,9 @@ import { staffAuthOptions } from "@/lib/auth-staff";
 import { prisma } from "@/lib/db";
 import { z } from "zod";
 
+export const dynamic = "force-dynamic";
+export const runtime = "nodejs";
+
 const statusSchema = z.object({
   status: z.enum(["NEW", "CONTACTED", "QUOTED", "WON", "LOST"]),
 });

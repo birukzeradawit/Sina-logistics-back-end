@@ -7,6 +7,9 @@ import { sendStaffInquiryAlert, sendCustomerInquiryConfirmation } from "@/lib/em
 import { Ratelimit } from "@upstash/ratelimit";
 import { Redis } from "@upstash/redis";
 
+export const dynamic = "force-dynamic";
+export const runtime = "nodejs";
+
 const ALLOWED_ORIGIN = process.env.PUBLIC_SITE_ORIGIN || "*";
 
 function corsHeaders() {

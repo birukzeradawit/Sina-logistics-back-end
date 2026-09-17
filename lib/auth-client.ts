@@ -5,7 +5,7 @@ import { verifyPassword } from "./password";
 import { clientLoginLimiter } from "./rate-limit";
 
 export const clientAuthOptions: NextAuthOptions = {
-  secret: process.env.CLIENT_AUTH_SECRET || process.env.STAFF_AUTH_SECRET,
+  secret: process.env.CLIENT_AUTH_SECRET || process.env.STAFF_AUTH_SECRET || process.env.NEXTAUTH_SECRET || "fallback_secret_for_build_environment_only",
   session: {
     strategy: "jwt",
     maxAge: 7 * 24 * 60 * 60,
