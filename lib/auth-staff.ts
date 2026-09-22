@@ -5,18 +5,17 @@ import { verifyPassword } from "./password";
 import { staffLoginLimiter } from "./rate-limit";
 import { verifyMfaToken } from "./mfa";
 
+// Set NEXTAUTH_URL from Vercel environment if not already set
+if (process.env.VERCEL_URL && !process.env.NEXTAUTH_URL) {
+  process.env.NEXTAUTH_URL = `https://${process.env.VERCEL_URL}`;
+}
+
 export const staffAuthOptions: NextAuthOptions = {
   secret: process.env.STAFF_AUTH_SECRET || process.env.NEXTAUTH_SECRET || "fallback_secret_for_build_environment_only",
   session: {
     strategy: "jwt",
     maxAge: 8 * 60 * 60,
   },
-  // Set NEXTAUTH_URL explicitly for Vercel
-  ...(process.env.VERCEL_URL
-    ? {
-        useSecureCookies: true,
-      }
-    : {}),
   pages: {
     signIn: "/staff/login",
   },
