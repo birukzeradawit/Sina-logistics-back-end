@@ -1,0 +1,42 @@
+{
+  "name": "sina-supplies-logistics",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "prisma generate && prisma migrate deploy && npx tsx prisma/seed.ts && next build",
+    "postinstall": "prisma generate",
+    "start": "next start",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate dev",
+    "prisma:studio": "prisma studio",
+    "prisma:seed": "tsx prisma/seed.ts"
+  },
+  "prisma": {
+    "seed": "tsx prisma/seed.ts"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.16.0",
+    "@upstash/ratelimit": "^2.0.0",
+    "@upstash/redis": "^1.31.0",
+    "bcryptjs": "^2.4.3",
+    "next": "^14.2.0",
+    "next-auth": "^4.24.7",
+    "nodemailer": "^7.0.7",
+    "otplib": "^13.5.0",
+    "qrcode": "^1.5.4",
+    "react": "^18.3.0",
+    "react-dom": "^18.3.0",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "@types/node": "^20.14.0",
+    "@types/nodemailer": "^8.0.1",
+    "@types/qrcode": "^1.5.6",
+    "@types/react": "^18.3.0",
+    "prisma": "^5.16.0",
+    "tsx": "^4.16.0",
+    "typescript": "^5.5.0"
+  }
+}
