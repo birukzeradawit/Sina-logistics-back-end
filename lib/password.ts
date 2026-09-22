@@ -10,5 +10,10 @@ export async function verifyPassword(
   plain: string,
   hash: string
 ): Promise<boolean> {
-  return bcrypt.compare(plain, hash);
+  try {
+    if (!plain || !hash) return false;
+    return await bcrypt.compare(plain, hash);
+  } catch {
+    return false;
+  }
 }
