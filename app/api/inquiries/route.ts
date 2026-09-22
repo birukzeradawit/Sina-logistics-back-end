@@ -47,10 +47,13 @@ export async function GET() {
 
 let inquiryLimiter: Ratelimit | null = null;
 try {
-  if (process.env.UPSTASH_REDIS_REST_URL && process.env.UPSTASH_REDIS_REST_TOKEN) {
+  const url = process.env.UPSTASH_REDIS_REST_URL;
+  const token = process.env.UPSTASH_REDIS_REST_TOKEN;
+  if (url && token && typeof url === "string" && url.startsWith("http")) {
+    const redis = new Redis({ url, token });
     inquiryLimiter = new Ratelimit({
-      redis: Redis.fromEnv(),
-      limiter: Ratelimit.slidingWindow(5, "10 m"),
+      redis,
+      limiter: Ratelimit.slidingWindow(10, "10 m"),
       prefix: "ratelimit:inquiry-submit",
     });
   }
@@ -69,13 +72,17 @@ const inquirySchema = z.object({
 
 export async function POST(req: NextRequest) {
   if (inquiryLimiter) {
-    const ip = req.headers.get("x-forwarded-for") ?? "unknown";
-    const { success } = await inquiryLimiter.limit(ip);
-    if (!success) {
-      return NextResponse.json(
-        { error: "Too many submissions. Please try again later." },
-        { status: 429, headers: corsHeaders() }
-      );
+    try {
+      const ip = req.headers.get("x-forwarded-for") ?? "unknown";
+      const { success } = await inquiryLimiter.limit(ip);
+      if (!success) {
+        return NextResponse.json(
+          { error: "Too many submissions. Please try again later." },
+          { status: 429, headers: corsHeaders() }
+        );
+      }
+    } catch (e) {
+      console.warn("Inquiry rate limiter check skipped:", e);
     }
   }
 

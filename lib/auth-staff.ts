@@ -2,7 +2,7 @@ import { type NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { prisma } from "./db";
 import { verifyPassword } from "./password";
-import { staffLoginLimiter } from "./rate-limit";
+import { checkStaffLoginRateLimit } from "./rate-limit";
 import { verifyMfaToken } from "./mfa";
 
 export const staffAuthOptions: NextAuthOptions = {
@@ -29,10 +29,10 @@ export const staffAuthOptions: NextAuthOptions = {
         if (!credentials?.email || !credentials?.password) return null;
 
         const ip = req?.headers?.["x-forwarded-for"] ?? "unknown";
-        const { success } = await staffLoginLimiter.limit(
+        const rateLimit = await checkStaffLoginRateLimit(
           `${ip}:${credentials.email.toLowerCase()}`
         );
-        if (!success) {
+        if (!rateLimit.success) {
           throw new Error("Too many attempts. Try again in a few minutes.");
         }
 

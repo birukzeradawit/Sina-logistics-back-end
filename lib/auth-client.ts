@@ -2,7 +2,7 @@ import { type NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { prisma } from "./db";
 import { verifyPassword } from "./password";
-import { clientLoginLimiter } from "./rate-limit";
+import { checkClientLoginRateLimit } from "./rate-limit";
 
 export const clientAuthOptions: NextAuthOptions = {
   secret: process.env.CLIENT_AUTH_SECRET || process.env.STAFF_AUTH_SECRET || process.env.NEXTAUTH_SECRET || "fallback_secret_for_build_environment_only",
@@ -30,8 +30,8 @@ export const clientAuthOptions: NextAuthOptions = {
         const email = credentials.email.toLowerCase().trim();
         const ip = req?.headers?.["x-forwarded-for"] ?? "unknown";
 
-        const { success } = await clientLoginLimiter.limit(`${ip}:${email}`);
-        if (!success) {
+        const rateLimit = await checkClientLoginRateLimit(`${ip}:${email}`);
+        if (!rateLimit.success) {
           throw new Error("Too many login attempts. Please try again shortly.");
         }
 
