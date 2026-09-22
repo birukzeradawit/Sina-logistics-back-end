@@ -11,7 +11,7 @@ export const staffAuthOptions: NextAuthOptions = {
     strategy: "jwt",
     maxAge: 8 * 60 * 60,
   },
-  // Handle Vercel deployment URL detection
+  // Set NEXTAUTH_URL explicitly for Vercel
   ...(process.env.VERCEL_URL
     ? {
         useSecureCookies: true,
@@ -23,7 +23,7 @@ export const staffAuthOptions: NextAuthOptions = {
   cookies: {
     sessionToken: {
       name: "sina-staff-session",
-      options: { httpOnly: true, sameSite: "lax", secure: true, path: "/" },
+      options: { httpOnly: true, sameSite: "lax", secure: process.env.NODE_ENV === "production", path: "/" },
     },
   },
   providers: [
@@ -109,8 +109,5 @@ export const staffAuthOptions: NextAuthOptions = {
       (session.user as any).id = token.sub;
       return session;
     },
-  },
-  pages: {
-    signIn: "/staff/login",
   },
 };
