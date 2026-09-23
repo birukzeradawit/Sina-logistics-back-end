@@ -15,15 +15,15 @@ export interface SectorItem {
 const SECTOR_DATA: Record<string, { image: string; tag: string }> = {
   // SV-01 / Procurement
   "SV-01": {
-    image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1600&q=80",
+    image: "/assets/procurement-supply.jpg",
     tag: "Institutional Sourcing & Supply Chain",
   },
   "procurement": {
-    image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1600&q=80",
+    image: "/assets/procurement-supply.jpg",
     tag: "Institutional Sourcing & Supply Chain",
   },
   "procurement-supply": {
-    image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1600&q=80",
+    image: "/assets/procurement-supply.jpg",
     tag: "Institutional Sourcing & Supply Chain",
   },
 
@@ -71,15 +71,15 @@ const SECTOR_DATA: Record<string, { image: string; tag: string }> = {
 
   // SV-05 / Staffing
   "SV-05": {
-    image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1600&q=80",
+    image: "/assets/staff-recruitment.jpg",
     tag: "Executive & Specialized Outsourcing",
   },
   "staffing": {
-    image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1600&q=80",
+    image: "/assets/staff-recruitment.jpg",
     tag: "Executive & Specialized Outsourcing",
   },
   "staff-recruitment-outsourcing": {
-    image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1600&q=80",
+    image: "/assets/staff-recruitment.jpg",
     tag: "Executive & Specialized Outsourcing",
   },
 

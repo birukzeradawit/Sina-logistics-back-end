@@ -4,16 +4,16 @@ import { getSectors } from "@/lib/sectors";
 import { SectorsInteractiveShowcase } from "@/components/sectors-interactive-showcase";
 
 const SECTOR_COLLAGE_IMAGES = [
-  "/assets/property-management.jpg",
+  "/assets/procurement-supply.jpg",
   "/assets/construction-real-estate.jpg",
+  "/assets/staff-recruitment.jpg",
+  "/assets/property-management.jpg",
   "/assets/energy-mining-construction.jpg",
   "/assets/energy-mining-construction-alt.jpg",
   "https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=400&q=80",
   "https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=400&q=80",
-  "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=400&q=80",
   "/assets/energy-mining-agriculture.jpg",
   "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=400&q=80",
-  "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=400&q=80",
 ];
 
 const SECTOR_ICONS: Record<string, JSX.Element> = {
