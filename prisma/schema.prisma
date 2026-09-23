@@ -1,0 +1,141 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum StaffRole {
+  ADMIN
+  EDITOR
+}
+
+model StaffUser {
+  id           String    @id @default(cuid())
+  email        String    @unique
+  passwordHash String
+  role         StaffRole @default(EDITOR)
+  mfaSecret    String?
+  isActive     Boolean   @default(true)
+  lastLoginAt  DateTime?
+  createdAt    DateTime  @default(now())
+
+  auditLogs      AuditLog[]
+  contentEdits   ContentBlock[]
+  inquiryUpdates InquiryStatusChange[]
+
+  @@index([email])
+}
+
+enum InquiryStatus {
+  NEW
+  CONTACTED
+  QUOTED
+  WON
+  LOST
+}
+
+model ClientUser {
+  id           String    @id @default(cuid())
+  firstName    String
+  lastName     String
+  email        String    @unique
+  passwordHash String
+  company      String?
+  phone        String?
+  isActive     Boolean   @default(true)
+  lastLoginAt  DateTime?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  inquiries Inquiry[]
+
+  @@index([email])
+}
+
+model Inquiry {
+  id           String        @id @default(cuid())
+  firstName    String
+  lastName     String
+  email        String
+  phone        String?
+  sector       String?
+  message      String
+  status       InquiryStatus @default(NEW)
+  clientUser   ClientUser?   @relation(fields: [clientUserId], references: [id])
+  clientUserId String?
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+
+  statusHistory InquiryStatusChange[]
+
+  @@index([status])
+  @@index([createdAt])
+  @@index([clientUserId])
+}
+
+model InquiryStatusChange {
+  id          String        @id @default(cuid())
+  inquiry     Inquiry       @relation(fields: [inquiryId], references: [id])
+  inquiryId   String
+  fromStatus  InquiryStatus?
+  toStatus    InquiryStatus
+  changedBy   StaffUser     @relation(fields: [changedById], references: [id])
+  changedById String
+  createdAt   DateTime      @default(now())
+
+  @@index([inquiryId])
+}
+
+enum ContentType {
+  TEXT
+  RICH_TEXT
+  IMAGE_URL
+}
+
+model ContentBlock {
+  id          String      @id @default(cuid())
+  key         String      @unique
+  page        String
+  label       String
+  type        ContentType @default(TEXT)
+  value       String      @db.Text
+  updatedAt   DateTime    @updatedAt
+  updatedBy   StaffUser?  @relation(fields: [updatedById], references: [id])
+  updatedById String?
+
+  @@index([page])
+}
+
+model ServiceSector {
+  id          String   @id @default(cuid())
+  code        String   @unique
+  slug        String   @unique
+  name        String
+  shortDesc   String   @db.Text
+  fullDesc    String?  @db.Text
+  features    String[]
+  iconSvg     String?  @db.Text
+  sortOrder   Int      @default(0)
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([sortOrder])
+  @@index([isActive])
+}
+
+model AuditLog {
+  id           String     @id @default(cuid())
+  staffActor   StaffUser? @relation(fields: [staffActorId], references: [id])
+  staffActorId String?
+  action       String
+  target       String?
+  ipAddress    String?
+  createdAt    DateTime   @default(now())
+
+  @@index([staffActorId])
+  @@index([createdAt])
+}
