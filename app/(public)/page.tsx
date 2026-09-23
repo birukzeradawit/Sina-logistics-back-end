@@ -7,13 +7,13 @@ const SECTOR_COLLAGE_IMAGES = [
   "/assets/procurement-supply.jpg",
   "/assets/construction-real-estate.jpg",
   "/assets/staff-recruitment.jpg",
+  "/assets/trade-supply.jpg",
+  "/assets/professional-consulting.jpg",
   "/assets/property-management.jpg",
   "/assets/energy-mining-construction.jpg",
   "/assets/energy-mining-construction-alt.jpg",
   "https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=400&q=80",
-  "https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=400&q=80",
   "/assets/energy-mining-agriculture.jpg",
-  "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=400&q=80",
 ];
 
 const SECTOR_ICONS: Record<string, JSX.Element> = {
