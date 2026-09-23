@@ -1,9 +1,14 @@
 import { type NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { prisma } from "./db";
-import { verifyPassword, hashPassword } from "./password";
-import { checkStaffLoginRateLimit } from "./rate-limit";
+import { verifyPassword } from "./password";
+import { staffLoginLimiter } from "./rate-limit";
 import { verifyMfaToken } from "./mfa";
+
+// Set NEXTAUTH_URL from Vercel environment if not already set
+if (process.env.VERCEL_URL && !process.env.NEXTAUTH_URL) {
+  process.env.NEXTAUTH_URL = `https://${process.env.VERCEL_URL}`;
+}
 
 export const staffAuthOptions: NextAuthOptions = {
   secret: process.env.STAFF_AUTH_SECRET || process.env.NEXTAUTH_SECRET || "fallback_secret_for_build_environment_only",
@@ -11,10 +16,13 @@ export const staffAuthOptions: NextAuthOptions = {
     strategy: "jwt",
     maxAge: 8 * 60 * 60,
   },
+  pages: {
+    signIn: "/staff/login",
+  },
   cookies: {
     sessionToken: {
       name: "sina-staff-session",
-      options: { httpOnly: true, sameSite: "lax", secure: true, path: "/" },
+      options: { httpOnly: true, sameSite: "lax", secure: process.env.NODE_ENV === "production", path: "/" },
     },
   },
   providers: [
@@ -28,72 +36,28 @@ export const staffAuthOptions: NextAuthOptions = {
       async authorize(credentials, req) {
         if (!credentials?.email || !credentials?.password) return null;
 
-        const email = credentials.email.toLowerCase().trim();
-        const password = credentials.password;
         const ip = req?.headers?.["x-forwarded-for"] ?? "unknown";
-
-        const rateLimit = await checkStaffLoginRateLimit(`${ip}:${email}`);
-        if (!rateLimit.success) {
+        const { success } = await staffLoginLimiter.limit(
+          `${ip}:${credentials.email.toLowerCase()}`
+        );
+        if (!success) {
           throw new Error("Too many attempts. Try again in a few minutes.");
         }
 
-        let user: any = null;
-        try {
-          user = await prisma.staffUser.findUnique({
-            where: { email },
-          });
-        } catch (dbErr) {
-          console.error("Staff database lookup error:", dbErr);
-        }
-
-        // Auto-bootstrap admin account if not present
-        if (!user && email === "admin@sinatrading.et") {
-          try {
-            const passwordHash = await hashPassword(password === "ChangeMe123!" ? "ChangeMe123!" : password);
-            user = await prisma.staffUser.create({
-              data: {
-                email: "admin@sinatrading.et",
-                passwordHash,
-                role: "ADMIN",
-                isActive: true,
-              },
-            });
-            console.log("Auto-bootstrapped admin account in database.");
-          } catch (createErr) {
-            console.error("Auto-bootstrap admin error:", createErr);
-          }
-        }
-
+        const user = await prisma.staffUser.findUnique({
+          where: { email: credentials.email.toLowerCase() },
+        });
         if (!user || !user.isActive) return null;
 
-        let valid = await verifyPassword(password, user.passwordHash);
-
-        // Fail-safe for default initial admin password sync
-        if (!valid && email === "admin@sinatrading.et" && password === "ChangeMe123!") {
-          try {
-            const newHash = await hashPassword("ChangeMe123!");
-            await prisma.staffUser.update({
-              where: { id: user.id },
-              data: { passwordHash: newHash, isActive: true },
-            });
-            valid = true;
-          } catch (updateErr) {
-            console.error("Failed to sync default admin password hash:", updateErr);
-          }
-        }
-
+        const valid = await verifyPassword(credentials.password, user.passwordHash);
         if (!valid) {
-          try {
-            await prisma.auditLog.create({
-              data: {
-                staffActorId: user.id,
-                action: "LOGIN_FAILED",
-                ipAddress: String(ip),
-              },
-            });
-          } catch (auditErr) {
-            console.warn("Audit log creation skipped:", auditErr);
-          }
+          await prisma.auditLog.create({
+            data: {
+              staffActorId: user.id,
+              action: "LOGIN_FAILED",
+              ipAddress: String(ip),
+            },
+          });
           return null;
         }
 
@@ -105,38 +69,30 @@ export const staffAuthOptions: NextAuthOptions = {
 
           const mfaValid = verifyMfaToken(rawToken, user.mfaSecret);
           if (!mfaValid) {
-            try {
-              await prisma.auditLog.create({
-                data: {
-                  staffActorId: user.id,
-                  action: "LOGIN_MFA_FAILED",
-                  ipAddress: String(ip),
-                },
-              });
-            } catch (auditErr) {
-              console.warn("Audit log creation skipped:", auditErr);
-            }
+            await prisma.auditLog.create({
+              data: {
+                staffActorId: user.id,
+                action: "LOGIN_MFA_FAILED",
+                ipAddress: String(ip),
+              },
+            });
             throw new Error("INVALID_MFA_CODE");
           }
         }
 
-        try {
-          await prisma.$transaction([
-            prisma.staffUser.update({
-              where: { id: user.id },
-              data: { lastLoginAt: new Date() },
-            }),
-            prisma.auditLog.create({
-              data: {
-                staffActorId: user.id,
-                action: "LOGIN",
-                ipAddress: String(ip),
-              },
-            }),
-          ]);
-        } catch (txErr) {
-          console.warn("Login audit transaction skipped:", txErr);
-        }
+        await prisma.$transaction([
+          prisma.staffUser.update({
+            where: { id: user.id },
+            data: { lastLoginAt: new Date() },
+          }),
+          prisma.auditLog.create({
+            data: {
+              staffActorId: user.id,
+              action: "LOGIN",
+              ipAddress: String(ip),
+            },
+          }),
+        ]);
 
         return { id: user.id, email: user.email, role: user.role };
       },
@@ -152,8 +108,5 @@ export const staffAuthOptions: NextAuthOptions = {
       (session.user as any).id = token.sub;
       return session;
     },
-  },
-  pages: {
-    signIn: "/staff/login",
   },
 };

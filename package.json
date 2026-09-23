@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "prisma generate && node scripts/db-prep.js && next build",
+    "build": "prisma generate && prisma migrate deploy && npx tsx prisma/seed.ts && next build",
     "postinstall": "prisma generate",
     "start": "next start",
     "prisma:generate": "prisma generate",
