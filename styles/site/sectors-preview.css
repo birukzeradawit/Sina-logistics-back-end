@@ -176,6 +176,42 @@
   width:100%;
   height:520px;
   overflow:hidden;
+  display:flex;
+  flex-direction:column;
+}
+
+.showcase-cinematic-multi-img{
+  position:absolute;
+  top:0; left:0;
+  width:100%; height:100%;
+  display:flex;
+  flex-direction:column;
+  z-index:1;
+}
+
+.showcase-cinematic-multi-img img{
+  width:100%;
+  height:50%;
+  object-fit:cover;
+  object-position:center;
+  opacity:1;
+}
+
+.showcase-cinematic-triple-img{
+  position:absolute;
+  top:0; left:0;
+  width:100%; height:100%;
+  display:flex;
+  flex-direction:row;
+  z-index:1;
+}
+
+.showcase-cinematic-triple-img img{
+  width:33.33%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+  opacity:1;
 }
 
 .showcase-cinematic-img{
@@ -183,7 +219,7 @@
   top:0; left:0;
   width:100%; height:100%;
   object-fit:cover;
-  object-position:center;
+  object-position:center top;
   opacity:1;
   z-index:1;
   animation:showcaseImgFade 0.45s cubic-bezier(0.16, 1, 0.3, 1);
@@ -199,8 +235,8 @@
   inset:0;
   z-index:3;
   background:
-    linear-gradient(180deg, rgba(14,15,18,0.15) 0%, rgba(14,15,18,0.65) 55%, rgba(14,15,18,0.94) 100%),
-    linear-gradient(90deg, rgba(14,15,18,0.88) 0%, rgba(14,15,18,0.35) 60%, transparent 100%);
+    linear-gradient(180deg, rgba(14,15,18,0.1) 0%, rgba(14,15,18,0.4) 55%, rgba(14,15,18,0.7) 100%),
+    linear-gradient(90deg, rgba(14,15,18,0.6) 0%, rgba(14,15,18,0.2) 60%, transparent 100%);
   pointer-events:none;
 }
 
@@ -211,7 +247,7 @@
   max-width:620px;
   z-index:4;
   padding:32px 36px;
-  background:rgba(17, 17, 18, 0.84);
+  background:rgba(17, 17, 18, 0.65);
   backdrop-filter:blur(20px);
   -webkit-backdrop-filter:blur(20px);
   border:1px solid rgba(255, 203, 71, 0.28);
@@ -335,7 +371,7 @@
 }
 
 .sector-selector-card{
-  background:#FFFFFF;
+  background:rgba(255, 255, 255, 0.85);
   border:1px solid rgba(17,17,18,0.1);
   border-radius:8px;
   padding:16px 20px;
@@ -370,7 +406,7 @@
   transition:transform 0.22s ease;
 }
 .sector-selector-card:hover{
-  background:#FAFAF8;
+  background:rgba(255, 255, 255, 0.95);
   border-color:rgba(255,203,71,0.5);
   transform:translateY(-2px);
   box-shadow:var(--shadow-md);
@@ -379,7 +415,7 @@
   transform:scaleX(1);
 }
 .sector-selector-card.active{
-  background:var(--gold);
+  background:rgba(255, 203, 71, 0.9);
   border-color:var(--gold);
   color:#111112;
   box-shadow:0 8px 24px rgba(255,203,71,0.32);

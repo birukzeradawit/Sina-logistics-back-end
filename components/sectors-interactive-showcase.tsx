@@ -29,29 +29,29 @@ const SECTOR_DATA: Record<string, { image: string; tag: string }> = {
 
   // SV-02 / Logistics
   "SV-02": {
-    image: "https://images.unsplash.com/photo-1519003722824-194d4455a60c?auto=format&fit=crop&w=1600&q=80",
+    image: "/assets/logistics-1.jpg",
     tag: "Freight, Route Dispatch & Fleet Tracking",
   },
   "logistics": {
-    image: "https://images.unsplash.com/photo-1519003722824-194d4455a60c?auto=format&fit=crop&w=1600&q=80",
+    image: "/assets/logistics-1.jpg",
     tag: "Freight, Route Dispatch & Fleet Tracking",
   },
   "logistics-delivery": {
-    image: "https://images.unsplash.com/photo-1519003722824-194d4455a60c?auto=format&fit=crop&w=1600&q=80",
+    image: "/assets/logistics-1.jpg",
     tag: "Freight, Route Dispatch & Fleet Tracking",
   },
 
   // SV-03 / Events
   "SV-03": {
-    image: "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1600&q=80",
+    image: "/assets/events.jpg",
     tag: "Corporate Conferences & Production",
   },
   "events": {
-    image: "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1600&q=80",
+    image: "/assets/events.jpg",
     tag: "Corporate Conferences & Production",
   },
   "event-organizing": {
-    image: "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1600&q=80",
+    image: "/assets/events.jpg",
     tag: "Corporate Conferences & Production",
   },
 
@@ -127,15 +127,15 @@ const SECTOR_DATA: Record<string, { image: string; tag: string }> = {
 
   // SV-09 / Agriculture, Energy & Mining
   "SV-09": {
-    image: "/assets/energy-mining-construction.jpg",
+    image: "/assets/energy-mining-full.jpg",
     tag: "Agribusiness, Mining & Clean Energy",
   },
   "agriculture": {
-    image: "/assets/energy-mining-construction.jpg",
+    image: "/assets/energy-mining-full.jpg",
     tag: "Agribusiness, Mining & Clean Energy",
   },
   "energy-mining-agriculture": {
-    image: "/assets/energy-mining-construction.jpg",
+    image: "/assets/energy-mining-full.jpg",
     tag: "Agribusiness, Mining & Clean Energy",
   },
 
@@ -197,12 +197,45 @@ export function SectorsInteractiveShowcase({ sectors }: { sectors: SectorItem[] 
       {/* Top Cinematic Photo Stage */}
       <div className="showcase-main-stage">
         <div className="showcase-cinematic-frame">
-          <img
-            key={current.code || current.id || activeIndex}
-            src={currentMeta.image}
-            alt={current.name}
-            className="showcase-cinematic-img"
-          />
+          {current.code === "SV-09" ? (
+            <div className="showcase-cinematic-multi-img">
+              <img
+                key="energy-mining"
+                src="/assets/energy-mining-full.jpg"
+                alt="Energy and Mining"
+              />
+              <img
+                key="agriculture"
+                src="/assets/agriculture-full.jpg"
+                alt="Agriculture"
+              />
+            </div>
+          ) : current.code === "SV-02" ? (
+            <div className="showcase-cinematic-triple-img">
+              <img
+                key="logistics-1"
+                src="/assets/logistics-1.jpg"
+                alt="Logistics 1"
+              />
+              <img
+                key="logistics-2"
+                src="/assets/logistics-2.jpg"
+                alt="Logistics 2"
+              />
+              <img
+                key="logistics-3"
+                src="/assets/logistics-3.jpg"
+                alt="Logistics 3"
+              />
+            </div>
+          ) : (
+            <img
+              key={current.code || current.id || activeIndex}
+              src={currentMeta.image}
+              alt={current.name}
+              className="showcase-cinematic-img"
+            />
+          )}
 
           <div className="showcase-cinematic-overlay" />
 
