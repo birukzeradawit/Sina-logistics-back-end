@@ -21,6 +21,9 @@ export const metadata: Metadata = {
   },
 };
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export default async function AboutPage() {
   const content = await getContentMap("about");
   const heroHeading = cms(content, "about.hero.heading", "Integrated support for Ethiopia.");
@@ -51,11 +54,7 @@ export default async function AboutPage() {
     "SINA Supplies and Logistics PLC is committed to expanding its integrated business support solutions across Ethiopia by investing in technology, strengthening supplier partnerships, enhancing service quality, and developing a highly skilled operational team.\n\nThe same network that supports day-to-day corporate operations also underpins a wider licensed supply scope — from cargo and commodities to equipment and materials. See the full list on our services page."
   );
 
-  const aboutImage = cms(
-    content,
-    "about.hero.image",
-    "/assets/sina-who-we-are.jpg"
-  );
+  const aboutImage = (content["about.hero.image"] ?? "/assets/sina-who-we-are.jpg").trim();
 
   const hero = splitHeading(heroHeading);
 
@@ -86,9 +85,11 @@ export default async function AboutPage() {
                 <p key={i}>{p}</p>
               ))}
             </div>
-            <div className="intro-image reveal">
-              <img src={aboutImage} alt="SINA operations" />
-            </div>
+            {aboutImage ? (
+              <div className="intro-image reveal">
+                <img src={aboutImage} alt="SINA operations" />
+              </div>
+            ) : null}
           </div>
         </div>
       </section>

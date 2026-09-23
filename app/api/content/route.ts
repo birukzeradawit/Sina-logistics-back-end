@@ -1,8 +1,9 @@
-import { revalidateTag } from "next/cache";
+import { revalidateTag, revalidatePath } from "next/cache";
 import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { staffAuthOptions } from "@/lib/auth-staff";
 import { prisma } from "@/lib/db";
+import { invalidateContentCache } from "@/lib/content";
 import { z } from "zod";
 
 export const dynamic = "force-dynamic";
@@ -75,7 +76,12 @@ export async function POST(req: NextRequest) {
     },
   });
 
+  invalidateContentCache();
   revalidateTag("cms");
+  revalidatePath("/", "layout");
+  revalidatePath("/about", "page");
+  revalidatePath("/services", "page");
+  revalidatePath("/contact", "page");
 
   return NextResponse.json(created, { status: 201 });
 }
@@ -107,7 +113,12 @@ export async function PATCH(req: NextRequest) {
     },
   });
 
+  invalidateContentCache();
   revalidateTag("cms");
+  revalidatePath("/", "layout");
+  revalidatePath("/about", "page");
+  revalidatePath("/services", "page");
+  revalidatePath("/contact", "page");
 
   return NextResponse.json(updated);
 }
@@ -135,7 +146,12 @@ export async function DELETE(req: NextRequest) {
     },
   });
 
+  invalidateContentCache();
   revalidateTag("cms");
+  revalidatePath("/", "layout");
+  revalidatePath("/about", "page");
+  revalidatePath("/services", "page");
+  revalidatePath("/contact", "page");
 
   return NextResponse.json({ success: true });
 }

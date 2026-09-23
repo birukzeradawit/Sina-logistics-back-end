@@ -63,6 +63,9 @@ function BoardItems({ sectors, suffix }: { sectors: any[]; suffix: string }) {
   );
 }
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export default async function HomePage() {
   const [content, dbSectors] = await Promise.all([
     getContentMap("home"),
@@ -76,6 +79,7 @@ export default async function HomePage() {
     "SINA TRADING PLC is a single-source partner for corporate organizations — procurement, logistics, event management, property management, and staffing, delivered as one coordinated service."
   );
   const eyebrow = cms(content, "home.hero.eyebrow", "INTERNATIONAL TRADING  &  COMMERCIAL SUPPLIES");
+  const heroImage = (content["home.hero.image"] || "").trim();
   const overviewHeading =
     content["home.overview.heading"] ?? "Reliable operational support, under one provider.";
   const overviewBody =
@@ -90,9 +94,15 @@ export default async function HomePage() {
   const sectorsSplit = splitHeading(sectorsHeading);
   const sectorCount = dbSectors.length || 10;
 
+  const heroStyle: React.CSSProperties = heroImage
+    ? {
+        background: `radial-gradient(circle at 78% 32%, rgba(232,148,12,0.14) 0%, transparent 50%), linear-gradient(180deg, rgba(255,255,255,0.72) 0%, rgba(247,245,241,0.86) 100%), url("${heroImage}") center 28% / cover no-repeat`,
+      }
+    : {};
+
   return (
     <>
-      <section className="hero">
+      <section className="hero" style={heroStyle}>
         <div className="wrap hero-grid">
           <div>
             <div className="hero-badges reveal">

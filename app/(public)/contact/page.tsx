@@ -3,6 +3,7 @@ import { getContentMap } from "@/lib/content";
 import { ContactForm } from "./contact-form";
 
 export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 export const metadata: Metadata = {
   title: "Contact & Request a Quote | SINA Supplies & Logistics PLC",

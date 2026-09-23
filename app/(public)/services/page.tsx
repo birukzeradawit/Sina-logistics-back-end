@@ -25,6 +25,9 @@ export const metadata: Metadata = {
   },
 };
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export default async function ServicesPage() {
   const [content, sectors] = await Promise.all([
     getContentMap("services"),
@@ -37,11 +40,18 @@ export default async function ServicesPage() {
     "services.hero.lead",
     "Premium operational support for corporate organizations — plus a licensed trade and supply scope across logistics, commodities, equipment, and materials."
   );
+  const heroImage = (content["services.hero.image"] || "").trim();
   const hero = splitHeading(heading);
+
+  const heroStyle: React.CSSProperties = heroImage
+    ? {
+        background: `linear-gradient(180deg, rgba(17,17,18,0.85), rgba(17,17,18,0.93)), url("${heroImage}") center 40% / cover no-repeat`,
+      }
+    : {};
 
   return (
     <>
-      <section className="page-hero hero-photo">
+      <section className="page-hero hero-photo" style={heroStyle}>
         <div className="wrap">
           <div className="eyebrow reveal">Our Services</div>
           <h1 className="reveal">

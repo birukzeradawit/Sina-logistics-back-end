@@ -246,8 +246,7 @@
 /* Services page hero — crane photo background, scoped to this page only */
 .page-hero.hero-photo{
   background:
-    linear-gradient(180deg, rgba(17,17,18,0.85), rgba(17,17,18,0.93)),
-    url("/assets/port-crane-bw.png") center 40% / cover no-repeat;
+    linear-gradient(180deg, rgba(17,17,18,0.85), rgba(17,17,18,0.93));
   color:var(--paper);
   border-bottom:none;
 }
