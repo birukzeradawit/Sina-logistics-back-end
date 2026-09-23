@@ -28,11 +28,16 @@ async function main() {
   const passwordHash = await bcrypt.hash("ChangeMe123!", 12);
   const admin = await prisma.staffUser.upsert({
     where: { email: "admin@sinatrading.et" },
-    update: {},
+    update: {
+      passwordHash,
+      role: "ADMIN",
+      isActive: true,
+    },
     create: {
       email: "admin@sinatrading.et",
       passwordHash,
       role: "ADMIN",
+      isActive: true,
     },
   });
   console.log("Seeded admin account:", admin.email);
