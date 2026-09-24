@@ -219,7 +219,7 @@
   top:0; left:0;
   width:100%; height:100%;
   object-fit:cover;
-  object-position:center top;
+  object-position:center center;
   opacity:1;
   z-index:1;
   animation:showcaseImgFade 0.45s cubic-bezier(0.16, 1, 0.3, 1);
