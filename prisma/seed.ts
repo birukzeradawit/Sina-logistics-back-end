@@ -87,7 +87,7 @@ async function main() {
 
   const sectors = [
     {
-      code: "SV-01",
+      code: "PS - 001",
       slug: "procurement",
       name: "Procurement & Supply",
       shortDesc: "Office, hospitality, and event supplies, supplier sourcing, and inventory replenishment.",
@@ -103,7 +103,7 @@ async function main() {
       sortOrder: 1,
     },
     {
-      code: "SV-02",
+      code: "LD - 002",
       slug: "logistics",
       name: "Logistics & Delivery",
       shortDesc: "Transportation coordination, delivery facilitation, distribution, and scheduled delivery.",
@@ -118,7 +118,7 @@ async function main() {
       sortOrder: 2,
     },
     {
-      code: "SV-03",
+      code: "EO - 003",
       slug: "events",
       name: "Event Organizing",
       shortDesc: "Corporate events, conferences, product launches, venue coordination, and full event logistics.",
@@ -134,7 +134,7 @@ async function main() {
       sortOrder: 3,
     },
     {
-      code: "SV-04",
+      code: "PO - 004",
       slug: "property",
       name: "Property Management",
       shortDesc: "Commercial and residential leasing, facility maintenance, cleaning, and security coordination.",
@@ -150,7 +150,7 @@ async function main() {
       sortOrder: 4,
     },
     {
-      code: "SV-05",
+      code: "SRO - 005",
       slug: "staffing",
       name: "Staff Recruitment & Outsourcing",
       shortDesc: "Administrative, hospitality, event, and technical staff recruitment and management.",
@@ -166,7 +166,7 @@ async function main() {
       sortOrder: 5,
     },
     {
-      code: "SV-06",
+      code: "AOS - 006",
       slug: "support",
       name: "Additional Operational Support",
       shortDesc: "Hospitality, vendor negotiation, utility payments, and monthly operational reporting.",
@@ -182,7 +182,7 @@ async function main() {
       sortOrder: 6,
     },
     {
-      code: "SV-07",
+      code: "TSS - 007",
       slug: "trade",
       name: "Trade & Supply Scope",
       shortDesc: "Licensed cargo, commodities, equipment, and materials supply across Ethiopia and beyond.",
@@ -197,7 +197,7 @@ async function main() {
       sortOrder: 7,
     },
     {
-      code: "SV-08",
+      code: "CORS - 008",
       slug: "construction",
       name: "Construction & Real Estate",
       shortDesc: "Contracting, materials, machinery, and commercial or residential property development.",
@@ -212,7 +212,7 @@ async function main() {
       sortOrder: 8,
     },
     {
-      code: "SV-09",
+      code: "EMNA - 009",
       slug: "agriculture",
       name: "Energy, Mining & Agriculture",
       shortDesc: "Energy and utilities, mining and quarrying, agri-commodities, and related supply.",
@@ -227,7 +227,7 @@ async function main() {
       sortOrder: 9,
     },
     {
-      code: "SV-10",
+      code: "PC - 010",
       slug: "consulting",
       name: "Professional Consulting",
       shortDesc: "Accounting, company formation, business advisory, and operational improvement.",
@@ -246,10 +246,10 @@ async function main() {
 
   for (const s of sectors) {
     await prisma.serviceSector.upsert({
-      where: { code: s.code },
+      where: { slug: s.slug },
       update: {
+        code: s.code,
         name: s.name,
-        slug: s.slug,
         shortDesc: s.shortDesc,
         fullDesc: s.fullDesc,
         features: s.features,

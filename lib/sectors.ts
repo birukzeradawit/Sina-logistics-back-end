@@ -19,7 +19,7 @@ const CACHE_TTL_MS = 60 * 1000; // 60 seconds
 const FALLBACK_SECTORS: ServiceSectorDTO[] = [
   {
     id: "sec-01",
-    code: "SV-01",
+    code: "PS - 001",
     slug: "procurement",
     name: "Procurement & Supply",
     shortDesc: "Office, hospitality, and event supplies, supplier sourcing, and inventory replenishment.",
@@ -31,7 +31,7 @@ const FALLBACK_SECTORS: ServiceSectorDTO[] = [
   },
   {
     id: "sec-02",
-    code: "SV-02",
+    code: "LD - 002",
     slug: "logistics",
     name: "Logistics & Delivery",
     shortDesc: "Transportation coordination, delivery facilitation, distribution, and scheduled delivery.",
@@ -43,7 +43,7 @@ const FALLBACK_SECTORS: ServiceSectorDTO[] = [
   },
   {
     id: "sec-03",
-    code: "SV-03",
+    code: "EO - 003",
     slug: "events",
     name: "Event Organizing",
     shortDesc: "Corporate events, conferences, product launches, venue coordination, and full event logistics.",
@@ -55,7 +55,7 @@ const FALLBACK_SECTORS: ServiceSectorDTO[] = [
   },
   {
     id: "sec-04",
-    code: "SV-04",
+    code: "PO - 004",
     slug: "property",
     name: "Property Management",
     shortDesc: "Commercial and residential leasing, facility maintenance, cleaning, and security coordination.",
@@ -67,7 +67,7 @@ const FALLBACK_SECTORS: ServiceSectorDTO[] = [
   },
   {
     id: "sec-05",
-    code: "SV-05",
+    code: "SRO - 005",
     slug: "staffing",
     name: "Staff Recruitment & Outsourcing",
     shortDesc: "Administrative, hospitality, event, and technical staff recruitment and management.",
@@ -79,7 +79,7 @@ const FALLBACK_SECTORS: ServiceSectorDTO[] = [
   },
   {
     id: "sec-06",
-    code: "SV-06",
+    code: "AOS - 006",
     slug: "support",
     name: "Additional Operational Support",
     shortDesc: "Hospitality, vendor negotiation, utility payments, and monthly operational reporting.",
@@ -91,7 +91,7 @@ const FALLBACK_SECTORS: ServiceSectorDTO[] = [
   },
   {
     id: "sec-07",
-    code: "SV-07",
+    code: "TSS - 007",
     slug: "trade",
     name: "Trade & Supply Scope",
     shortDesc: "Licensed cargo, commodities, equipment, and materials supply across Ethiopia and beyond.",
@@ -103,7 +103,7 @@ const FALLBACK_SECTORS: ServiceSectorDTO[] = [
   },
   {
     id: "sec-08",
-    code: "SV-08",
+    code: "CORS - 008",
     slug: "construction",
     name: "Construction & Real Estate",
     shortDesc: "Contracting, materials, machinery, and commercial or residential property development.",
@@ -115,7 +115,7 @@ const FALLBACK_SECTORS: ServiceSectorDTO[] = [
   },
   {
     id: "sec-09",
-    code: "SV-09",
+    code: "EMNA - 009",
     slug: "agriculture",
     name: "Energy, Mining & Agriculture",
     shortDesc: "Energy and utilities, mining and quarrying, agri-commodities, and related supply.",
@@ -127,7 +127,7 @@ const FALLBACK_SECTORS: ServiceSectorDTO[] = [
   },
   {
     id: "sec-10",
-    code: "SV-10",
+    code: "PC - 010",
     slug: "consulting",
     name: "Professional Consulting",
     shortDesc: "Accounting, company formation, business advisory, and operational improvement.",

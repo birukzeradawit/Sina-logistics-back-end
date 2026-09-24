@@ -67,7 +67,7 @@ export default function StaffSectorsPage() {
   const openCreateModal = () => {
     setIsEditing(false);
     setCurrentId("");
-    setFormCode(`SV-0${sectors.length + 1}`);
+    setFormCode(`SEC - 0${sectors.length + 1}`);
     setFormSlug("");
     setFormName("");
     setFormShortDesc("");
@@ -270,13 +270,13 @@ export default function StaffSectorsPage() {
             <form onSubmit={handleSaveSector} style={s.modalForm}>
               <div style={s.formRow}>
                 <div style={{ flex: 1 }}>
-                  <label style={s.modalLabel}>Code (e.g. SV-01)</label>
+                  <label style={s.modalLabel}>Code (e.g. PS - 001)</label>
                   <input
                     style={s.modalInput}
                     required
                     value={formCode}
                     onChange={(e) => setFormCode(e.target.value)}
-                    placeholder="SV-01"
+                    placeholder="PS - 001"
                   />
                 </div>
                 <div style={{ flex: 1 }}>

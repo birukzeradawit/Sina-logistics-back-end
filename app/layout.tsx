@@ -101,7 +101,7 @@ const jsonLd = {
             "@type": "Offer",
             itemOffered: {
               "@type": "Service",
-              name: "SV-01: Procurement & Supply Services",
+              name: "PS - 001: Procurement & Supply Services",
               description: "Direct supplier sourcing, institutional purchasing, and bulk enterprise supplies in Ethiopia.",
               url: `${siteUrl}/services#procurement-supply`,
             },
@@ -110,7 +110,7 @@ const jsonLd = {
             "@type": "Offer",
             itemOffered: {
               "@type": "Service",
-              name: "SV-02: Logistics & Delivery",
+              name: "LD - 002: Logistics & Delivery",
               description: "Nationwide freight, route dispatch, fleet tracking, and last-mile corporate delivery across Ethiopia.",
               url: `${siteUrl}/services#logistics-delivery`,
             },
@@ -119,7 +119,7 @@ const jsonLd = {
             "@type": "Offer",
             itemOffered: {
               "@type": "Service",
-              name: "SV-03: Event Organizing",
+              name: "EO - 003: Event Organizing",
               description: "High-level corporate conferences, venue production, protocol management, and delegate logistics.",
               url: `${siteUrl}/services#event-organizing`,
             },
@@ -128,7 +128,7 @@ const jsonLd = {
             "@type": "Offer",
             itemOffered: {
               "@type": "Service",
-              name: "SV-04: Property Management",
+              name: "PO - 004: Property Management",
               description: "Commercial facility leasing, ongoing asset maintenance, and institutional estate oversight.",
               url: `${siteUrl}/services#property-management`,
             },
@@ -137,7 +137,7 @@ const jsonLd = {
             "@type": "Offer",
             itemOffered: {
               "@type": "Service",
-              name: "SV-05: Staff Recruitment & Outsourcing",
+              name: "SRO - 005: Staff Recruitment & Outsourcing",
               description: "Executive staffing, skilled labor placement, outsourced workforce payroll, and compliance.",
               url: `${siteUrl}/services#staff-recruitment-outsourcing`,
             },
@@ -146,7 +146,7 @@ const jsonLd = {
             "@type": "Offer",
             itemOffered: {
               "@type": "Service",
-              name: "SV-06: Additional Operational Support",
+              name: "AOS - 006: Additional Operational Support",
               description: "Custom operational problem-solving, rapid institutional deployments, and administrative assistance.",
               url: `${siteUrl}/services#additional-support`,
             },
@@ -155,7 +155,7 @@ const jsonLd = {
             "@type": "Offer",
             itemOffered: {
               "@type": "Service",
-              name: "SV-07: General Trading & Supply Scope",
+              name: "TSS - 007: General Trading & Supply Scope",
               description: "Licensed import, export, industrial machinery distribution, and bulk commodity trading in Ethiopia.",
               url: `${siteUrl}/services#trade-scope`,
             },
@@ -164,7 +164,7 @@ const jsonLd = {
             "@type": "Offer",
             itemOffered: {
               "@type": "Service",
-              name: "SV-08: Construction & Real Estate",
+              name: "CORS - 008: Construction & Real Estate",
               description: "Commercial building construction, site management, and real estate development coordination.",
               url: `${siteUrl}/services#construction-real-estate`,
             },
@@ -173,7 +173,7 @@ const jsonLd = {
             "@type": "Offer",
             itemOffered: {
               "@type": "Service",
-              name: "SV-09: Energy, Mining & Agriculture",
+              name: "EMNA - 009: Energy, Mining & Agriculture",
               description: "Agribusiness supply chains, mineral commodity trade, and renewable energy equipment logistics.",
               url: `${siteUrl}/services#energy-mining-agriculture`,
             },
@@ -182,7 +182,7 @@ const jsonLd = {
             "@type": "Offer",
             itemOffered: {
               "@type": "Service",
-              name: "SV-10: Professional Consulting",
+              name: "PC - 010: Professional Consulting",
               description: "Accounting consultancy, company establishment, business advisory, strategic planning, and operational improvement.",
               url: `${siteUrl}/services#consulting`,
             },

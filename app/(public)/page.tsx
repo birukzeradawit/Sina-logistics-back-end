@@ -305,73 +305,73 @@ export default async function HomePage() {
               <circle className="node origin" cx="300" cy="300" r="6.5" filter="url(#soft-glow)" />
               <text className="node-label origin-label" x="300" y="325" textAnchor="middle">SINA</text>
 
-              {/* SV-09: Energy, Mining & Agriculture */}
+              {/* EMNA - 009: Energy, Mining & Agriculture */}
               <circle className="node" cx="300" cy="90" r="5" />
               <text className="node-label" x="300" y="68" textAnchor="middle">
-                <tspan fill="#FFCB47" fontWeight="700">SV-09 </tspan>
+                <tspan fill="#FFCB47" fontWeight="700">EMNA - 009 </tspan>
                 <tspan fill="#111112">AGRI &amp; ENERGY</tspan>
               </text>
 
-              {/* SV-07: Trade Scope */}
+              {/* TSS - 007: Trade Scope */}
               <circle className="node" cx="150" cy="150" r="5" />
               <text className="node-label" x="136" y="138" textAnchor="end">
-                <tspan fill="#FFCB47" fontWeight="700">SV-07 </tspan>
+                <tspan fill="#FFCB47" fontWeight="700">TSS - 007 </tspan>
                 <tspan fill="#111112">TRADE</tspan>
               </text>
 
-              {/* SV-01: Procurement */}
+              {/* PS - 001: Procurement */}
               <circle className="node" cx="95" cy="255" r="5" />
               <text className="node-label" x="80" y="259" textAnchor="end">
-                <tspan fill="#FFCB47" fontWeight="700">SV-01 </tspan>
+                <tspan fill="#FFCB47" fontWeight="700">PS - 001 </tspan>
                 <tspan fill="#111112">PROCUREMENT</tspan>
               </text>
 
-              {/* SV-06: Additional Support */}
+              {/* AOS - 006: Additional Support */}
               <circle className="node" cx="105" cy="375" r="5" />
               <text className="node-label" x="90" y="379" textAnchor="end">
-                <tspan fill="#FFCB47" fontWeight="700">SV-06 </tspan>
+                <tspan fill="#FFCB47" fontWeight="700">AOS - 006 </tspan>
                 <tspan fill="#111112">SUPPORT</tspan>
               </text>
 
-              {/* SV-05: Staff Recruitment */}
+              {/* SRO - 005: Staff Recruitment */}
               <circle className="node" cx="165" cy="470" r="5" />
               <text className="node-label" x="150" y="488" textAnchor="end">
-                <tspan fill="#FFCB47" fontWeight="700">SV-05 </tspan>
+                <tspan fill="#FFCB47" fontWeight="700">SRO - 005 </tspan>
                 <tspan fill="#111112">STAFFING</tspan>
               </text>
 
-              {/* SV-04: Property Management */}
+              {/* PO - 004: Property Management */}
               <circle className="node" cx="300" cy="515" r="5" />
               <text className="node-label" x="300" y="542" textAnchor="middle">
-                <tspan fill="#FFCB47" fontWeight="700">SV-04 </tspan>
+                <tspan fill="#FFCB47" fontWeight="700">PO - 004 </tspan>
                 <tspan fill="#111112">PROPERTY</tspan>
               </text>
 
-              {/* SV-03: Event Organizing */}
+              {/* EO - 003: Event Organizing */}
               <circle className="node" cx="445" cy="465" r="5" />
               <text className="node-label" x="460" y="469" textAnchor="start">
-                <tspan fill="#FFCB47" fontWeight="700">SV-03 </tspan>
+                <tspan fill="#FFCB47" fontWeight="700">EO - 003 </tspan>
                 <tspan fill="#111112">EVENTS</tspan>
               </text>
 
-              {/* SV-08: Construction */}
+              {/* CORS - 008: Construction */}
               <circle className="node" cx="500" cy="340" r="5" />
               <text className="node-label" x="515" y="344" textAnchor="start">
-                <tspan fill="#FFCB47" fontWeight="700">SV-08 </tspan>
+                <tspan fill="#FFCB47" fontWeight="700">CORS - 008 </tspan>
                 <tspan fill="#111112">CONSTRUCTION</tspan>
               </text>
 
-              {/* SV-10: Professional Consulting */}
+              {/* PC - 010: Professional Consulting */}
               <circle className="node" cx="510" cy="230" r="5" />
               <text className="node-label" x="525" y="226" textAnchor="start">
-                <tspan fill="#FFCB47" fontWeight="700">SV-10 </tspan>
+                <tspan fill="#FFCB47" fontWeight="700">PC - 010 </tspan>
                 <tspan fill="#111112">CONSULTING</tspan>
               </text>
 
-              {/* SV-02: Logistics & Delivery */}
+              {/* LD - 002: Logistics & Delivery */}
               <circle className="node delivery-node" cx="505" cy="115" r="6" filter="url(#soft-glow)" />
               <text className="node-label origin-label" x="520" y="111" textAnchor="start">
-                <tspan fill="#FFCB47">SV-02 </tspan>
+                <tspan fill="#FFCB47">LD - 002 </tspan>
                 <tspan fill="#111112">DELIVERY</tspan>
               </text>
             </svg>

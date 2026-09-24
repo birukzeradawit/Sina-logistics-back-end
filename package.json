@@ -1,10 +1,10 @@
 {
   "name": "sina-supplies-logistics",
-  "version": "0.1.2",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "prisma generate && prisma migrate deploy && npx tsx prisma/seed.ts && next build",
+    "build": "next build",
     "postinstall": "prisma generate",
     "start": "next start",
     "prisma:generate": "prisma generate",

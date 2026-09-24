@@ -13,7 +13,15 @@ export interface SectorItem {
 }
 
 const SECTOR_DATA: Record<string, { image: string; tag: string }> = {
-  // SV-01 / Procurement
+  // PS - 001 / Procurement
+  "PS - 001": {
+    image: "/assets/procurement-supply.jpg",
+    tag: "Institutional Sourcing & Supply Chain",
+  },
+  "PS-001": {
+    image: "/assets/procurement-supply.jpg",
+    tag: "Institutional Sourcing & Supply Chain",
+  },
   "SV-01": {
     image: "/assets/procurement-supply.jpg",
     tag: "Institutional Sourcing & Supply Chain",
@@ -27,7 +35,15 @@ const SECTOR_DATA: Record<string, { image: string; tag: string }> = {
     tag: "Institutional Sourcing & Supply Chain",
   },
 
-  // SV-02 / Logistics
+  // LD - 002 / Logistics
+  "LD - 002": {
+    image: "/assets/logistics-1.jpg",
+    tag: "Freight, Route Dispatch & Fleet Tracking",
+  },
+  "LD-002": {
+    image: "/assets/logistics-1.jpg",
+    tag: "Freight, Route Dispatch & Fleet Tracking",
+  },
   "SV-02": {
     image: "/assets/logistics-1.jpg",
     tag: "Freight, Route Dispatch & Fleet Tracking",
@@ -41,7 +57,19 @@ const SECTOR_DATA: Record<string, { image: string; tag: string }> = {
     tag: "Freight, Route Dispatch & Fleet Tracking",
   },
 
-  // SV-03 / Events
+  // EO - 003 / Events
+  "EO - 003": {
+    image: "/assets/events.jpg",
+    tag: "Corporate Conferences & Production",
+  },
+  "EO-003": {
+    image: "/assets/events.jpg",
+    tag: "Corporate Conferences & Production",
+  },
+  "EO 003": {
+    image: "/assets/events.jpg",
+    tag: "Corporate Conferences & Production",
+  },
   "SV-03": {
     image: "/assets/events.jpg",
     tag: "Corporate Conferences & Production",
@@ -55,7 +83,15 @@ const SECTOR_DATA: Record<string, { image: string; tag: string }> = {
     tag: "Corporate Conferences & Production",
   },
 
-  // SV-04 / Property
+  // PO - 004 / Property
+  "PO - 004": {
+    image: "/assets/property-management.jpg",
+    tag: "Commercial Facilities & Asset Leasing",
+  },
+  "PO-004": {
+    image: "/assets/property-management.jpg",
+    tag: "Commercial Facilities & Asset Leasing",
+  },
   "SV-04": {
     image: "/assets/property-management.jpg",
     tag: "Commercial Facilities & Asset Leasing",
@@ -69,7 +105,15 @@ const SECTOR_DATA: Record<string, { image: string; tag: string }> = {
     tag: "Commercial Facilities & Asset Leasing",
   },
 
-  // SV-05 / Staffing
+  // SRO - 005 / Staffing
+  "SRO - 005": {
+    image: "/assets/staff-recruitment.jpg",
+    tag: "Executive & Specialized Outsourcing",
+  },
+  "SRO-005": {
+    image: "/assets/staff-recruitment.jpg",
+    tag: "Executive & Specialized Outsourcing",
+  },
   "SV-05": {
     image: "/assets/staff-recruitment.jpg",
     tag: "Executive & Specialized Outsourcing",
@@ -83,7 +127,15 @@ const SECTOR_DATA: Record<string, { image: string; tag: string }> = {
     tag: "Executive & Specialized Outsourcing",
   },
 
-  // SV-06 / Support
+  // AOS - 006 / Support
+  "AOS - 006": {
+    image: "/assets/operational-support.jpg",
+    tag: "On-Demand Operational Solutions",
+  },
+  "AOS-006": {
+    image: "/assets/operational-support.jpg",
+    tag: "On-Demand Operational Solutions",
+  },
   "SV-06": {
     image: "/assets/operational-support.jpg",
     tag: "On-Demand Operational Solutions",
@@ -97,7 +149,23 @@ const SECTOR_DATA: Record<string, { image: string; tag: string }> = {
     tag: "On-Demand Operational Solutions",
   },
 
-  // SV-07 / Trade
+  // TSS - 007 / Trade
+  "TSS - 007": {
+    image: "/assets/trade-supply.jpg",
+    tag: "Import, Export & Industrial Trade",
+  },
+  "TSS-007": {
+    image: "/assets/trade-supply.jpg",
+    tag: "Import, Export & Industrial Trade",
+  },
+  "TSS - 006": {
+    image: "/assets/trade-supply.jpg",
+    tag: "Import, Export & Industrial Trade",
+  },
+  "TSS-006": {
+    image: "/assets/trade-supply.jpg",
+    tag: "Import, Export & Industrial Trade",
+  },
   "SV-07": {
     image: "/assets/trade-supply.jpg",
     tag: "Import, Export & Industrial Trade",
@@ -111,7 +179,15 @@ const SECTOR_DATA: Record<string, { image: string; tag: string }> = {
     tag: "Import, Export & Industrial Trade",
   },
 
-  // SV-08 / Construction
+  // CORS - 008 / Construction
+  "CORS - 008": {
+    image: "/assets/construction-real-estate.jpg",
+    tag: "Commercial Build & Infrastructure",
+  },
+  "CORS-008": {
+    image: "/assets/construction-real-estate.jpg",
+    tag: "Commercial Build & Infrastructure",
+  },
   "SV-08": {
     image: "/assets/construction-real-estate.jpg",
     tag: "Commercial Build & Infrastructure",
@@ -125,7 +201,15 @@ const SECTOR_DATA: Record<string, { image: string; tag: string }> = {
     tag: "Commercial Build & Infrastructure",
   },
 
-  // SV-09 / Agriculture, Energy & Mining
+  // EMNA - 009 / Agriculture, Energy & Mining
+  "EMNA - 009": {
+    image: "/assets/energy-mining-full.jpg",
+    tag: "Agribusiness, Mining & Clean Energy",
+  },
+  "EMNA-009": {
+    image: "/assets/energy-mining-full.jpg",
+    tag: "Agribusiness, Mining & Clean Energy",
+  },
   "SV-09": {
     image: "/assets/energy-mining-full.jpg",
     tag: "Agribusiness, Mining & Clean Energy",
@@ -139,7 +223,15 @@ const SECTOR_DATA: Record<string, { image: string; tag: string }> = {
     tag: "Agribusiness, Mining & Clean Energy",
   },
 
-  // SV-10 / Consulting
+  // PC - 010 / Consulting
+  "PC - 010": {
+    image: "/assets/professional-consulting.jpg",
+    tag: "Advisory, Formation & Operational Improvement",
+  },
+  "PC-010": {
+    image: "/assets/professional-consulting.jpg",
+    tag: "Advisory, Formation & Operational Improvement",
+  },
   "SV-10": {
     image: "/assets/professional-consulting.jpg",
     tag: "Advisory, Formation & Operational Improvement",
@@ -201,7 +293,7 @@ export function SectorsInteractiveShowcase({ sectors }: { sectors: SectorItem[] 
       {/* Top Cinematic Photo Stage */}
       <div className="showcase-main-stage">
         <div className="showcase-cinematic-frame">
-          {current.code === "SV-09" ? (
+          {current.code === "EMNA - 009" || current.code === "EMNA-009" || current.code === "SV-09" || current.slug === "agriculture" ? (
             <div className="showcase-cinematic-multi-img">
               <img
                 key="energy-mining"
@@ -214,7 +306,7 @@ export function SectorsInteractiveShowcase({ sectors }: { sectors: SectorItem[] 
                 alt="Agriculture"
               />
             </div>
-          ) : current.code === "SV-02" ? (
+          ) : current.code === "LD - 002" || current.code === "LD-002" || current.code === "SV-02" || current.slug === "logistics" ? (
             <div className="showcase-cinematic-triple-img">
               <img
                 key="logistics-1"
