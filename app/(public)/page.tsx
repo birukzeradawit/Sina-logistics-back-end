@@ -132,7 +132,7 @@ export default async function HomePage() {
           </div>
 
           <div className="route-panel reveal">
-            <svg viewBox="0 0 600 600" role="img" aria-label="Animated multi-sector network with glowing orbs">
+            <svg viewBox="-110 15 820 570" role="img" aria-label="Animated multi-sector network with glowing orbs">
               <defs>
                 <filter id="gold-glow" x="-60%" y="-60%" width="220%" height="220%">
                   <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="blur1" />
@@ -152,23 +152,23 @@ export default async function HomePage() {
                 </filter>
               </defs>
 
-              <path id="pAgri" className="route-line" d="M300 300 L300 90" />
-              <path id="pTrade" className="route-line" d="M300 300 L150 150" />
-              <path id="pProcure" className="route-line" d="M300 300 L95 255" />
-              <path id="pSupport" className="route-line" d="M300 300 L105 375" />
-              <path id="pStaffing" className="route-line" d="M300 300 L165 470" />
-              <path id="pProperty" className="route-line" d="M300 300 L300 515" />
-              <path id="pEvents" className="route-line" d="M300 300 L445 465" />
-              <path id="pConstruct" className="route-line" d="M300 300 L500 340" />
-              <path id="pConsult" className="route-line" d="M300 300 L510 230" />
-              <path id="pLogistics" className="route-line" d="M300 300 L505 115" />
+              <path id="pAgri" className="route-line" d="M300 300 L300 120" />
+              <path id="pTrade" className="route-line" d="M300 300 L185 145" />
+              <path id="pProcure" className="route-line" d="M300 300 L125 240" />
+              <path id="pSupport" className="route-line" d="M300 300 L125 360" />
+              <path id="pStaffing" className="route-line" d="M300 300 L185 455" />
+              <path id="pProperty" className="route-line" d="M300 300 L300 480" />
+              <path id="pEvents" className="route-line" d="M300 300 L415 455" />
+              <path id="pConstruct" className="route-line" d="M300 300 L475 360" />
+              <path id="pConsult" className="route-line" d="M300 300 L475 240" />
+              <path id="pLogistics" className="route-line" d="M300 300 L415 145" />
 
               {/* Addis Ababa Center Radar Ripples */}
               <circle cx="300" cy="300" r="12" className="radar-ring r1" />
               <circle cx="300" cy="300" r="28" className="radar-ring r2" />
               <circle cx="300" cy="300" r="44" className="radar-ring r3" />
 
-              {/* 9 Glowing Golden Orbs Gliding Outward from Center to Each Sector */}
+              {/* 10 Glowing Golden Orbs Gliding Outward from Center to Each Sector */}
               <g className="beacon-group" filter="url(#gold-glow)">
                 <circle r="7" fill="rgba(255,203,71,0.25)" stroke="#FFCB47" strokeWidth="1">
                   <animateMotion dur="4.0s" repeatCount="indefinite" begin="0s">
@@ -299,78 +299,78 @@ export default async function HomePage() {
                 </circle>
               </g>
 
-              {/* ---------------- 9 SEPARATED SECTOR DESTINATIONS & LABELS ---------------- */}
+              {/* ---------------- 10 SECTOR DESTINATIONS & LABELS ---------------- */}
 
               {/* Central Hub: SINA */}
               <circle className="node origin" cx="300" cy="300" r="6.5" filter="url(#soft-glow)" />
               <text className="node-label origin-label" x="300" y="325" textAnchor="middle">SINA</text>
 
               {/* EMNA - 009: Energy, Mining & Agriculture */}
-              <circle className="node" cx="300" cy="90" r="5" />
-              <text className="node-label" x="300" y="68" textAnchor="middle">
+              <circle className="node" cx="300" cy="120" r="5" />
+              <text className="node-label" x="300" y="94" textAnchor="middle">
                 <tspan fill="#111112" fontWeight="800">EMNA - 009 </tspan>
                 <tspan fill="#111112">AGRI &amp; ENERGY</tspan>
               </text>
 
               {/* TSS - 007: Trade Scope */}
-              <circle className="node" cx="150" cy="150" r="5" />
-              <text className="node-label" x="136" y="138" textAnchor="end">
+              <circle className="node" cx="185" cy="145" r="5" />
+              <text className="node-label" x="172" y="141" textAnchor="end">
                 <tspan fill="#111112" fontWeight="800">TSS - 007 </tspan>
                 <tspan fill="#111112">TRADE</tspan>
               </text>
 
               {/* PS - 001: Procurement */}
-              <circle className="node" cx="95" cy="255" r="5" />
-              <text className="node-label" x="80" y="259" textAnchor="end">
+              <circle className="node" cx="125" cy="240" r="5" />
+              <text className="node-label" x="112" y="240" textAnchor="end">
                 <tspan fill="#111112" fontWeight="800">PS - 001 </tspan>
                 <tspan fill="#111112">PROCUREMENT</tspan>
               </text>
 
               {/* AOS - 006: Additional Support */}
-              <circle className="node" cx="105" cy="375" r="5" />
-              <text className="node-label" x="90" y="379" textAnchor="end">
+              <circle className="node" cx="125" cy="360" r="5" />
+              <text className="node-label" x="112" y="364" textAnchor="end">
                 <tspan fill="#111112" fontWeight="800">AOS - 006 </tspan>
                 <tspan fill="#111112">SUPPORT</tspan>
               </text>
 
               {/* SRO - 005: Staff Recruitment */}
-              <circle className="node" cx="165" cy="470" r="5" />
-              <text className="node-label" x="150" y="488" textAnchor="end">
+              <circle className="node" cx="185" cy="455" r="5" />
+              <text className="node-label" x="172" y="465" textAnchor="end">
                 <tspan fill="#111112" fontWeight="800">SRO - 005 </tspan>
                 <tspan fill="#111112">STAFFING</tspan>
               </text>
 
               {/* PO - 004: Property Management */}
-              <circle className="node" cx="300" cy="515" r="5" />
-              <text className="node-label" x="300" y="542" textAnchor="middle">
+              <circle className="node" cx="300" cy="480" r="5" />
+              <text className="node-label" x="300" y="510" textAnchor="middle">
                 <tspan fill="#111112" fontWeight="800">PO - 004 </tspan>
                 <tspan fill="#111112">PROPERTY</tspan>
               </text>
 
               {/* EO - 003: Event Organizing */}
-              <circle className="node" cx="445" cy="465" r="5" />
-              <text className="node-label" x="460" y="469" textAnchor="start">
+              <circle className="node" cx="415" cy="455" r="5" />
+              <text className="node-label" x="428" y="465" textAnchor="start">
                 <tspan fill="#111112" fontWeight="800">EO - 003 </tspan>
                 <tspan fill="#111112">EVENTS</tspan>
               </text>
 
               {/* CORS - 008: Construction */}
-              <circle className="node" cx="500" cy="340" r="5" />
-              <text className="node-label" x="515" y="344" textAnchor="start">
+              <circle className="node" cx="475" cy="360" r="5" />
+              <text className="node-label" x="488" y="364" textAnchor="start">
                 <tspan fill="#111112" fontWeight="800">CORS - 008 </tspan>
                 <tspan fill="#111112">CONSTRUCTION</tspan>
               </text>
 
               {/* PC - 010: Professional Consulting */}
-              <circle className="node" cx="510" cy="230" r="5" />
-              <text className="node-label" x="525" y="226" textAnchor="start">
+              <circle className="node" cx="475" cy="240" r="5" />
+              <text className="node-label" x="488" y="240" textAnchor="start">
                 <tspan fill="#111112" fontWeight="800">PC - 010 </tspan>
                 <tspan fill="#111112">CONSULTING</tspan>
               </text>
 
               {/* LD - 002: Logistics & Delivery */}
-              <circle className="node delivery-node" cx="505" cy="115" r="6" filter="url(#soft-glow)" />
-              <text className="node-label origin-label" x="520" y="111" textAnchor="start">
+              <circle className="node delivery-node" cx="415" cy="145" r="6" filter="url(#soft-glow)" />
+              <text className="node-label origin-label" x="428" y="141" textAnchor="start">
                 <tspan fill="#111112" fontWeight="800">LD - 002 </tspan>
                 <tspan fill="#111112">DELIVERY</tspan>
               </text>

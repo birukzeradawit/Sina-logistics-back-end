@@ -8,7 +8,7 @@
     linear-gradient(180deg, rgba(255,255,255,0.72) 0%, rgba(247,245,241,0.86) 100%);
   color:var(--ink);
 }
-.hero .eyebrow{ color:var(--amber); }
+.hero .eyebrow{ color:#111112; font-weight:700; }
 .hero .eyebrow::before{ background:var(--amber); }
 .hero h1{ color:var(--ink); }
 .hero p.lead{ color:var(--slate); }
@@ -80,7 +80,7 @@
   margin-left:auto;
   filter:drop-shadow(0 12px 28px rgba(17,17,18,0.08));
 }
-.route-panel svg{ width:100%; height:100%; }
+.route-panel svg{ width:100%; height:100%; overflow:visible; }
 .route-line{
   fill:none;
   stroke:var(--ink);
