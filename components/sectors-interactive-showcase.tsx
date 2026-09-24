@@ -85,15 +85,15 @@ const SECTOR_DATA: Record<string, { image: string; tag: string }> = {
 
   // SV-06 / Support
   "SV-06": {
-    image: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=1600&q=80",
+    image: "/assets/operational-support.jpg",
     tag: "On-Demand Operational Solutions",
   },
   "support": {
-    image: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=1600&q=80",
+    image: "/assets/operational-support.jpg",
     tag: "On-Demand Operational Solutions",
   },
   "additional-support": {
-    image: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=1600&q=80",
+    image: "/assets/operational-support.jpg",
     tag: "On-Demand Operational Solutions",
   },
 

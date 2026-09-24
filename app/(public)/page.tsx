@@ -5,15 +5,15 @@ import { SectorsInteractiveShowcase } from "@/components/sectors-interactive-sho
 
 const SECTOR_COLLAGE_IMAGES = [
   "/assets/procurement-supply.jpg",
-  "/assets/construction-real-estate.jpg",
-  "/assets/staff-recruitment.jpg",
-  "/assets/trade-supply.jpg",
-  "/assets/professional-consulting.jpg",
+  "/assets/logistics-1.jpg",
+  "/assets/events.jpg",
   "/assets/property-management.jpg",
-  "/assets/energy-mining-construction.jpg",
-  "/assets/energy-mining-construction-alt.jpg",
-  "https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=400&q=80",
-  "/assets/energy-mining-agriculture.jpg",
+  "/assets/staff-recruitment.jpg",
+  "/assets/operational-support.jpg",
+  "/assets/trade-supply.jpg",
+  "/assets/construction-real-estate.jpg",
+  "/assets/energy-mining-full.jpg",
+  "/assets/professional-consulting.jpg",
 ];
 
 const SECTOR_ICONS: Record<string, JSX.Element> = {
