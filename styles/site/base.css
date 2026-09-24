@@ -82,23 +82,24 @@ html, body {
   display:inline-flex;
   align-items:center;
   gap:8px;
-  background:rgba(255,203,71,0.1);
-  border:1px solid rgba(255,203,71,0.25);
-  color:var(--gold);
+  background:rgba(17,17,18,0.06);
+  border:1px solid rgba(17,17,18,0.2);
+  color:#111112;
   font-family:var(--mono);
   font-size:11px;
   letter-spacing:0.08em;
   text-transform:uppercase;
   padding:6px 14px;
   border-radius:999px;
-  font-weight:600;
+  font-weight:700;
+  backdrop-filter:blur(6px);
 }
 .trust-badge-dot{
   width:6px;
   height:6px;
   border-radius:50%;
-  background:var(--gold);
-  box-shadow:0 0 8px var(--gold);
+  background:#D97706;
+  box-shadow:0 0 6px rgba(217,119,6,0.6);
   animation:badgePulse 2s infinite alternate;
 }
 @keyframes badgePulse{

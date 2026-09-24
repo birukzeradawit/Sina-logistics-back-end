@@ -132,13 +132,14 @@
   font-family:var(--mono);
   font-size:10px;
   letter-spacing:0.04em;
-  opacity:0.9;
-  font-weight:600;
+  opacity:1;
+  fill:#111112;
+  font-weight:700;
   pointer-events:none;
 }
 .node-label.origin-label{
-  fill:var(--gold);
-  font-weight:700;
+  fill:#111112;
+  font-weight:800;
   font-size:11px;
   letter-spacing:0.06em;
 }
