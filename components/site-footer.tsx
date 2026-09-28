@@ -61,11 +61,7 @@ export function SiteFooter() {
           </div>
         </div>
         <div className="foot-bottom">
-          <span>© 2026 SINA SUPPLIES AND LOGISTICS PLC · ALL RIGHTS RESERVED</span>
-          <div className="foot-status">
-            <span className="foot-status-dot"></span>
-            <span>SYSTEMS ACTIVE · ADDIS ABABA HQ</span>
-          </div>
+          <span>© 2026 SINA Trading PLC · ALL RIGHTS RESERVED</span>
           <span>ETHIOPIAN LICENSED COMMERCIAL OPERATOR</span>
         </div>
       </div>
