@@ -14,7 +14,10 @@ const transporter = hasSmtpConfig
     })
   : null;
 
-const DEFAULT_FROM = process.env.SMTP_FROM || '"SINA Supplies & Logistics" <no-reply@sinatrading.et>';
+const DEFAULT_FROM =
+  process.env.SMTP_USER
+    ? `"SINA Trading PLC" <${process.env.SMTP_USER}>`
+    : (process.env.SMTP_FROM?.replace(/\\"/g, '"') || '"SINA Trading PLC" <sinasupplies@outlook.com>');
 
 export type InquiryEmailPayload = {
   id?: string;
@@ -157,7 +160,7 @@ Addis Ababa, Ethiopia | info@sinatrading.et
     </div>
 
     <div style="border-top:1px solid rgba(17,17,18,0.08);padding-top:20px;font-size:13px;color:#7B7B78;line-height:1.5;">
-      Need immediate assistance? Reach our sales desk directly at <a href="mailto:info@sinatrading.et" style="color:#E8940C;text-decoration:none;">info@sinatrading.et</a> or call +251 11 000 0000.
+      Need immediate assistance? Reach our team directly at <a href="mailto:sinasupplies@outlook.com" style="color:#E8940C;text-decoration:none;">sinasupplies@outlook.com</a> or call +251 90-969-6932.
     </div>
   </div>
 </body>
