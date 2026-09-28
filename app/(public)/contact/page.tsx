@@ -75,52 +75,67 @@ export default async function ContactPage() {
                 </div>
               </div>
 
-              <div className="info-card">
-                <a
-                  href={MAPS_DIRECTIONS_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="info-icon location-pin-btn"
-                  title="Click to open office location in Google Maps"
-                  style={{
-                    background: "rgba(232, 148, 12, 0.18)",
-                    border: "1px solid rgba(232, 148, 12, 0.45)",
-                    boxShadow: "0 0 10px rgba(232, 148, 12, 0.25)",
-                    cursor: "pointer",
-                  }}
-                >
-                  <svg viewBox="0 0 24 24" style={{ stroke: "#FFCB47" }}>
-                    <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
-                    <circle cx="12" cy="10" r="3" />
-                  </svg>
-                </a>
-                <div>
-                  <div className="info-label">Visit Us</div>
-                  <div className="info-value">{address}</div>
+              <div className="info-card location-card">
+                <div className="location-card-header">
                   <a
                     href={MAPS_DIRECTIONS_URL}
                     target="_blank"
                     rel="noopener noreferrer"
+                    className="info-icon location-pin-btn"
+                    title="Click to open office location in Google Maps"
                     style={{
-                      display: "inline-flex",
-                      alignItems: "center",
-                      gap: "6px",
-                      fontSize: "12px",
-                      fontWeight: 600,
-                      color: "#FFCB47",
-                      textDecoration: "none",
-                      marginTop: "6px",
-                      fontFamily: "var(--mono)",
-                      letterSpacing: "0.04em",
+                      background: "rgba(232, 148, 12, 0.18)",
+                      border: "1px solid rgba(232, 148, 12, 0.45)",
+                      boxShadow: "0 0 10px rgba(232, 148, 12, 0.25)",
+                      cursor: "pointer",
                     }}
                   >
-                    <span>Get Directions (Google Maps)</span>
-                    <svg width={13} height={13} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.2} strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                      <polyline points="15 3 21 3 21 9" />
-                      <line x1="10" y1="14" x2="21" y2="3" />
+                    <svg viewBox="0 0 24 24" style={{ stroke: "#FFCB47" }}>
+                      <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+                      <circle cx="12" cy="10" r="3" />
                     </svg>
                   </a>
+                  <div>
+                    <div className="info-label">Visit Us</div>
+                    <div className="info-value">{address}</div>
+                    <a
+                      href={MAPS_DIRECTIONS_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{
+                        display: "inline-flex",
+                        alignItems: "center",
+                        gap: "6px",
+                        fontSize: "12px",
+                        fontWeight: 600,
+                        color: "#FFCB47",
+                        textDecoration: "none",
+                        marginTop: "6px",
+                        fontFamily: "var(--mono)",
+                        letterSpacing: "0.04em",
+                      }}
+                    >
+                      <span>Get Directions (Google Maps)</span>
+                      <svg width={13} height={13} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.2} strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                        <polyline points="15 3 21 3 21 9" />
+                        <line x1="10" y1="14" x2="21" y2="3" />
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+
+                <div className="contact-map-wrap">
+                  <iframe
+                    src="https://maps.google.com/maps?q=9.010820,38.876480&hl=en&z=15&output=embed"
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0 }}
+                    allowFullScreen={false}
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    title="SINA Trading PLC Office Location"
+                  />
                 </div>
               </div>
 
