@@ -6,18 +6,18 @@ export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
 export const metadata: Metadata = {
-  title: "Contact & Request a Quote | SINA Supplies & Logistics PLC",
+  title: "Contact & Request a Quote | SINA Trading PLC",
   description:
-    "Request a corporate quotation, procurement plan, or RFP proposal from SINA Supplies and Logistics PLC in Addis Ababa, Ethiopia.",
+    "Request a corporate quotation, procurement plan, or RFP proposal from SINA Trading PLC in Addis Ababa, Ethiopia.",
   keywords: [
     "Contact SINA Trading",
     "Request a Quote SINA PLC",
     "Procurement RFP Ethiopia",
     "SINA Phone Number Addis Ababa",
-    "SINA Supplies Office Address",
+    "SINA Office Address",
   ],
   openGraph: {
-    title: "Contact SINA Supplies & Logistics PLC | Request a Quote",
+    title: "Contact SINA Trading PLC | Request a Quote",
     description:
       "Tell us what your organization needs across procurement, logistics, events, property, staffing, or trade in Ethiopia.",
     url: "/contact",

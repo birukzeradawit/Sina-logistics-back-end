@@ -24,7 +24,7 @@ export function SiteHeader() {
     <header>
       <nav>
         <Link href="/" className="logo" onClick={() => setOpen(false)}>
-          <img className="logo-mark" src="/assets/logo-icon.png" alt="SINA Supplies and Logistics" width={58} height={33} />
+          <img className="logo-mark" src="/assets/logo-icon.png" alt="SINA Trading PLC" width={58} height={33} />
           <div>
             <div className="logo-text">SINA</div>
             <div className="logo-sub">TRADING</div>

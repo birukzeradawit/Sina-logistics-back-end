@@ -235,7 +235,7 @@ async function testHttpEndpoints(port: number) {
     { path: "/robots.txt", expectedStatus: 200, checks: ["user-agent", "sitemap"] },
     { path: "/sitemap.xml", expectedStatus: 200, checks: ["urlset", "http"] },
     { path: "/llms.txt", expectedStatus: 200, checks: ["SINA", "procurement", "logistics"] },
-    { path: "/llms-full.txt", expectedStatus: 200, checks: ["SINA Supplies and Logistics PLC", "PS - 001", "PC - 010"] },
+    { path: "/llms-full.txt", expectedStatus: 200, checks: ["SINA Trading PLC", "PS - 001", "PC - 010"] },
     { path: "/api/sectors", expectedStatus: 200, checks: ["PS - 001", "procurement", "CORS - 008", "PC - 010"] },
     { path: "/api/content?page=home", expectedStatus: 200, checks: ["home.hero.heading", "Your goods, our priority"] },
   ];

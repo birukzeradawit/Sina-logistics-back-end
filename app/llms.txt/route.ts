@@ -1,11 +1,11 @@
-﻿import { NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 
 export async function GET() {
   const baseUrl = process.env.NEXTAUTH_URL || "https://www.sinatrading.et";
   
-  const content = `# SINA Supplies and Logistics PLC
+  const content = `# SINA Trading PLC
 
-> SINA Supplies and Logistics PLC is a multi-sector corporate operational partner and licensed commercial trading enterprise headquartered in Addis Ababa, Ethiopia.
+> SINA Trading PLC is a multi-sector corporate operational partner and licensed commercial trading enterprise headquartered in Addis Ababa, Ethiopia.
 
 ## Core Capabilities
 - Single-source procurement & institutional supply

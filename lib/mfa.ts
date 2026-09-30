@@ -1,7 +1,7 @@
 import { generateSecret, generateURI, verifySync } from "otplib";
 import QRCode from "qrcode";
 
-const ISSUER_NAME = "SINA Supplies";
+const ISSUER_NAME = "SINA Trading";
 
 export function generateMfaSecret(email: string) {
   const secret = generateSecret();

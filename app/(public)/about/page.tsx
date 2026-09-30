@@ -5,16 +5,16 @@ import { getContentMap, splitHeading, cms } from "@/lib/content";
 export const metadata: Metadata = {
   title: "About SINA | Corporate Partner in Ethiopia",
   description:
-    "Learn about SINA Supplies and Logistics PLC — an established partner in Addis Ababa, Ethiopia providing procurement, logistics, event management, property management, staffing, and commercial trade.",
+    "Learn about SINA Trading PLC — an established partner in Addis Ababa, Ethiopia providing procurement, logistics, event management, property management, staffing, and commercial trade.",
   keywords: [
     "About SINA Trading",
-    "SINA Supplies and Logistics Ethiopia",
+    "SINA Trading Ethiopia",
     "Company Profile SINA PLC",
     "Corporate Partner Addis Ababa",
     "Ethiopian Logistics and Procurement",
   ],
   openGraph: {
-    title: "About SINA Supplies & Logistics PLC",
+    title: "About SINA Trading PLC",
     description:
       "Reliable, efficient, and cost-effective operational support for corporate organizations and international institutions in Ethiopia.",
     url: "/about",
@@ -30,13 +30,13 @@ export default async function AboutPage() {
   const heroLead = cms(
     content,
     "about.hero.lead",
-    "SINA Supplies and Logistics PLC delivers reliable, efficient, and cost-effective operational support to corporate organizations, institutions, and private clients."
+    "SINA Trading PLC delivers reliable, efficient, and cost-effective operational support to corporate organizations, institutions, and private clients."
   );
   const introHeading = cms(content, "about.intro.heading", "Who We Are");
   const introBody = cms(
     content,
     "about.intro.body",
-    "SINA Supplies and Logistics PLC is a dynamic Ethiopian company specializing in procurement, logistics coordination, event management, property management, staffing solutions, and integrated business support services."
+    "SINA Trading PLC is a dynamic Ethiopian company specializing in procurement, logistics coordination, event management, property management, staffing solutions, and integrated business support services."
   );
   const visionHeading = cms(content, "about.vision.heading", "Vision & Mission");
   const visionText = cms(
@@ -51,7 +51,7 @@ export default async function AboutPage() {
   const csrBody = cms(
     content,
     "about.csr.body",
-    "SINA Supplies and Logistics PLC is committed to expanding its integrated business support solutions across Ethiopia by investing in technology, strengthening supplier partnerships, enhancing service quality, and developing a highly skilled operational team.\n\nThe same network that supports day-to-day corporate operations also underpins a wider licensed supply scope — from cargo and commodities to equipment and materials. See the full list on our services page."
+    "SINA Trading PLC is committed to expanding its integrated business support solutions across Ethiopia by investing in technology, strengthening supplier partnerships, enhancing service quality, and developing a highly skilled operational team.\n\nThe same network that supports day-to-day corporate operations also underpins a wider licensed supply scope — from cargo and commodities to equipment and materials. See the full list on our services page."
   );
 
   const aboutImage = (content["about.hero.image"] ?? "/assets/sina-who-we-are.jpg").trim();
@@ -129,7 +129,7 @@ export default async function AboutPage() {
         <div className="wrap">
           <div className="section-head reveal">
             <h2>{whyHeading}</h2>
-            <p>Why organizations work with SINA Supplies and Logistics PLC.</p>
+            <p>Why organizations work with SINA Trading PLC.</p>
           </div>
           <div className="why-grid">
             <div className="why-item reveal">

@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 
 export const runtime = "edge";
 
-export const alt = "SINA Supplies and Logistics PLC";
+export const alt = "SINA Trading PLC";
 export const size = {
   width: 1200,
   height: 630,
@@ -49,7 +49,7 @@ export default async function Image() {
                 SINA
               </span>
               <span style={{ color: "#8b8a85", fontSize: "14px", letterSpacing: "0.04em", textTransform: "uppercase" }}>
-                Supplies &amp; Logistics PLC
+                Trading PLC
               </span>
             </div>
           </div>

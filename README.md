@@ -1,4 +1,4 @@
-# SINA Supplies and Logistics — backend
+# SINA Trading PLC — backend
 
 Lead-capture backend for the public site, plus a staff-only dashboard for
 managing inquiries and editing site content. No client-facing login exists

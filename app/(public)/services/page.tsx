@@ -5,11 +5,12 @@ import { getSectors } from "@/lib/sectors";
 import SectorNavBar from "@/components/sector-nav-bar";
 
 export const metadata: Metadata = {
-  title: "Corporate Sectors & Services | SINA Supplies & Logistics PLC",
+  title: "Corporate Sectors & Services | SINA Trading PLC",
   description:
     "Explore SINA's corporate operational sectors: Procurement & Supply, Logistics Coordination, Event Management, Property Oversight, Staffing Outsourcing, General Trading, Construction, Agribusiness, and Professional Consulting in Ethiopia.",
   keywords: [
     "SINA Services Ethiopia",
+    "SINA Trading PLC",
     "Procurement Services Addis Ababa",
     "Logistics Delivery Ethiopia",
     "Event Organizing Ethiopia",
@@ -18,7 +19,7 @@ export const metadata: Metadata = {
     "General Trading Commodities Ethiopia",
   ],
   openGraph: {
-    title: "Corporate Operational Sectors | SINA Supplies & Logistics",
+    title: "Corporate Operational Sectors | SINA Trading PLC",
     description:
       "Single-source partner for institutional procurement, logistics, corporate events, property, staffing, and commercial trade in Ethiopia.",
     url: "/services",

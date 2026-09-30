@@ -8,7 +8,7 @@ export function SiteFooter() {
       <div className="wrap">
         <div className="foot-top">
           <Link href="/" className="logo">
-            <img className="logo-mark" src="/assets/logo-icon.png" alt="SINA Supplies and Logistics" width={58} height={33} />
+            <img className="logo-mark" src="/assets/logo-icon.png" alt="SINA Trading PLC" width={58} height={33} />
             <div>
               <div className="logo-text" style={{ color: "var(--paper)" }}>SINA</div>
               <div className="logo-sub" style={{ color: "#8b8a85" }}>Your Goods, Our Priority</div>

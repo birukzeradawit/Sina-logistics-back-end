@@ -36,7 +36,7 @@ export async function sendStaffInquiryAlert(inquiry: InquiryEmailPayload) {
   const sectorLabel = inquiry.sector || "General Inquiry";
 
   const textContent = `
-[NEW LEAD] SINA Supplies & Logistics
+[NEW LEAD] SINA Trading PLC
 
 A new inquiry has been received from the website contact form.
 
@@ -125,7 +125,7 @@ export async function sendCustomerInquiryConfirmation(inquiry: InquiryEmailPaylo
   const textContent = `
 Dear ${fullName},
 
-Thank you for reaching out to SINA Supplies & Logistics.
+Thank you for reaching out to SINA Trading PLC.
 
 We have received your inquiry regarding "${inquiry.sector || "our services"}". One of our dedicated account specialists is reviewing your request and will contact you within 1 business day with details and quotation estimates.
 
@@ -133,8 +133,8 @@ Summary of your message:
 "${inquiry.message}"
 
 Best regards,
-SINA Supplies & Logistics Team
-Addis Ababa, Ethiopia | info@sinatrading.et
+SINA Trading PLC Team
+Addis Ababa, Ethiopia | sinasupplies@outlook.com
 `.trim();
 
   const htmlContent = `
@@ -145,7 +145,7 @@ Addis Ababa, Ethiopia | info@sinatrading.et
   <div style="max-width:600px;margin:0 auto;background:#FFFFFF;border-radius:8px;border:1px solid rgba(17,17,18,0.1);padding:36px;box-shadow:0 2px 8px rgba(0,0,0,0.04);">
     <div style="display:flex;align-items:center;gap:8px;margin-bottom:20px;">
       <span style="display:inline-block;width:12px;height:12px;background:#E8940C;border-radius:2px;"></span>
-      <span style="font-size:18px;font-weight:700;color:#111112;letter-spacing:-0.01em;">SINA Supplies &amp; Logistics</span>
+      <span style="font-size:18px;font-weight:700;color:#111112;letter-spacing:-0.01em;">SINA Trading PLC</span>
     </div>
 
     <h1 style="font-size:22px;color:#111112;margin:0 0 14px 0;">Thank you for contacting us, ${inquiry.firstName}!</h1>
@@ -172,7 +172,7 @@ Addis Ababa, Ethiopia | info@sinatrading.et
       await transporter.sendMail({
         from: DEFAULT_FROM,
         to: inquiry.email,
-        subject: `Thank you for contacting SINA Supplies & Logistics`,
+        subject: `Thank you for contacting SINA Trading PLC`,
         text: textContent,
         html: htmlContent,
       });
@@ -183,7 +183,7 @@ Addis Ababa, Ethiopia | info@sinatrading.et
   } else {
     console.log(`\n--- [EMAIL DISPATCH SIMULATION: CUSTOMER RECEIPT] ---`);
     console.log(`To: ${inquiry.email}`);
-    console.log(`Subject: Thank you for contacting SINA Supplies & Logistics`);
+    console.log(`Subject: Thank you for contacting SINA Trading PLC`);
     console.log(textContent);
     console.log(`----------------------------------------------------\n`);
   }

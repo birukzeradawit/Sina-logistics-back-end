@@ -12,13 +12,13 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "SINA Supplies & Logistics PLC | Your goods, our priority.",
-    template: "%s | SINA Supplies & Logistics",
+    default: "SINA Trading PLC | Your goods, our priority.",
+    template: "%s | SINA Trading",
   },
   description:
-    "SINA Supplies and Logistics PLC is a single-source partner for corporate organizations in Ethiopia — procurement, logistics, event management, property management, staffing, and commercial trade.",
+    "SINA Trading PLC is a single-source partner for corporate organizations in Ethiopia — procurement, logistics, event management, property management, staffing, and commercial trade.",
   keywords: [
-    "SINA Supplies and Logistics",
+    "SINA Trading PLC",
     "SINA Trading Ethiopia",
     "Procurement Addis Ababa",
     "Logistics and Delivery Ethiopia",
@@ -27,20 +27,20 @@ export const metadata: Metadata = {
     "Staff Outsourcing Ethiopia",
     "Commercial Trading Ethiopia",
   ],
-  authors: [{ name: "SINA Supplies and Logistics PLC", url: siteUrl }],
-  creator: "SINA Supplies and Logistics PLC",
+  authors: [{ name: "SINA Trading PLC", url: siteUrl }],
+  creator: "SINA Trading PLC",
   openGraph: {
     type: "website",
     locale: "en_US",
     url: siteUrl,
-    siteName: "SINA Supplies and Logistics",
-    title: "SINA Supplies & Logistics PLC | Your goods, our priority.",
+    siteName: "SINA Trading",
+    title: "SINA Trading PLC | Your goods, our priority.",
     description:
       "Single-source partner for procurement, logistics coordination, event organizing, property management, and commercial trade in Ethiopia.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "SINA Supplies & Logistics PLC | Your goods, our priority.",
+    title: "SINA Trading PLC | Your goods, our priority.",
     description:
       "Single-source partner for corporate procurement, logistics, events, property, and trade in Ethiopia.",
   },
@@ -68,13 +68,13 @@ const jsonLd = {
     {
       "@type": "Corporation",
       "@id": `${siteUrl}/#organization`,
-      name: "SINA Supplies and Logistics PLC",
-      alternateName: ["SINA Trading", "SINA PLC", "SINA Supplies & Logistics"],
+      name: "SINA Trading PLC",
+      alternateName: ["SINA Trading", "SINA PLC"],
       url: siteUrl,
       logo: `${siteUrl}/assets/logo-icon.png`,
       image: `${siteUrl}/assets/logo-icon.png`,
       description:
-        "SINA Supplies and Logistics PLC is an enterprise operational partner and licensed commercial trading company in Ethiopia providing institutional procurement, freight logistics, event management, commercial property maintenance, staffing outsourcing, and industrial commodity trade.",
+        "SINA Trading PLC is an enterprise operational partner and licensed commercial trading company in Ethiopia providing institutional procurement, freight logistics, event management, commercial property maintenance, staffing outsourcing, and industrial commodity trade.",
       telephone: "+251909696932",
       email: "sinasupplies@outlook.com",
       address: {
@@ -196,18 +196,18 @@ const jsonLd = {
       mainEntity: [
         {
           "@type": "Question",
-          name: "What corporate services does SINA Supplies and Logistics PLC provide in Ethiopia?",
+          name: "What corporate services does SINA Trading PLC provide in Ethiopia?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "SINA Supplies and Logistics PLC operates across specialized sectors in Ethiopia: Procurement & Supply, Logistics & Delivery, Event Organizing, Property Management, Staff Recruitment & Outsourcing, Operational Support, General Trading, Construction & Real Estate, Energy, Mining & Agriculture, and Professional Consulting.",
+            text: "SINA Trading PLC operates across specialized sectors in Ethiopia: Procurement & Supply, Logistics & Delivery, Event Organizing, Property Management, Staff Recruitment & Outsourcing, Operational Support, General Trading, Construction & Real Estate, Energy, Mining & Agriculture, and Professional Consulting.",
           },
         },
         {
           "@type": "Question",
-          name: "Where is SINA Supplies and Logistics PLC located?",
+          name: "Where is SINA Trading PLC located?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "SINA Supplies and Logistics PLC is located at Lemi Kura Sub-city, Woreda 03, House No. New, Addis Ababa, Ethiopia, coordinating operations nationwide.",
+            text: "SINA Trading PLC is located at Lemi Kura Sub-city, Woreda 03, House No. New, Addis Ababa, Ethiopia, coordinating operations nationwide.",
           },
         },
         {
@@ -224,7 +224,7 @@ const jsonLd = {
       "@type": "WebSite",
       "@id": `${siteUrl}/#website`,
       url: siteUrl,
-      name: "SINA Supplies and Logistics PLC",
+      name: "SINA Trading PLC",
       publisher: {
         "@id": `${siteUrl}/#organization`,
       },
